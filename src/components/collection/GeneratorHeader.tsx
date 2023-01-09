@@ -1,5 +1,5 @@
 import React from "react";
-import "../../css/generator/generator.scss";
+import "../../css/generator/generator-header.scss";
 
 const HeaderGenerator = () => {
   return (

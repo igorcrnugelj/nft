@@ -9,7 +9,6 @@ import Messages from "../../enums/Messages";
 import { activateToast } from "../../store/actions/Notifications-actions";
 import "../../css/form/style.css";
 import "../../css/generator/create-new-collection-form.scss";
-import "bootstrap-icons/font/bootstrap-icons.css";
 
 const CreateNewCollectionForm = () => {
   const dispatch: any = useDispatch();

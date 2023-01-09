@@ -1,0 +1,28 @@
+.main-panel-container {
+  display: flex;
+  flex-direction: row;
+  max-width: 1400px;
+  margin: 30px auto;
+  border: 2px solid red;
+}
+.accordion {
+  width: 440px;
+  //   background-color: blue;
+  //   border: 2px solid blue;
+}
+.main-panel {
+  display: flex;
+  width: 960px;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  //   border: 2px solid green;
+  background-color: green;
+}
+// .accordion-item {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: red;
+// }

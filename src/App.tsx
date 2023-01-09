@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import React, { Fragment } from "react";
 import logo from "./logo.svg";
-import "./App.css";
 import Home from "./pages/Home";
 import Generator from "./pages/Generator";
 import Header from "./components/layout/Header";

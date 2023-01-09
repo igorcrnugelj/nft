@@ -1,14 +1,15 @@
 import { Fragment } from "react";
+import AccordionCollection from "../components/collection/AccordionCollection";
 import CreateNewCollectionForm from "../components/collection/CreateNewCollectionForm";
-import HeaderGenerator from "../components/collection/HeaderGenerator";
+import GeneratorHeader from "../components/collection/GeneratorHeader";
+import GeneratorMainPanel from "../components/collection/GeneratorMainPanel";
 
 const Generator = () => {
   return (
     <Fragment>
-      <HeaderGenerator />
-
+      <GeneratorHeader />
       <CreateNewCollectionForm />
-      <div className="main-panel"></div>
+      <GeneratorMainPanel />
     </Fragment>
   );
 };
