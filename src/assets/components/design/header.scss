@@ -1,0 +1,47 @@
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #373737;
+  font-size: 18px;
+  //   background-color: blue;
+}
+
+.header-logo {
+  font-size: 25px;
+  display: block;
+  width: 650px;
+  text-align: left;
+  margin-left: 50px;
+  //   background-color: green;
+}
+.header-logo-span {
+  color: #cf5353;
+}
+.header-menu {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  padding: 25px;
+  margin: 0, auto;
+}
+.header-menu-item {
+  color: #373737;
+  font-weight: 400;
+}
+.header-menu-item:link {
+  text-decoration: none;
+}
+.header-menu-item:hover {
+  //   text-decoration: solid;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-color: #373737;
+}
+.header-menu-item:visited {
+  text-decoration: none;
+}
+.header-menu-item:active {
+  text-decoration: none;
+}

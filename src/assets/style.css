@@ -1,0 +1,13 @@
+.bi-stack {
+  font-size: large;
+}
+.bi-pencil-fill {
+  font-size: large;
+  /* color: white; */
+  /* color: #165131; */
+  color: #ffbc0d;
+}
+
+.bi-trash-fill {
+  font-size: 50px;
+}

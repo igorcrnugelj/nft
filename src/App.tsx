@@ -1,11 +1,24 @@
-import React from "react";
+import {
+  Route,
+  redirect,
+  Navigate,
+  BrowserRouter,
+  Routes,
+} from "react-router-dom";
+import React, { Fragment } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import Home from "./pages/Home";
+import Generator from "./pages/Generator";
+import Header from "./assets/components/ts/Header";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   return (
-    <div className="App">
-      {/* <header className="App-header">
+    <Fragment>
+      <div className="App">
+        {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
@@ -19,9 +32,18 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <h2>Lets get Started!</h2>
-      <p>This is also visible</p>
-    </div>
+        <Provider store={store}>
+          <BrowserRouter>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/generator" element={<Generator />} />
+            </Routes>
+          </BrowserRouter>
+        </Provider>
+      </div>
+    </Fragment>
   );
 }
 
