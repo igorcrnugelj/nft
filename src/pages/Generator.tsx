@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import "../assets/components/design/generator.scss";
+import "../css/generator/generator.scss";
 import CreateNewCollectionForm from "../components/collection/CreateNewCollectionForm";
 
 const Generator = () => {

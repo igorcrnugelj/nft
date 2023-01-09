@@ -15,7 +15,7 @@
   flex-direction: row;
   justify-content: space-between;
   // background-image: url('../media/patterns/first-section-bg.jpg');
-  background-image: url("../../../../public/media/img/first-section-bg.jpg");
+  background-image: url("../../../public/media/img/first-section-bg.jpg");
 }
 .first-section-title-description {
   display: flex;
@@ -97,7 +97,7 @@
   // box-shadow: 1rem 1rem 2rem rgba(255, 255, 255, 0.55);
   transition: 0.6s ease transform;
   // background: #ffbc0d;
-  background-image: url("../../../../public/media/img/1-mouth.png");
+  background-image: url("../../../public/media/img/1-mouth.png");
   background-size: cover;
   background-position: center;
 
@@ -121,7 +121,7 @@
   &::before {
     transform: translateZ(17rem);
     // border: 5px solid white;
-    background-image: url("../../../../public/media/img/5-eyes.png");
+    background-image: url("../../../public/media/img/5-eyes.png");
     background-size: cover;
     background-position: center;
     box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
@@ -134,7 +134,7 @@
   &::after {
     transform: translateZ(-17rem);
     // background: #165131;
-    background-image: url("../../../../public/media/img/1-body.png");
+    background-image: url("../../../public/media/img/1-body.png");
     background-size: cover;
     background-position: center;
     box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);

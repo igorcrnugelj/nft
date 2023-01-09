@@ -10,7 +10,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home";
 import Generator from "./pages/Generator";
-import Header from "./assets/components/ts/Header";
+import Header from "./components/layout/Header";
 import { Provider } from "react-redux";
 import store from "./store/store";
 

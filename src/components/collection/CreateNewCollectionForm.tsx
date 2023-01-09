@@ -7,8 +7,8 @@ import {
 import { setLayersInitialState } from "../../store/actions/Layer-actions";
 import Messages from "../../enums/Messages";
 import { activateToast } from "../../store/actions/Notifications-actions";
-import "../../assets/style.css";
-import "../../assets/components/design/create-new-collection-form.scss";
+import "../../css/form/style.css";
+import "../../css/generator/create-new-collection-form.scss";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const CreateNewCollectionForm = () => {
