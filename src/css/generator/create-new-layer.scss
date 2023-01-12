@@ -1,0 +1,18 @@
+.create-new-layer-container {
+  display: flex;
+  justify-content: center;
+}
+
+.add-layer {
+  font-size: 12px;
+  color: black;
+  //   font-weight: 700;
+  border: 1px solid #ffbc0d;
+  border-radius: 24px;
+  //   background-color: #ffbc0d;
+  background-color: #f8f8f4;
+  padding: 10px 25px;
+  cursor: pointer;
+  width: 80%;
+  max-width: 270px;
+}

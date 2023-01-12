@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'bootstrap/dist/css/bootstrap.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.css";
 import Card from "react-bootstrap/Card";
 
 const LayerData = (layerData: any) => {

@@ -1,35 +1,39 @@
-import React from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   generatePreviewImages,
   getCollections,
   getPreviewImages,
-} from '../../store/actions/Collection-actions'
-import {setMainPanelData} from '../../store/actions/MainPanelActions'
-import {activateSpinner} from '../../store/actions/Notifications-actions'
+} from "../../store/actions/Collection-actions";
+import { setMainPanelData } from "../../store/actions/MainPanelActions";
+import { activateSpinner } from "../../store/actions/Notifications-actions";
 
 const GeneratePreviewImages = (collection: any) => {
-  const dispatch: any = useDispatch()
-  const mainPanelData = useSelector((state: any) => state.mainPanelStore.mainPanelData)
+  const dispatch: any = useDispatch();
+  const mainPanelData = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData
+  );
 
   const generatePreviewImagesHandler = async () => {
-    dispatch(activateSpinner(true))
+    dispatch(activateSpinner(true));
     const collectionData = {
       userId: collection.collection.collection.collection.userId,
       collectionId: collection.collection.collection.collection.collectionId,
-    }
+    };
 
     const getGeneratedCollectionRecursion = async (attempt: any) => {
-      await wait(6000)
+      await wait(6000);
       const getPreviewImagesResponse = await dispatch(
         getPreviewImages(collectionData.collectionId)
-      ).unwrap()
-      const newAttempt = attempt - 1
+      ).unwrap();
+      const newAttempt = attempt - 1;
       if (getPreviewImagesResponse.data.length === 0) {
         if (newAttempt > 0) {
-          getGeneratedCollectionRecursion(newAttempt)
+          getGeneratedCollectionRecursion(newAttempt);
         } else {
-          console.log('Time has expired, could not fetch collection,please try again!')
+          console.log(
+            "Time has expired, could not fetch collection,please try again!"
+          );
         }
       } else {
         const mainPanelDataEdited = {
@@ -40,31 +44,35 @@ const GeneratePreviewImages = (collection: any) => {
               previewImages: getPreviewImagesResponse.data,
             },
           },
-        }
-        dispatch(setMainPanelData(mainPanelDataEdited))
-        dispatch(getCollections())
-        dispatch(activateSpinner(false))
+        };
+        dispatch(setMainPanelData(mainPanelDataEdited));
+        dispatch(getCollections());
+        dispatch(activateSpinner(false));
       }
-    }
+    };
     const generatePreviewImagesResponse = await dispatch(
       generatePreviewImages(collectionData)
-    ).unwrap()
+    ).unwrap();
     if (generatePreviewImagesResponse.success) {
-      getGeneratedCollectionRecursion(5)
+      getGeneratedCollectionRecursion(5);
     }
-  }
+  };
 
   function wait(timeout: any) {
     return new Promise((resolve) => {
-      setTimeout(resolve, timeout)
-    })
+      setTimeout(resolve, timeout);
+    });
   }
 
   return (
-    <button type='reset' className='btn btn-success mr-2' onClick={generatePreviewImagesHandler}>
+    <button
+      type="reset"
+      className="preview-button"
+      onClick={generatePreviewImagesHandler}
+    >
       PREVIEW
     </button>
-  )
-}
+  );
+};
 
-export default GeneratePreviewImages
+export default GeneratePreviewImages;

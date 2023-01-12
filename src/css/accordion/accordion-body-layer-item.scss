@@ -1,0 +1,43 @@
+.accordion-body-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  //   background-color: antiquewhite;
+}
+.layer-img-name-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  //   background-color: bisque;
+}
+.layer-edit-trash-container {
+  display: flex;
+  width: 30%;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-right: 10px;
+  //   background-color: azure;
+}
+.layer-name {
+}
+.layer-bi-stack-color {
+  color: #ffbc0d;
+}
+.bi-pencil-fill {
+  font-size: 20px;
+  cursor: pointer;
+}
+.layer-bi-pencil-color {
+  color: #373737;
+}
+.bi-trash-fill {
+  font-size: 20px;
+  cursor: pointer;
+}
+.layer-bi-trash-color {
+  color: #373737;
+}

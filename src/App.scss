@@ -1,19 +1,29 @@
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons.scss";
+@import "../src/css/accordion/accordion-header.scss";
+@import "../src/css/generator/create-new-collection-form.scss";
+@import "../src/css/generator/collection-preview.scss";
+@import "../src/css/generator/generator-main-panel.scss";
+@import "../src/css/generator/accordion-body.scss";
+@import "../src/css/generator/create-new-layer.scss";
+@import "../src/css/accordion/accordion-body-layer-item.scss";
+@import "../src/css/buttons/generate-collection.scss";
+@import "../src/css/buttons/generate-preview-images.scss";
+@import "../src/css/buttons/delete-collection.scss";
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+// body {
+//   margin: 0;
+//   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+//     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+//     sans-serif;
+//   -webkit-font-smoothing: antialiased;
+//   -moz-osx-font-smoothing: grayscale;
+// }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
+// code {
+//   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+//     monospace;
+// }
 
 .App {
   text-align: center;

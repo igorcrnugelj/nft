@@ -102,6 +102,33 @@ const AccordionBodyLayerItem = ({
   return (
     <Fragment>
       <div className="table-responsive">
+        <div
+          ref={dragDropRef}
+          style={{ border: isDragging ? "5px solid pink" : "0px" }}
+          className="accordion-body-container"
+        >
+          <div className="layer-img-name-container">
+            <i className="bi bi-stack layer-bi-stack-color"></i>
+            <div className="layer-name" onClick={getLayerImagesHandler}>
+              {" "}
+              {layer.name}
+            </div>
+            <div>{layer.order}</div>
+          </div>
+          <div className="layer-edit-trash-container">
+            <i
+              onClick={showEditLayerFormHandler}
+              className="bi bi-pencil-fill layer-bi-pencil-color"
+            ></i>
+            <i
+              onClick={deleteLayerHandler}
+              className="bi bi-trash-fill layer-bi-trash-color"
+            ></i>
+          </div>
+        </div>
+      </div>
+      {/* *********************************************************** */}
+      {/* <div className="table-responsive">
         <tbody>
           <div
             ref={dragDropRef}
@@ -122,7 +149,6 @@ const AccordionBodyLayerItem = ({
               <td className="mb-10">{layer.order}</td>
               <td>
                 <div className="d-flex justify-content-end flex-shrink-0">
-                  {/*Ikona "Edit" */}
                   <a
                     href="#"
                     className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
@@ -132,7 +158,6 @@ const AccordionBodyLayerItem = ({
                       <i className="bi bi-pencil-fill"></i>
                     </span>
                   </a>
-                  {/*Ikona "Delete" */}
                   <a
                     href="#"
                     className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
@@ -147,7 +172,7 @@ const AccordionBodyLayerItem = ({
             </tr>
           </div>
         </tbody>
-      </div>
+      </div> */}
     </Fragment>
   );
 };

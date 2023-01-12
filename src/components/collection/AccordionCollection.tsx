@@ -4,6 +4,7 @@ import Accordion from "react-bootstrap/Accordion";
 import AccordionHeader from "./AccordionHeader";
 import AccordionBody from "../layers/AccordionBody";
 import { getCollections } from "../../store/actions/Collection-actions";
+import "../../css/accordion/accordion-header.scss";
 
 const AccordionCollection = () => {
   const dispatch: any = useDispatch();
@@ -20,17 +21,22 @@ const AccordionCollection = () => {
     <Fragment>
       <Accordion>
         {collections.map((collection: any) => (
-          <Accordion.Item eventKey={collection.collectionId}>
-            <AccordionHeader
-              key={collection.collectionId}
-              collection={collection}
-            />
-
-            <AccordionBody
+          <div className="custom-accordion-item">
+            <Accordion.Item
+              // className="custom-accordion-item"
               eventKey={collection.collectionId}
-              collection={collection}
-            />
-          </Accordion.Item>
+            >
+              <AccordionHeader
+                key={collection.collectionId}
+                collection={collection}
+              />
+
+              <AccordionBody
+                eventKey={collection.collectionId}
+                collection={collection}
+              />
+            </Accordion.Item>
+          </div>
         ))}
       </Accordion>
     </Fragment>

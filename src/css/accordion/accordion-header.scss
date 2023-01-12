@@ -1,0 +1,52 @@
+.accordion-header {
+  color: #373737;
+}
+
+.accordion-header:focus {
+  color: rgb(0, 255, 13);
+  background-color: rgb(195, 255, 0);
+}
+.accordion-header:focus:not(:focus-visible) {
+  color: rgb(255, 0, 166);
+  background-color: red;
+}
+
+.accordion-item {
+  //   border: none;
+  border: 1px solid #ffbc0d;
+  --bs-accordion-active-bg: #ffbc0d;
+}
+.custom-accordion-item {
+  // margin-top: 5px;
+  // margin-bottom: 5px;
+  padding: 2px 0;
+}
+.accordion-button:active {
+  --bs-accordion-active-color: white;
+  --bs-accordion-active-bg: rgb(255, 255, 255);
+}
+.accordion-button:focus {
+  background-color: white;
+  border-color: white;
+  --bs-accordion-btn-focus-border-color: white;
+  --bs-accordion-active-color: #212529;
+  --bs-accordion-active-bg: rgb(8, 172, 82);
+}
+.accordion-button:focus:not(:focus-visible) {
+  //   background-color: white;
+  outline: 0;
+  box-shadow: none;
+}
+
+.accordion-button:focus:not(:focus-visible) {
+  color: rgb(255, 0, 166);
+  background-color: #ffbc0d;
+}
+
+.accordion::after {
+  color: aqua;
+  text-align: center;
+}
+.accordion:focus:not(:focus-visible) {
+  color: rgb(255, 0, 166);
+}

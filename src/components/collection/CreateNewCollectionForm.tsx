@@ -8,7 +8,6 @@ import { setLayersInitialState } from "../../store/actions/Layer-actions";
 import Messages from "../../enums/Messages";
 import { activateToast } from "../../store/actions/Notifications-actions";
 import "../../css/form/style.css";
-import "../../css/generator/create-new-collection-form.scss";
 
 const CreateNewCollectionForm = () => {
   const dispatch: any = useDispatch();
@@ -47,7 +46,7 @@ const CreateNewCollectionForm = () => {
         </p>
         <div className="create-new-collection-form-container">
           <div className="name-container">
-            <p>Name:</p>
+            <div>Name:</div>
             <input
               type="text"
               className="name-input-field"
@@ -57,7 +56,7 @@ const CreateNewCollectionForm = () => {
             <i className="bi bi-pencil-fill"></i>
           </div>
           <div className="description-container">
-            <p>Description:</p>
+            <div>Description:</div>
             <input
               type="text"
               className="description-input-field"
@@ -67,7 +66,7 @@ const CreateNewCollectionForm = () => {
             <i className="bi bi-pencil-fill"></i>
           </div>
           <div className="collection-size-container">
-            <p>Collection size:</p>
+            <div>Collection size:</div>
             <input
               type="number"
               className="collection-size-input-field"
