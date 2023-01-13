@@ -1,12 +1,12 @@
-import React, {Fragment, useEffect, useState} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import Col from 'react-bootstrap/Col'
-import Card from 'react-bootstrap/esm/Card'
-import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css'
-import RangeSlider from 'react-bootstrap-range-slider'
+import React, { Fragment, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/esm/Card";
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
+import RangeSlider from "react-bootstrap-range-slider";
 import {
   calculateRarityImages,
   deleteImage,
@@ -14,35 +14,40 @@ import {
   setImageData,
   setMaxRarityForCurrentImage,
   updateFixRarityImages,
-} from '../../store/actions/Layer-actions'
-import {setMainPanelBodyDataType, setMainPanelData} from '../../store/actions/MainPanelActions'
-import MainPanelDataType from '../../enums/MainPanelDataType'
+} from "../../store/actions/Layer-actions";
+import {
+  setMainPanelBodyDataType,
+  setMainPanelData,
+} from "../../store/actions/MainPanelActions";
+import MainPanelDataType from "../../enums/MainPanelDataType";
 
 const LayerImage = (image: any) => {
-  const dispatch: any = useDispatch()
-  const [newRarityValue, setNewRarityValue] = useState(image.image.imageRarity)
-  const [fixRarity, setFixRarity] = useState(false)
-  const mainPanelData = useSelector((state: any) => state.mainPanelStore.mainPanelData)
+  const dispatch: any = useDispatch();
+  const [newRarityValue, setNewRarityValue] = useState(image.image.imageRarity);
+  const [fixRarity, setFixRarity] = useState(false);
+  const mainPanelData = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData
+  );
   const maxRarityForCurrentImage = useSelector(
     (state: any) => state.layers.maxRarityForCurrentImage
-  )
+  );
 
   useEffect(() => {
-    setNewRarityValue(image.image.imageRarity)
-  }, [image.image.imageRarity])
+    setNewRarityValue(image.image.imageRarity);
+  }, [image.image.imageRarity]);
 
   useEffect(() => {
     if (image.image.fixedRarity === true) {
-      console.log('image.image.fixedRarity: ', image.image.fixedRarity)
-      setFixRarity(true)
+      console.log("image.image.fixedRarity: ", image.image.fixedRarity);
+      setFixRarity(true);
     }
-  }, [image.image.fixedRarity])
+  }, [image.image.fixedRarity]);
 
   const rangeHandler = async (event: any) => {
-    setNewRarityValue(event.target.value)
-    const imagesForCalculateRarityFunction = image.images
-    const imageForCalculateRarityFunction = image.image
-    console.log('rangeHandler')
+    setNewRarityValue(event.target.value);
+    const imagesForCalculateRarityFunction = image.images;
+    const imageForCalculateRarityFunction = image.image;
+    console.log("rangeHandler");
     const calculateRarityImagesResponse = await dispatch(
       calculateRarityImages({
         newRarityValue,
@@ -51,9 +56,11 @@ const LayerImage = (image: any) => {
         fixRarity,
         maxRarityForCurrentImage,
       })
-    ).unwrap()
+    ).unwrap();
     if (calculateRarityImagesResponse.success) {
-      dispatch(setMaxRarityForCurrentImage(calculateRarityImagesResponse.maxRarity))
+      dispatch(
+        setMaxRarityForCurrentImage(calculateRarityImagesResponse.maxRarity)
+      );
       dispatch(
         setMainPanelData({
           collectionData: mainPanelData.collectionData,
@@ -63,13 +70,13 @@ const LayerImage = (image: any) => {
           },
           type: MainPanelDataType.LayerImages,
         })
-      )
+      );
     }
-  }
+  };
 
   const rarityValueChange = (event: any) => {
-    const rarityValue: any = event.target.value
-    setNewRarityValue(rarityValue)
+    const rarityValue: any = event.target.value;
+    setNewRarityValue(rarityValue);
     // const imagesForCalculateRarityFunction = image.images.images.images
     // const imageForCalculateRarityFunction = image.image
     // console.log('rarityValueChange', image.image.orginalName + '  ' + rarityValue)
@@ -82,22 +89,24 @@ const LayerImage = (image: any) => {
     //     maxRarityForCurrentImage,
     //   })
     // )
-  }
+  };
 
   const checkHandler = async (event: any) => {
-    const imagesForCalculateRarityFunction = image.images
-    const imageForCalculateRarityFunction = image.image
-    const fixRarity = event.target.checked
-    setFixRarity(event.target.checked)
+    const imagesForCalculateRarityFunction = image.images;
+    const imageForCalculateRarityFunction = image.image;
+    const fixRarity = event.target.checked;
+    setFixRarity(event.target.checked);
     const updateFixRarityImagesResponse = await dispatch(
       updateFixRarityImages({
         imagesForCalculateRarityFunction,
         imageForCalculateRarityFunction,
         fixRarity,
       })
-    ).unwrap()
+    ).unwrap();
     if (updateFixRarityImagesResponse.success) {
-      dispatch(setMaxRarityForCurrentImage(updateFixRarityImagesResponse.maxRarity))
+      dispatch(
+        setMaxRarityForCurrentImage(updateFixRarityImagesResponse.maxRarity)
+      );
       dispatch(
         setMainPanelData({
           collectionData: mainPanelData.collectionData,
@@ -107,20 +116,22 @@ const LayerImage = (image: any) => {
           },
           type: MainPanelDataType.LayerImages,
         })
-      )
+      );
     }
-  }
+  };
 
   const deleteImageHandler = async () => {
     const deleteImageData = {
       layerId: image.image.layerId,
       imageId: image.image.imageId,
-    }
-    const deleteImageResponse = await dispatch(deleteImage(deleteImageData)).unwrap()
+    };
+    const deleteImageResponse = await dispatch(
+      deleteImage(deleteImageData)
+    ).unwrap();
     if (deleteImageResponse.success) {
       const getLayerImagesResponse = await dispatch(
         getLayerImages(mainPanelData.layerData.data.layerId)
-      ).unwrap()
+      ).unwrap();
       if (getLayerImagesResponse.success) {
         dispatch(
           setMainPanelData({
@@ -131,31 +142,89 @@ const LayerImage = (image: any) => {
             },
             type: MainPanelDataType.LayerImages,
           })
-        )
+        );
       }
     }
-  }
+  };
 
   const editImageHandler = () => {
-    dispatch(setImageData(image))
+    dispatch(setImageData(image));
     dispatch(
       setMainPanelBodyDataType({
         type: MainPanelDataType.EditImage,
       })
-    )
-  }
+    );
+  };
 
   return (
     <Fragment>
-      <Col xs={12} sm={4} md={4} lg={4}>
+      <div className="layer-image-main-container">
+        <div className="layer-image-name">{image.image.orginalName}</div>
+        <img className="layer-image" src={image.image.url} />
+        <div className="fix-rarity-container">
+          <div className="fix-rarity-text">Fix Rarity: </div>
+          <Form.Check
+            checked={fixRarity}
+            // label={`Fix Rarity:`}
+            onChange={checkHandler}
+          />
+        </div>
+        <div className="range-slider-container">
+          <div className="range-slider-text">Image Rarity:</div>
+          <RangeSlider
+            max={maxRarityForCurrentImage}
+            value={newRarityValue}
+            onChange={rarityValueChange}
+            onAfterChange={rangeHandler}
+            disabled={image.image.fixedRarity}
+          />
+          {!fixRarity ? (
+            <input
+              className="range-slider-input-field"
+              value={newRarityValue}
+              disabled
+            />
+          ) : (
+            <input
+              className="range-slider-input-field"
+              value={newRarityValue}
+            />
+          )}
+        </div>
+        <div className="layer-image-delete-and-edit-buttons-container">
+          <Button
+            className="layer-image-delete-button"
+            onClick={deleteImageHandler}
+          >
+            Delete
+          </Button>
+          <Button
+            className="layer-image-edit-button"
+            onClick={editImageHandler}
+          >
+            Edit
+          </Button>
+        </div>
+      </div>
+
+      {/* ******************************************************************************************* */}
+      {/* <Col xs={12} sm={4} md={4} lg={4}>
         <Card.Title>{image.image.orginalName}</Card.Title>
-        <Card.Img className='square border' variant='top' src={image.image.url} />
+        <Card.Img
+          className="square border"
+          variant="top"
+          src={image.image.url}
+        />
         <Form>
-          <Form.Check checked={fixRarity} label={`Fix Rarity:`} onChange={checkHandler} />
+          <Form.Check
+            checked={fixRarity}
+            label={`Fix Rarity:`}
+            onChange={checkHandler}
+          />
 
           <Form.Group as={Row}>
-            <Col xs='4'>imageRarity:</Col>
-            <Col xs='5'>
+            <Col xs="4">imageRarity:</Col>
+            <Col xs="5">
               <RangeSlider
                 max={maxRarityForCurrentImage}
                 value={newRarityValue}
@@ -164,7 +233,7 @@ const LayerImage = (image: any) => {
                 disabled={image.image.fixedRarity}
               />
             </Col>
-            <Col xs='3'>
+            <Col xs="3">
               {!fixRarity ? (
                 <Form.Control value={newRarityValue} disabled />
               ) : (
@@ -173,15 +242,15 @@ const LayerImage = (image: any) => {
             </Col>
           </Form.Group>
         </Form>
-        <Button variant='primary' onClick={deleteImageHandler}>
+        <Button variant="primary" onClick={deleteImageHandler}>
           Delete
         </Button>
-        <Button variant='primary' onClick={editImageHandler}>
+        <Button variant="primary" onClick={editImageHandler}>
           Edit
         </Button>
-      </Col>
+      </Col> */}
     </Fragment>
-  )
-}
+  );
+};
 
-export default LayerImage
+export default LayerImage;

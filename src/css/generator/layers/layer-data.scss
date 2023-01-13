@@ -1,0 +1,65 @@
+.data-about-layer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 25px;
+  position: relative;
+  gap: 10px;
+}
+.layer-main-title {
+  width: 100%;
+  font-size: 22px;
+  border-bottom: 1px solid #ffbc0d;
+  text-align: center;
+}
+.layer-name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.layer-name {
+  color: #373737;
+  // font-weight: 700;
+  font-size: 18px;
+}
+.layer-name-text {
+  color: #373737;
+  font-size: 16px;
+  font-weight: bold;
+}
+.layer-description-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+
+.layer-description-text {
+  color: #373737;
+  font-size: 16px;
+  font-weight: bold;
+}
+.layer-description {
+  color: #373737;
+  font-size: 18px;
+}
+.layer-size-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.layer-size-text {
+  color: #373737;
+  font-size: 16px;
+  font-weight: bold;
+}
+.layer-size {
+  color: #373737;
+  font-size: 18px;
+}

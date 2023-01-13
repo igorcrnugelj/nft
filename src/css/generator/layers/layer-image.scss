@@ -1,0 +1,65 @@
+.layer-image-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  //   background-color: red;
+}
+.layer-image-name {
+  font-weight: bold;
+}
+.layer-image {
+  display: flex;
+  width: 300px;
+  height: 300px;
+}
+.fix-rarity-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 10px;
+  align-self: flex-start;
+  //   border: 1px solid blue;
+}
+.range-slider-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 300px;
+  gap: 10px;
+  //   border: 1px solid green;
+}
+.range-slider-input-field {
+  width: 50px;
+  text-align: center;
+  border: 1px solid #ffbc0d;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #f8f8f4;
+}
+.layer-image-delete-and-edit-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  //   height: 10px;
+  //   border: 1px solid green;
+}
+.layer-image-delete-button {
+  color: #373737;
+  border: 1px solid #ffbc0d;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #f8f8f4;
+}
+.layer-image-edit-button {
+  color: #373737;
+  border: 1px solid #ffbc0d;
+  border-radius: 5px;
+  padding: 5px 20px;
+  background-color: #f8f8f4;
+}

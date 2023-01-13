@@ -1,16 +1,19 @@
-// create new layer form start
-.create-new-layer-form-main-container {
+.edit-image-form-main-container {
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 7px;
+  margin-bottom: 30px;
 }
 
-.create-new-layer-name-container {
+.edit-image-name-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.create-new-layer-input-field {
+
+.edit-image-input-field {
+  display: flex;
   width: 100%;
   margin-top: 2px;
   border: 1px solid #373737;
@@ -19,17 +22,17 @@
   border-radius: 5px;
   padding-left: 5px;
 }
-.create-new-layer-description-container {
+.edit-image-description-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.create-new-layer-rarity-container {
+.edit-image-rarity-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-.create-new-layer-create-and-cancel-container {
+.edit-image-create-and-cancel-container {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -38,62 +41,37 @@
   gap: 10px;
   margin-top: 5px;
 }
-.create-new-layer-button {
-  font-size: 12px;
+.save-changes-image-button {
   color: black;
   border: 1px solid #ffbc0d;
   border-radius: 24px;
   background-color: #f8f8f4;
-  padding: 5px 15px;
+  padding: 10px 25px;
   cursor: pointer;
 }
-.create-new-layer-button:hover {
-  font-size: 12px;
+.save-changes-image-button:hover {
   color: black;
-  border: 3px solid #ffbc0d;
+  border: 2px solid #ffbc0d;
   border-radius: 24px;
-  background-color: #f8f8f4;
-  padding: 5px 15px;
+  background-color: #e3e3e3;
+  padding: 10px 25px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.cancel-create-new-layer-button {
-  font-size: 12px;
+.cancel-edit-image-button {
   color: black;
   border: 1px solid #ffbc0d;
   border-radius: 24px;
   background-color: #f8f8f4;
-  padding: 5px 15px;
+  padding: 10px 25px;
   cursor: pointer;
 }
-.cancel-create-new-layer-button:hover {
-  font-size: 12px;
+.cancel-edit-image-button:hover {
   color: black;
   border: 1px solid #ffbc0d;
   border-radius: 24px;
   background-color: #fff;
-  padding: 5px 15px;
+  padding: 10px 25px;
   cursor: pointer;
   transition: all 0.2s ease;
-}
-
-// create new layer form end
-
-.add-new-layer-button-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-}
-
-.add-new-layer-button {
-  font-size: 12px;
-  color: black;
-  border: 1px solid #ffbc0d;
-  border-radius: 24px;
-  background-color: #f8f8f4;
-  padding: 5px 15px;
-  cursor: pointer;
-  width: 80%;
-  max-width: 270px;
 }

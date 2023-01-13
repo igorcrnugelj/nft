@@ -7,11 +7,15 @@ import Row from "react-bootstrap/Row";
 import { createLayer, getLayers } from "../../store/actions/Layer-actions";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import MainPanelDataType from "../../enums/MainPanelDataType";
+import CreateNewLayerForm from "./CreateNewLayerForm";
 
 const CreateNewLayer = () => {
   const dispatch: any = useDispatch();
   const mainPanelData = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData
+  );
+  const mainPanelBodyDataType = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelBodyDataType
   );
   const layers = useSelector((state: any) => state.layers.layers);
   const [createNewLayerButtonClicked, setCreateNewLayerButtonClicked] =
@@ -21,7 +25,12 @@ const CreateNewLayer = () => {
   const layerRarityRef = useRef<null | HTMLInputElement>(null);
 
   const showCreateLayerForm = () => {
-    setCreateNewLayerButtonClicked(true);
+    // setCreateNewLayerButtonClicked(true);
+    dispatch(
+      setMainPanelBodyDataType({
+        type: MainPanelDataType.ShowCreateNewLayerForm,
+      })
+    );
   };
 
   const createNewLayerHandler = async () => {
@@ -56,7 +65,60 @@ const CreateNewLayer = () => {
 
   return (
     <Fragment>
-      {createNewLayerButtonClicked && (
+      {/* {createNewLayerButtonClicked && ( */}
+      {mainPanelBodyDataType.type ===
+        MainPanelDataType.ShowCreateNewLayerForm && (
+        <CreateNewLayerForm />
+        // <div className="create-new-layer-form-main-container">
+        //   <div className="create-new-layer-name-container">
+        //     <div className="create-new-layer-text">Layer name</div>
+        //     <input
+        //       type="text"
+        //       className="create-new-layer-input-field"
+        //       // placeholder="Enter collection description"
+        //       ref={layerNameRef}
+        //     />
+        //   </div>
+        //   <div className="create-new-layer-description-container">
+        //     <div className="create-new-layer-text">Layer description</div>
+        //     <input
+        //       type="text"
+        //       className="create-new-layer-input-field"
+        //       // placeholder="Enter collection description"
+        //       ref={layerDescriptionRef}
+        //     />
+        //   </div>
+        //   <div className="create-new-layer-rarity-container">
+        //     <div className="create-new-layer-text">Layer rarity</div>
+        //     <input
+        //       type="text"
+        //       className="create-new-layer-input-field"
+        //       // placeholder="Enter collection description"
+        //       ref={layerRarityRef}
+        //     />
+        //   </div>
+        //   <div className="create-new-layer-create-and-cancel-container">
+        //     <Button
+        //       type="reset"
+        //       className="create-new-layer-button"
+        //       onClick={createNewLayerHandler}
+        //     >
+        //       Create
+        //     </Button>
+        //     <Button
+        //       type="reset"
+        //       className="cancel-create-new-layer-button"
+        //       onClick={cancelCreateNewLayerHandler}
+        //     >
+        //       Cancel
+        //     </Button>
+        //   </div>
+        // </div>
+      )}
+
+      {/* ************************************************************************** */}
+
+      {/* {createNewLayerButtonClicked && (
         <Form>
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Layer name</Form.Label>
@@ -89,15 +151,18 @@ const CreateNewLayer = () => {
             </Col>
           </Form.Group>
         </Form>
-      )}
-      {!createNewLayerButtonClicked && (
-        <button
-          type="reset"
-          className="add-layer"
-          onClick={showCreateLayerForm}
-        >
-          ADD NEW LAYER
-        </button>
+      )} */}
+      {mainPanelBodyDataType.type !==
+        MainPanelDataType.ShowCreateNewLayerForm && (
+        <div className="add-new-layer-button-container">
+          <button
+            type="reset"
+            className="add-new-layer-button"
+            onClick={showCreateLayerForm}
+          >
+            ADD NEW LAYER
+          </button>
+        </div>
       )}
     </Fragment>
   );

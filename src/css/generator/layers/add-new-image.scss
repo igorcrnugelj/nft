@@ -1,0 +1,30 @@
+.add-new-image-main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 40px;
+  //   background-color: antiquewhite;
+}
+.add-new-image-text-and-icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 5px;
+  //   background-color: bisque;
+}
+.bi-images {
+  font-size: 24px;
+  color: #ffbc0d;
+}
+.add-new-image-text {
+  color: #373737;
+  font-size: 16px;
+  font-weight: bold;
+}
+.add-new-image-file-button {
+  border: 1px solid #ffbc0d;
+}

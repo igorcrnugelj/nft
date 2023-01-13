@@ -94,39 +94,42 @@ const CollectionDataForMainPanel = (collection: any) => {
 
   return (
     <Fragment>
-      <div className="data-about-collection">
-        <div className="collection-title-container">
-          <div className="collection-title-text">Collection name:</div>
-          <div className="collection-title">
-            {collection.collection.collection.collection.name}
+      {mainPanelBodyDataType.type !== MainPanelDataType.EditForm && (
+        <div className="data-about-collection">
+          {/* <p className="collection-main-title">Collection data</p> */}
+          <div className="collection-name-container">
+            <div className="collection-name-text">Collection name:</div>
+            <div className="collection-name">
+              {collection.collection.collection.collection.name}
+            </div>
           </div>
-        </div>
-        <div className="collection-description-container">
-          <div className="collection-description-text">
-            Collection description:
+          <div className="collection-description-container">
+            <div className="collection-description-text">
+              Collection description:
+            </div>
+            <div className="collection-description">
+              {collection.collection.collection.collection.description}
+            </div>
           </div>
-          <div className="collection-description">
-            {collection.collection.collection.collection.description}
+          <div className="collection-size-container">
+            <div className="collection-size-text">
+              Number of NFTs to generate:
+            </div>
+            <div className="collection-size">
+              {collection.collection.collection.collection.collectionSize}
+            </div>
           </div>
-        </div>
-        <div className="collection-size-container">
-          <div className="collection-size-text">
-            Number of NFTs to generate:
-          </div>
-          <div className="collection-size">
-            {collection.collection.collection.collection.collectionSize}
-          </div>
-        </div>
-        {/* <div>
+          {/* <div>
           <button
-            type="button"
-            className="edit-collection-button"
-            onClick={showEditCollectionForm}
+          type="button"
+          className="edit-collection-button"
+          onClick={showEditCollectionForm}
           >
-            EDIT COLLECTION
+          EDIT COLLECTION
           </button>
         </div> */}
-      </div>
+        </div>
+      )}
 
       {/* ************************************************************************************* */}
 
@@ -163,8 +166,58 @@ const CollectionDataForMainPanel = (collection: any) => {
             </div>
           </Card>
         )} */}
-
+      {/* *************************************edit collection form - start *************************************** */}
       {mainPanelBodyDataType.type === MainPanelDataType.EditForm && (
+        <div className="edit-collection-form-main-container">
+          <div className="edit-collection-name-container">
+            <div className="edit-collection-name-text">Collection name</div>
+            <input
+              className="edit-collection-input-field"
+              type="text"
+              value={collectionName}
+              onChange={nameChangeHandler}
+            />
+          </div>
+          <div className="edit-collection-description-container">
+            <div className="edit-collection-text">Collection description</div>
+            <input
+              className="edit-collection-input-field"
+              type="text"
+              value={collectionDescription}
+              onChange={descriptionChangeHandler}
+            />
+          </div>
+          <div className="edit-collection-rarity-container">
+            <div className="edit-collection-text">
+              Number of collections to generate
+            </div>
+            <input
+              className="edit-collection-input-field"
+              type="number"
+              value={collectionSize}
+              onChange={sizeChangeHandler}
+            />
+          </div>
+          <div className="edit-collection-create-and-cancel-container">
+            <Button
+              type="reset"
+              className="edit-collection-button"
+              onClick={editCollectionHandler}
+            >
+              Save changes
+            </Button>
+            <Button
+              type="reset"
+              className="cancel-edit-collection-button"
+              onClick={showCollectionDetailsHandler}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      )}
+      {/* *************************************edit collection form - end *************************************** */}
+      {/* {mainPanelBodyDataType.type === MainPanelDataType.EditForm && (
         <Form>
           <Form.Group controlId="formGroupEmail">
             <Form.Label>Collection name:</Form.Label>
@@ -210,7 +263,7 @@ const CollectionDataForMainPanel = (collection: any) => {
             </Col>
           </Form.Group>
         </Form>
-      )}
+      )} */}
 
       {mainPanelBodyDataType.type === MainPanelDataType.DeleteCollection && (
         <DeleteCollectionCard collection={collection} />

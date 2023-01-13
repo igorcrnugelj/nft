@@ -5,22 +5,17 @@
 .main-container {
   width: 100%;
   height: 100vh;
-  //   font-family: "Open Sans", sans-serif;
-  //   font-size: 25px;
-  //   background-color: aqua;
 }
 
 .first-section {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  // background-image: url('../media/patterns/first-section-bg.jpg');
   background-image: url("../../../public/media/img/first-section-bg.jpg");
 }
 .first-section-title-description {
   display: flex;
   flex-direction: column;
-  // background-color: red;
 }
 .main-title {
   flex: 1;
@@ -28,15 +23,10 @@
   font-size: 95px;
   font-weight: bold;
   color: black;
-  // text-align: right;
   margin-top: 100px;
-  // margin-right: 100px;
   padding-left: 50px;
-  // background-color: blue;
 }
 .main-title-description {
-  // text-align: right;
-  // margin-right: 230px;
   position: relative;
   width: fit-content;
   font-size: 30px;
@@ -45,7 +35,6 @@
   line-height: 1;
   letter-spacing: 0.1rem;
   padding-left: 50px;
-  // background-color: yellow;
   margin-bottom: 200px;
 }
 .blockchains-container {
@@ -54,7 +43,6 @@
   position: absolute;
   align-items: center;
   height: 50px;
-  // background-color: blue;
   margin-top: 380px;
   margin-left: 50px;
   gap: 50px;
@@ -63,11 +51,9 @@
   display: flex;
   gap: 50px;
   flex-direction: row;
-  // background-color: green;
 }
 .blockchains img {
   width: 200px;
-  // background-color: cadetblue;
 }
 .first-section-img-description2 {
   background-color: burlywood;
@@ -84,8 +70,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
-  // background-color: aqua;
 }
 .first-section-img {
   width: 90%;
@@ -94,16 +78,13 @@
   transform-origin: 50% 100%;
   transform-style: preserve-3d;
   box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
-  // box-shadow: 1rem 1rem 2rem rgba(255, 255, 255, 0.55);
   transition: 0.6s ease transform;
-  // background: #ffbc0d;
   background-image: url("../../../public/media/img/1-mouth.png");
   background-size: cover;
   background-position: center;
 
   &:hover {
     transform: scale(0.8);
-    // box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
   }
 
   &::before,
@@ -120,12 +101,10 @@
 
   &::before {
     transform: translateZ(17rem);
-    // border: 5px solid white;
     background-image: url("../../../public/media/img/5-eyes.png");
     background-size: cover;
     background-position: center;
     box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
-    // box-shadow: 1rem 1rem 2rem rgba(255, 255, 255, 0.55);
     &:hover {
       transform: translateZ(0);
     }
@@ -133,12 +112,10 @@
 
   &::after {
     transform: translateZ(-17rem);
-    // background: #165131;
     background-image: url("../../../public/media/img/1-body.png");
     background-size: cover;
     background-position: center;
     box-shadow: 1rem 1rem 2rem rgba(0, 0, 0, 0.25);
-    // box-shadow: 1rem 1rem 2rem rgba(255, 255, 255, 0.55);
     &:hover {
       transform: translateZ(-1px);
     }

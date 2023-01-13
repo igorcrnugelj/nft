@@ -3,15 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  //   margin-top: 50px;
   background-color: #f8f8f4;
 }
 .generator-logo {
   width: 80px;
   font-size: 25px;
   padding-top: 60px;
-  //   display: block;
-  //   background-color: green;
 }
 .generator-logo-span {
   color: #cf5353;
@@ -19,22 +16,13 @@
 .generator-title {
   color: #373737;
   width: 100%;
-
   font-size: 70px;
   font-weight: bold;
   margin-top: 10px;
   margin-bottom: 50px;
   text-align: center;
 }
-// .generator-description {
-//   font-size: 24px;
-//   font-weight: 400;
-//   color: #5e5e5e;
-//   margin-top: 20px;
-//   margin-bottom: 50px;
-// }
 // *****************GENERATOR-START***********************************************************
-
 /* WebKit and Opera browsers */
 @-webkit-keyframes spinner {
   from {
@@ -59,10 +47,7 @@
   }
 }
 #stage {
-  //   margin: 1em auto;
   margin-bottom: 90px;
-
-  //   padding-left: 180px;
   height: 160px;
   -webkit-perspective: 1200px;
   -moz-perspective: 1200px;
@@ -71,7 +56,6 @@
 }
 #spinner {
   -webkit-transform-origin: 0 0 0;
-
   -webkit-animation-name: spinner;
   -webkit-animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;

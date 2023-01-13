@@ -10,7 +10,30 @@ const LayerData = (layerData: any) => {
 
   return (
     <Fragment>
-      <Card style={{ width: "100%", marginBottom: "20px", border: 0 }}>
+      <div className="data-about-layer">
+        {/* <p className="layer-main-title">layer data</p> */}
+        <div className="layer-name-container">
+          <div className="layer-name-text">Layer name:</div>
+          <div className="layer-name">
+            {layerData.layerData.layerData.data.name}
+          </div>
+        </div>
+        <div className="layer-description-container">
+          <div className="layer-description-text">Layer description:</div>
+          <div className="layer-description">
+            {layerData.layerData.layerData.data.description}
+          </div>
+        </div>
+        <div className="layer-size-container">
+          <div className="layer-size-text">Layer rarity:</div>
+          <div className="layer-size">
+            {layerData.layerData.layerData.data.layerRarity}
+          </div>
+        </div>
+      </div>
+
+      {/* ***************************************************************************************** */}
+      {/* <Card style={{ width: "100%", marginBottom: "20px", border: 0 }}>
         <Card.Body>
           <Card.Title className="mb-5">
             {layerData.layerData.layerData.data.name}
@@ -24,7 +47,7 @@ const LayerData = (layerData: any) => {
             {layerData.layerData.layerData.data.layerRarity}
           </Card.Text>
         </Card.Body>
-      </Card>
+      </Card> */}
     </Fragment>
   );
 };
