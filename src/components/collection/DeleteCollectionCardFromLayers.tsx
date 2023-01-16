@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   deleteCollection,
   getCollections,
@@ -8,22 +8,14 @@ import {
   setMainPanelBodyDataType,
   setMainPanelData,
 } from "../../store/actions/MainPanelActions";
-import Form from "react-bootstrap/Form";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { activateToast } from "../../store/actions/Notifications-actions";
 import Messages from "../../enums/Messages";
-
-const DeleteCollectionCard = () => {
-  // const DeleteCollectionCard = (collection: any) => {
+const DeleteCollectionCardFromLayers = (collection: any) => {
   const dispatch: any = useDispatch();
-  const collection = useSelector(
-    (state: any) => state.mainPanelStore.mainPanelData.collectionData
-  );
 
   const deleteCollectionHandler = async () => {
-    const { userId, collectionId } = collection.collection;
-    // const { userId, collectionId } =
-    //   collection.collection.collection.collection.collection;
+    const { userId, collectionId } = collection.collection.collection;
     const payload = await dispatch(
       deleteCollection({ userId, collectionId })
     ).unwrap();
@@ -54,7 +46,7 @@ const DeleteCollectionCard = () => {
         <div className="delete-collection-card-container">
           <i className="bi bi-trash" />
           <p className="delete-collection-card-text">
-            Do you really want delete collection?
+            Do you really want delete collection TESTTTTTTTTT?
           </p>
           <div className="delete-and-cancel-buttons-container">
             <button
@@ -74,33 +66,7 @@ const DeleteCollectionCard = () => {
           </div>
         </div>
       </div>
-      {/* ***************************************************************************** */}
-      {/* <Form>
-        <Form.Group controlId="formGroupPassword">
-          <Form.Label>Do you really want delete collection?</Form.Label>
-        </Form.Group>
-
-        <div>
-          <button
-            type="reset"
-            className="btn btn-success mr-2"
-            onClick={deleteCollectionHandler}
-          >
-            DELETE COLLECTION
-          </button>
-        </div>
-        <div>
-          <button
-            type="reset"
-            className="btn btn-success mr-2"
-            onClick={showCollectionDetailsHandler}
-          >
-            CANCEL
-          </button>
-        </div>
-      </Form> */}
     </Fragment>
   );
 };
-
-export default DeleteCollectionCard;
+export default DeleteCollectionCardFromLayers;

@@ -49,7 +49,34 @@ const EditCollectionForm = () => {
     setCollectionSize(event.target.value);
   };
 
-  const saveChangesHandler = async () => {
+  // const saveChangesHandler = async () => {
+  //   const collection = {
+  //     userId: mainPanelData.collectionData.collection.userId,
+  //     collectionId: mainPanelData.collectionData.collection.collectionId,
+  //     name: collectionName,
+  //     description: collectionDescription,
+  //     collectionSize: parseInt(collectionSize),
+  //   };
+  //   const payload = await dispatch(editCollection(collection)).unwrap();
+  //   if (payload.success) {
+  //     const mainPanelDataEdited = {
+  //       ...mainPanelData,
+  //       collectionData: { collection: payload.data },
+  //       type: MainPanelDataType.LayerImages,
+  //     };
+  //     dispatch(activateToast(Messages.CollectionSuccessfullyEdited));
+  //     dispatch(setMainPanelData(mainPanelDataEdited));
+  //     dispatch(
+  //       setMainPanelBodyDataType({
+  //         type: MainPanelDataType.ShowCollectionDetails,
+  //       })
+  //     );
+  //     dispatch(getCollections());
+  //   } else {
+  //     dispatch(activateToast(Messages.EditCollectionFailed));
+  //   }
+  // };
+  const editCollectionHandler = async () => {
     const collection = {
       userId: mainPanelData.collectionData.collection.userId,
       collectionId: mainPanelData.collectionData.collection.collectionId,
@@ -62,9 +89,7 @@ const EditCollectionForm = () => {
       const mainPanelDataEdited = {
         ...mainPanelData,
         collectionData: { collection: payload.data },
-        type: MainPanelDataType.LayerImages,
       };
-      dispatch(activateToast(Messages.CollectionSuccessfullyEdited));
       dispatch(setMainPanelData(mainPanelDataEdited));
       dispatch(
         setMainPanelBodyDataType({
@@ -87,10 +112,10 @@ const EditCollectionForm = () => {
 
   return (
     <Fragment>
-      {mainPanelBodyDataType.type === MainPanelDataType.EditForm && (
+      {/* {mainPanelBodyDataType.type === MainPanelDataType.EditForm && (
         <Form>
           <Form.Group controlId="formGroupEmail">
-            <Form.Label>Collection name:</Form.Label>
+            <Form.Label>Collection nameeeeeeeeee:</Form.Label>
             <Form.Control
               type="text"
               value={collectionName}
@@ -132,6 +157,64 @@ const EditCollectionForm = () => {
             </Col>
           </Form.Group>
         </Form>
+      )} */}
+      {mainPanelBodyDataType.type === MainPanelDataType.EditForm && (
+        <div className="edit-collection-form-main-container">
+          <div className="edit-collection-name-container">
+            <div className="edit-collection-text-div">
+              <div className="edit-collection-text">Collection name:</div>
+            </div>
+            <input
+              className="edit-collection-input-field"
+              type="text"
+              value={collectionName}
+              onChange={nameChangeHandler}
+            />
+          </div>
+          <div className="edit-collection-description-container">
+            <div className="edit-collection-text-div">
+              <div className="edit-collection-text">
+                Collection description:
+              </div>
+            </div>
+            <input
+              className="edit-collection-input-field"
+              type="text"
+              value={collectionDescription}
+              onChange={descriptionChangeHandler}
+            />
+          </div>
+          <div className="edit-collection-rarity-container">
+            <div className="edit-collection-text-div">
+              <div className="edit-collection-text">
+                {" "}
+                Number of NFTs to generate:
+              </div>
+            </div>
+            <input
+              className="edit-collection-number-of-collections-input-field"
+              type="number"
+              value={collectionSize}
+              onChange={sizeChangeHandler}
+            />
+          </div>
+          <div className="edit-collection-create-and-cancel-container">
+            <Button
+              type="reset"
+              className="save-changes-collection-button"
+              onClick={editCollectionHandler}
+            >
+              Save changes
+            </Button>
+            <Button
+              type="reset"
+              className="cancel-edit-collection-button"
+              onClick={showCollectionDetailsHandler}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
       )}
     </Fragment>
   );

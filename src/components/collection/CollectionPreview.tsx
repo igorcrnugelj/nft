@@ -5,6 +5,7 @@ import CreateNewLayerForm from "../layers/CreateNewLayerForm";
 import CollectionDataForMainPanel from "./CollectionDataForMainPanel";
 import CollectionPreviewImage from "./CollectionPreviewImage";
 import DeleteCollection from "./DeleteCollection";
+import DeleteCollectionCard from "./DeleteCollectionCard";
 import DownloadCollection from "./DownloadCollection";
 import EditCollectionButton from "./EditCollectionButton";
 import GenerateCollection from "./GenerateCollection";
@@ -30,6 +31,7 @@ const CollectionPreview = (collection: any) => {
         <EditCollectionButton />
         <DeleteCollection />
       </div>
+
       <CollectionDataForMainPanel collection={collection} />
 
       {/* {mainPanelBodyDataType.type ===
