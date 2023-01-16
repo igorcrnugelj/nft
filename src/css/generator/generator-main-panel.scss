@@ -48,47 +48,67 @@
 .collection-name-container {
   display: flex;
   flex-direction: row;
+  width: 100%;
   align-items: center;
-  gap: 30px;
 }
-.collection-name {
-  color: #373737;
-  // font-weight: 700;
-  font-size: 18px;
+.collection-name-text-div {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
 }
 .collection-name-text {
   color: #373737;
   font-size: 16px;
   font-weight: bold;
 }
+.collection-name {
+  display: flex;
+  width: 50%;
+  color: #373737;
+  // font-weight: 700;
+  font-size: 18px;
+}
 .collection-description-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
+  width: 100%;
 }
-
+.collection-description-text-div {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+}
 .collection-description-text {
   color: #373737;
   font-size: 16px;
   font-weight: bold;
 }
 .collection-description {
+  display: flex;
   color: #373737;
   font-size: 18px;
+  width: 50%;
 }
-.collection-size-container {
+.number-of-nfts-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
+  width: 100%;
 }
-.collection-size-text {
+.number-of-nfts-text-div {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+}
+.number-of-nfts-text {
   color: #373737;
   font-size: 16px;
   font-weight: bold;
 }
-.collection-size {
+.number-of-nfts {
+  display: flex;
+  width: 50%;
   color: #373737;
   font-size: 18px;
 }
@@ -178,19 +198,39 @@
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 7px;
+  justify-content: center;
+  // align-items: center;
+  gap: 10px;
+  margin: 80px 0;
 }
 
 .edit-collection-name-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
+}
+.edit-collection-text-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 25%;
+}
+.edit-collection-text {
+  font-weight: bold;
 }
 
 .edit-collection-input-field {
+  width: 50%;
   display: flex;
-  width: 100%;
-  margin-top: 2px;
+  border: 1px solid #373737;
+  line-height: 2rem;
+  background-color: #f8f8f4;
+  border-radius: 5px;
+  padding-left: 5px;
+}
+.edit-collection-number-of-collections-input-field {
+  width: 10%;
+  display: flex;
   border: 1px solid #373737;
   line-height: 2rem;
   background-color: #f8f8f4;
@@ -199,46 +239,45 @@
 }
 .edit-collection-description-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
 }
 .edit-collection-rarity-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
 }
 .edit-collection-create-and-cancel-container {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 70%;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-top: 5px;
+  margin-top: 15px;
 }
-.edit-collection-button {
+.save-changes-collection-button {
   color: black;
   border: 1px solid #ffbc0d;
   border-radius: 24px;
   background-color: #f8f8f4;
-  padding: 10px 25px;
+  padding: 5px 15px;
   cursor: pointer;
 }
-// .edit-collection-button:hover {
-//   color: black;
-//   border: 2px solid #ffbc0d;
-//   border-radius: 24px;
-//   background-color: #e3e3e3;
-//   padding: 10px 25px;
-//   cursor: pointer;
-//   transition: all 0.2s ease;
-// }
+.save-changes-collection-button:hover {
+  color: black;
+  border: 1px solid #ffbc0d;
+  border-radius: 24px;
+  background-color: #f8f8f4;
+  padding: 5px 15px;
+  cursor: pointer;
+}
 .cancel-edit-collection-button {
   color: black;
   border: 1px solid #ffbc0d;
   border-radius: 24px;
   background-color: #f8f8f4;
-  padding: 10px 25px;
+  padding: 5px 15px;
   cursor: pointer;
 }
 .cancel-edit-collection-button:hover {
@@ -246,7 +285,7 @@
   border: 1px solid #ffbc0d;
   border-radius: 24px;
   background-color: #fff;
-  padding: 10px 25px;
+  padding: 5px 15px;
   cursor: pointer;
   transition: all 0.2s ease;
 }

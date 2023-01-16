@@ -86,7 +86,9 @@ const EditLayerForm = () => {
     <Fragment>
       <div className="edit-layer-form-main-container">
         <div className="edit-layer-name-container">
-          <div className="edit-layer-name-text">Layer name</div>
+          <div className="edit-layer-text-div">
+            <div className="edit-layer-text">Layer name:</div>
+          </div>
           <input
             className="edit-layer-input-field"
             type="text"
@@ -95,7 +97,9 @@ const EditLayerForm = () => {
           />
         </div>
         <div className="edit-layer-description-container">
-          <div className="edit-layer-text">Layer description</div>
+          <div className="edit-layer-text-div">
+            <div className="edit-layer-text">Layer description:</div>
+          </div>
           <input
             className="edit-layer-input-field"
             type="text"
@@ -104,7 +108,9 @@ const EditLayerForm = () => {
           />
         </div>
         <div className="edit-layer-rarity-container">
-          <div className="edit-layer-text">layer rarity</div>
+          <div className="edit-layer-text-div">
+            <div className="edit-layer-text">layer rarity:</div>
+          </div>
           <input
             className="edit-layer-input-field"
             type="number"
@@ -115,7 +121,7 @@ const EditLayerForm = () => {
         <div className="edit-layer-create-and-cancel-container">
           <Button
             type="reset"
-            className="edit-layer-button"
+            className="save-changes-layer-button"
             onClick={saveLayerChangesHandler}
           >
             Save changes
