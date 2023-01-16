@@ -12,21 +12,29 @@ const LayerData = (layerData: any) => {
     <Fragment>
       <div className="data-about-layer">
         {/* <p className="layer-main-title">layer data</p> */}
-        <div className="layer-name-container">
-          <div className="layer-name-text">Layer name:</div>
-          <div className="layer-name">
+        <div className="layer-data-name-container">
+          <div className="layer-data-name-text-div">
+            <div className="layer-data-name-text">Layer name:</div>
+          </div>
+          <div className="layer-data-name">
             {layerData.layerData.layerData.data.name}
           </div>
         </div>
-        <div className="layer-description-container">
-          <div className="layer-description-text">Layer description:</div>
-          <div className="layer-description">
+        <div className="layer-data-description-container">
+          <div className="layer-data-description-text-div">
+            <div className="layer-data-description-text">
+              Layer description:
+            </div>
+          </div>
+          <div className="layer-data-description">
             {layerData.layerData.layerData.data.description}
           </div>
         </div>
-        <div className="layer-size-container">
-          <div className="layer-size-text">Layer rarity:</div>
-          <div className="layer-size">
+        <div className="layer-data-size-container">
+          <div className="layer-data-size-text-div">
+            <div className="layer-data-size-text">Layer rarity:</div>
+          </div>
+          <div className="layer-data-size">
             {layerData.layerData.layerData.data.layerRarity}
           </div>
         </div>
