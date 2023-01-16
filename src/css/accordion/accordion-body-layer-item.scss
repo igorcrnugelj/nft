@@ -29,10 +29,48 @@
 .layer-bi-pencil-color {
   color: #373737;
 }
+.layer-bi-pencil-color:hover {
+  color: #ffbc0d;
+  cursor: pointer;
+}
 .bi-trash-fill {
   font-size: 20px;
   cursor: pointer;
 }
 .layer-bi-trash-color {
   color: #373737;
+}
+.layer-bi-trash-color:hover {
+  color: #ffbc0d;
+  cursor: pointer;
+}
+.layer-bi-arrows-move-color:hover {
+  color: #ffbc0d;
+}
+.accordion-body-layer-name {
+  border: none;
+  background-color: white;
+}
+
+.accordion-body-layer-name:hover {
+  color: #ffbc0d;
+  cursor: pointer;
+}
+.accordion-body-layer-name:focus {
+  color: #ffbc0d;
+}
+.accordion-body-layer-name:focus:not(:focus-visible) {
+  color: #ffbc0d;
+}
+.accordion-body-layer-name:visited {
+  color: #ffbc0d;
+}
+.accordion-body-layer-name:active {
+  color: #ffbc0d;
+}
+.accordion-body-layer-name::before {
+  color: #ffbc0d;
+}
+.accordion-body-layer-name::after {
+  color: #ffbc0d;
 }

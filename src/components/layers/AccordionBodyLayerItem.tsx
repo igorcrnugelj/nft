@@ -14,6 +14,7 @@ import {
 import { activateToast } from "../../store/actions/Notifications-actions";
 import { useDrag, useDrop } from "react-dnd";
 import "../../css/form/style.css";
+import { Button } from "bootstrap";
 
 const AccordionBodyLayerItem = ({
   layer,
@@ -108,11 +109,15 @@ const AccordionBodyLayerItem = ({
           className="accordion-body-container"
         >
           <div className="layer-img-name-container">
-            <i className="bi bi-stack layer-bi-stack-color"></i>
-            <div className="layer-name" onClick={getLayerImagesHandler}>
+            {/* <i className="bi bi-stack layer-bi-stack-color"></i> */}
+            <i className="bi bi-arrows-move layer-bi-arrows-move-color"></i>
+            <button
+              className="accordion-body-layer-name"
+              onClick={getLayerImagesHandler}
+            >
               {" "}
               {layer.name}
-            </div>
+            </button>
             <div>{layer.order}</div>
           </div>
           <div className="layer-edit-trash-container">
