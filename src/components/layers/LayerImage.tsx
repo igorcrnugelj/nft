@@ -159,7 +159,19 @@ const LayerImage = (image: any) => {
   return (
     <Fragment>
       <div className="layer-image-main-container">
-        <div className="layer-image-name">{image.image.orginalName}</div>
+        <div className="image-name-pencil-and-trash-container-container">
+          <div className="layer-image-name">{image.image.orginalName}</div>
+          <div className="layer-image-pencil-and-trash-container-div">
+            <i
+              onClick={editImageHandler}
+              className="bi bi-pencil-fill layer-image-bi-pencil"
+            ></i>
+            <i
+              onClick={deleteImageHandler}
+              className="bi bi-trash-fill layer-image-bi-trash"
+            ></i>
+          </div>
+        </div>
         <img className="layer-image" src={image.image.url} />
         <div className="fix-rarity-container">
           <div className="fix-rarity-text">Fix Rarity: </div>
@@ -192,7 +204,7 @@ const LayerImage = (image: any) => {
           )}
         </div>
         <div className="layer-image-delete-and-edit-buttons-container">
-          <Button
+          {/* <Button
             className="layer-image-delete-button"
             onClick={deleteImageHandler}
           >
@@ -203,7 +215,7 @@ const LayerImage = (image: any) => {
             onClick={editImageHandler}
           >
             Edit
-          </Button>
+          </Button> */}
         </div>
       </div>
 
