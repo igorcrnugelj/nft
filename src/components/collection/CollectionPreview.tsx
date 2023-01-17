@@ -20,10 +20,7 @@ const CollectionPreview = (collection: any) => {
       <div className="buttons-container ">
         <DownloadCollection />
         <GenerateCollection />
-        <GeneratePreviewImages
-          key={collection.collectionId}
-          collection={collection}
-        />
+        <GeneratePreviewImages />
         <EditCollectionButton />
         <DeleteCollectionCard />
       </div>

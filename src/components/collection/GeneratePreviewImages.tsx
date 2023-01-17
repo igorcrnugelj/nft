@@ -8,8 +8,11 @@ import {
 import { setMainPanelData } from "../../store/actions/MainPanelActions";
 import { activateSpinner } from "../../store/actions/Notifications-actions";
 
-const GeneratePreviewImages = (collection: any) => {
+const GeneratePreviewImages = () => {
   const dispatch: any = useDispatch();
+  const collection = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData.collectionData
+  );
   const mainPanelData = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData
   );
@@ -17,8 +20,8 @@ const GeneratePreviewImages = (collection: any) => {
   const generatePreviewImagesHandler = async () => {
     dispatch(activateSpinner(true));
     const collectionData = {
-      userId: collection.collection.collection.collection.userId,
-      collectionId: collection.collection.collection.collection.collectionId,
+      userId: collection.collection.userId,
+      collectionId: collection.collection.collectionId,
     };
 
     const getGeneratedCollectionRecursion = async (attempt: any) => {
@@ -40,7 +43,7 @@ const GeneratePreviewImages = (collection: any) => {
           ...mainPanelData,
           collectionData: {
             collection: {
-              ...collection.collection.collection.collection,
+              ...collection.collection,
               previewImages: getPreviewImagesResponse.data,
             },
           },

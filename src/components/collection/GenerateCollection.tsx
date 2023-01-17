@@ -9,7 +9,6 @@ import {
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import { activateSpinner } from "../../store/actions/Notifications-actions";
 import Spinner from "react-bootstrap/Spinner";
-import Button from "react-bootstrap/Button";
 
 const GenerateCollection = () => {
   const dispatch: any = useDispatch();
@@ -23,8 +22,6 @@ const GenerateCollection = () => {
     setShowSpinner(true);
 
     const collectionData = {
-      // userId: collection.collection.collection.collection.userId,
-      // collectionId: collection.collection.collection.collection.collectionId,
       userId: collection.collection.userId,
       collectionId: collection.collection.collectionId,
     };
