@@ -20,11 +20,13 @@ import {
   setMainPanelData,
 } from "../../store/actions/MainPanelActions";
 import MainPanelDataType from "../../enums/MainPanelDataType";
+import EditImageForm from "./EditImageForm";
 
 const LayerImage = (image: any) => {
   const dispatch: any = useDispatch();
   const [newRarityValue, setNewRarityValue] = useState(image.image.imageRarity);
   const [fixRarity, setFixRarity] = useState(false);
+  const [showEditImageForm, setShowEditImageForm] = useState(false);
   const mainPanelData = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData
   );
@@ -148,6 +150,7 @@ const LayerImage = (image: any) => {
   };
 
   const editImageHandler = () => {
+    setShowEditImageForm(true);
     dispatch(setImageData(image));
     dispatch(
       setMainPanelBodyDataType({
@@ -156,22 +159,30 @@ const LayerImage = (image: any) => {
     );
   };
 
+  const closeEditImageFormHandler = (result: any) => {
+    setShowEditImageForm(result);
+  };
+
   return (
     <Fragment>
       <div className="layer-image-main-container">
-        <div className="image-name-pencil-and-trash-container-container">
-          <div className="layer-image-name">{image.image.orginalName}</div>
-          <div className="layer-image-pencil-and-trash-container-div">
-            <i
-              onClick={editImageHandler}
-              className="bi bi-pencil-fill layer-image-bi-pencil"
-            ></i>
-            <i
-              onClick={deleteImageHandler}
-              className="bi bi-trash-fill layer-image-bi-trash"
-            ></i>
+        {!showEditImageForm ? (
+          <div className="image-name-pencil-and-trash-container-container">
+            <div className="layer-image-name">{image.image.orginalName}</div>
+            <div className="layer-image-pencil-and-trash-container-div">
+              <i
+                onClick={editImageHandler}
+                className="bi bi-pencil-fill layer-image-bi-pencil"
+              ></i>
+              <i
+                onClick={deleteImageHandler}
+                className="bi bi-trash-fill layer-image-bi-trash"
+              ></i>
+            </div>
           </div>
-        </div>
+        ) : (
+          <EditImageForm closeForm={closeEditImageFormHandler} />
+        )}
         <img className="layer-image" src={image.image.url} />
         <div className="fix-rarity-container">
           <div className="fix-rarity-text">Fix Rarity: </div>
@@ -203,64 +214,8 @@ const LayerImage = (image: any) => {
             />
           )}
         </div>
-        <div className="layer-image-delete-and-edit-buttons-container">
-          {/* <Button
-            className="layer-image-delete-button"
-            onClick={deleteImageHandler}
-          >
-            Delete
-          </Button>
-          <Button
-            className="layer-image-edit-button"
-            onClick={editImageHandler}
-          >
-            Edit
-          </Button> */}
-        </div>
+        <div className="layer-image-delete-and-edit-buttons-container"></div>
       </div>
-
-      {/* ******************************************************************************************* */}
-      {/* <Col xs={12} sm={4} md={4} lg={4}>
-        <Card.Title>{image.image.orginalName}</Card.Title>
-        <Card.Img
-          className="square border"
-          variant="top"
-          src={image.image.url}
-        />
-        <Form>
-          <Form.Check
-            checked={fixRarity}
-            label={`Fix Rarity:`}
-            onChange={checkHandler}
-          />
-
-          <Form.Group as={Row}>
-            <Col xs="4">imageRarity:</Col>
-            <Col xs="5">
-              <RangeSlider
-                max={maxRarityForCurrentImage}
-                value={newRarityValue}
-                onChange={rarityValueChange}
-                onAfterChange={rangeHandler}
-                disabled={image.image.fixedRarity}
-              />
-            </Col>
-            <Col xs="3">
-              {!fixRarity ? (
-                <Form.Control value={newRarityValue} disabled />
-              ) : (
-                <Form.Control value={newRarityValue} />
-              )}
-            </Col>
-          </Form.Group>
-        </Form>
-        <Button variant="primary" onClick={deleteImageHandler}>
-          Delete
-        </Button>
-        <Button variant="primary" onClick={editImageHandler}>
-          Edit
-        </Button>
-      </Col> */}
     </Fragment>
   );
 };

@@ -1,17 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import {
-  setMainPanelBodyDataType,
-  setMainPanelData,
-} from "../../store/actions/MainPanelActions";
+import { setMainPanelData } from "../../store/actions/MainPanelActions";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { editImage, getLayerImages } from "../../store/actions/Layer-actions";
 
-const EditImageForm = () => {
+const EditImageForm = ({ closeForm }: any) => {
   const dispatch: any = useDispatch();
   const image = useSelector((state: any) => state.layers.image);
   const mainPanelData = useSelector(
@@ -45,6 +38,7 @@ const EditImageForm = () => {
     };
     const editImageResponse = await dispatch(editImage(imageEdited)).unwrap();
     if (editImageResponse.success) {
+      closeForm(false);
       const getLayerImagesResponse = await dispatch(
         getLayerImages(mainPanelData.layerData.data.layerId)
       ).unwrap();
@@ -60,27 +54,17 @@ const EditImageForm = () => {
           })
         );
       }
-      dispatch(
-        setMainPanelBodyDataType({
-          type: MainPanelDataType.CancelEditImage,
-        })
-      );
     }
   };
 
   const cancelEditImageFormHandler = () => {
-    dispatch(
-      setMainPanelBodyDataType({
-        type: MainPanelDataType.CancelEditImage,
-      })
-    );
+    closeForm(false);
   };
 
   return (
     <Fragment>
-      <div className="edit-image-form-main-container">
-        <div className="edit-image-name-container">
-          <div className="edit-image-name-text">Image name</div>
+      <div className="edit-image-name-and-check-and-cancel-icons-container">
+        <div className="image-name-input-field">
           <input
             className="edit-image-input-field"
             type="text"
@@ -88,53 +72,11 @@ const EditImageForm = () => {
             onChange={imageNameChangeHandler}
           />
         </div>
-
-        <div className="edit-image-create-and-cancel-container">
-          <Button
-            type="reset"
-            className="save-changes-image-button"
-            onClick={saveImageChangesHandler}
-          >
-            Save changes
-          </Button>
-          <Button
-            type="reset"
-            className="cancel-edit-image-button"
-            onClick={cancelEditImageFormHandler}
-          >
-            Cancel
-          </Button>
+        <div className="image-check-and-cancel-icons-div">
+          <i className="bi bi-check2" onClick={saveImageChangesHandler}></i>
+          <i className="bi bi-x-lg" onClick={cancelEditImageFormHandler}></i>
         </div>
       </div>
-      {/* *********************************************************************************** */}
-      {/* <Form>
-        <Form.Group controlId="formGroupEmail">
-          <Form.Label>Image name:</Form.Label>
-          <Form.Control
-            type="text"
-            value={imageName}
-            onChange={imageNameChangeHandler}
-          />
-        </Form.Group>
-        <Form.Group as={Row}>
-          <Col sm={{ span: 10, offset: 2 }}>
-            <Button
-              type="reset"
-              className="btn btn-success mr-2"
-              onClick={saveImageChangesHandler}
-            >
-              Save Changes
-            </Button>
-            <Button
-              type="reset"
-              className="btn btn-success mr-2"
-              onClick={cancelEditImageFormHandler}
-            >
-              CANCEL
-            </Button>
-          </Col>
-        </Form.Group>
-      </Form> */}
     </Fragment>
   );
 };

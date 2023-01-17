@@ -14,7 +14,6 @@ import {
 import { activateToast } from "../../store/actions/Notifications-actions";
 import { useDrag, useDrop } from "react-dnd";
 import "../../css/form/style.css";
-import { Button } from "bootstrap";
 
 const AccordionBodyLayerItem = ({
   layer,
@@ -132,52 +131,6 @@ const AccordionBodyLayerItem = ({
           </div>
         </div>
       </div>
-      {/* *********************************************************** */}
-      {/* <div className="table-responsive">
-        <tbody>
-          <div
-            ref={dragDropRef}
-            style={{ border: isDragging ? "5px solid pink" : "0px" }}
-          >
-            <tr>
-              <td>
-                <span className="svg-icon svg-icon-warning me-5">
-                  <span className="svg-icon svg-icon-1">
-                    <i className="bi bi-stack"></i>
-                  </span>
-                </span>
-              </td>
-              <td className="mb-10" onClick={getLayerImagesHandler}>
-                {layer.name}
-              </td>
-              <td> " "</td>
-              <td className="mb-10">{layer.order}</td>
-              <td>
-                <div className="d-flex justify-content-end flex-shrink-0">
-                  <a
-                    href="#"
-                    className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                    onClick={showEditLayerFormHandler}
-                  >
-                    <span className="svg-icon svg-icon-1">
-                      <i className="bi bi-pencil-fill"></i>
-                    </span>
-                  </a>
-                  <a
-                    href="#"
-                    className="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                    onClick={deleteLayerHandler}
-                  >
-                    <span className="svg-icon svg-icon-1">
-                      <i className="bi bi-trash-fill"></i>
-                    </span>
-                  </a>
-                </div>
-              </td>
-            </tr>
-          </div>
-        </tbody>
-      </div> */}
     </Fragment>
   );
 };

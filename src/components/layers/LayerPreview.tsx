@@ -8,8 +8,6 @@ import EditCollectionForm from "../collection/EditCollectionForm";
 import GenerateCollection from "../collection/GenerateCollection";
 import GeneratePreviewImages from "../collection/GeneratePreviewImages";
 import AddNewImage from "./AddNewImage";
-import CreateNewLayer from "./CreateNewLayer";
-import EditImageForm from "./EditImageForm";
 import EditLayerForm from "./EditLayerForm";
 import LayerData from "./LayerData";
 import LayerImages from "./LayerImages";
@@ -18,9 +16,6 @@ const LayerPreview = (layerData: any) => {
   const mainPanelBodyDataType = useSelector(
     (state: any) => state.mainPanelStore.mainPanelBodyDataType
   );
-  const collection = useSelector(
-    (state: any) => state.mainPanelStore.mainPanelData.collectionData
-  );
 
   return (
     <Fragment>
@@ -28,10 +23,7 @@ const LayerPreview = (layerData: any) => {
       <div className="buttons-container ">
         <DownloadCollection />
         <GenerateCollection />
-        <GeneratePreviewImages
-        // key={collection.collectionId}
-        // collection={collection}
-        />
+        <GeneratePreviewImages />
         <EditCollectionButton />
         <DeleteCollectionCard />
       </div>
@@ -45,9 +37,7 @@ const LayerPreview = (layerData: any) => {
           <LayerData layerData={layerData} />
         )}
       <AddNewImage />
-      {mainPanelBodyDataType.type === MainPanelDataType.EditImage && (
-        <EditImageForm />
-      )}
+
       <LayerImages images={layerData.layerData.images} />
     </Fragment>
   );
