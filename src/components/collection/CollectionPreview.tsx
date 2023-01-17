@@ -19,10 +19,7 @@ const CollectionPreview = (collection: any) => {
     <Fragment>
       <div className="buttons-container ">
         <DownloadCollection />
-        <GenerateCollection
-          key={collection.collectionId}
-          collection={collection}
-        />
+        <GenerateCollection />
         <GeneratePreviewImages
           key={collection.collectionId}
           collection={collection}

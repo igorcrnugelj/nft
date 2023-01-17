@@ -21,6 +21,7 @@ const DownloadCollection = () => {
   return (
     <Fragment>
       <a
+        // className="download-collection-button"
         href={generatedCollectionState}
         target="_blank"
         rel="noopener noreferrer"
@@ -28,8 +29,8 @@ const DownloadCollection = () => {
       >
         {mainPanelBodyDataType.type ===
           MainPanelDataType.ShowDownloadButton && (
-          <Button>
-            <i className="download-collection-button" />
+          <Button className="download-collection-button">
+            {/* <i className="download-collection-button" /> */}
             DOWNLOAD COLLECTION
           </Button>
         )}

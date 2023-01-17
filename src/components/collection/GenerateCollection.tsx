@@ -1,5 +1,5 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { Fragment, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import {
   generateCollection,
@@ -8,15 +8,25 @@ import {
 } from "../../store/actions/Collection-actions";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import { activateSpinner } from "../../store/actions/Notifications-actions";
+import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 
-const GenerateCollection = (collection: any) => {
+const GenerateCollection = () => {
   const dispatch: any = useDispatch();
+  const collection = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData.collectionData
+  );
+  const [showSpinner, setShowSpinner] = useState(false);
 
   const generateCollectionHandler = async () => {
     dispatch(activateSpinner(true));
+    setShowSpinner(true);
+
     const collectionData = {
-      userId: collection.collection.collection.collection.userId,
-      collectionId: collection.collection.collection.collection.collectionId,
+      // userId: collection.collection.collection.collection.userId,
+      // collectionId: collection.collection.collection.collection.collectionId,
+      userId: collection.collection.userId,
+      collectionId: collection.collection.collectionId,
     };
 
     const getGeneratedCollectionRecursion = async (attempt: any) => {
@@ -35,6 +45,7 @@ const GenerateCollection = (collection: any) => {
         }
       } else {
         dispatch(activateSpinner(false));
+        setShowSpinner(false);
         dispatch(setGeneratedCollection(getGeneratedCollectionResponse.data));
         dispatch(
           setMainPanelBodyDataType({
@@ -59,13 +70,32 @@ const GenerateCollection = (collection: any) => {
   }
 
   return (
-    <button
-      type="reset"
-      className="generate-collection-button"
-      onClick={generateCollectionHandler}
-    >
-      GENERATE COLLECTION
-    </button>
+    <Fragment>
+      {!showSpinner ? (
+        <button
+          type="reset"
+          className="generate-collection-button"
+          onClick={generateCollectionHandler}
+        >
+          GENERATE COLLECTION
+        </button>
+      ) : (
+        <button
+          type="reset"
+          className="generate-collection-button-and-spinner"
+          onClick={generateCollectionHandler}
+        >
+          <Spinner
+            as="span"
+            animation="border"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />{" "}
+          GENERATION IN PROGRESS...
+        </button>
+      )}
+    </Fragment>
   );
 };
 
