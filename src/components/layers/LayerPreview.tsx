@@ -1,9 +1,7 @@
 import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
-import DeleteCollection from "../collection/DeleteCollection";
 import DeleteCollectionCard from "../collection/DeleteCollectionCard";
-import DeleteCollectionCardFromLayers from "../collection/DeleteCollectionCardFromLayers";
 import DownloadCollection from "../collection/DownloadCollection";
 import EditCollectionButton from "../collection/EditCollectionButton";
 import EditCollectionForm from "../collection/EditCollectionForm";
@@ -38,15 +36,9 @@ const LayerPreview = (layerData: any) => {
         // collection={collection}
         />
         <EditCollectionButton />
-        <DeleteCollection />
+        <DeleteCollectionCard />
       </div>
       {/* *****************************collection-buttons-end******************************* */}
-      {/* ******************************delete-collection-card-start************************* */}
-      {mainPanelBodyDataType.type === MainPanelDataType.DeleteCollection && (
-        // <DeleteCollectionCardFromLayers collection={collection} />
-        <DeleteCollectionCard />
-      )}
-      {/* ******************************delete-collection-card-end************************* */}
       <EditCollectionForm />
       {mainPanelBodyDataType.type === MainPanelDataType.ShowLayerEditForm && (
         <EditLayerForm />

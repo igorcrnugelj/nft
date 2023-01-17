@@ -70,7 +70,7 @@ const CreateNewCollectionForm = () => {
             <input
               type="number"
               className="collection-size-input-field"
-              placeholder="Enter number of collections you want to create"
+              placeholder="Enter number of NFTs to create"
               ref={sizeInputRef}
             />
             <i className="bi bi-pencil-fill"></i>

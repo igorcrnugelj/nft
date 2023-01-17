@@ -4,7 +4,6 @@ import MainPanelDataType from "../../enums/MainPanelDataType";
 import CreateNewLayerForm from "../layers/CreateNewLayerForm";
 import CollectionDataForMainPanel from "./CollectionDataForMainPanel";
 import CollectionPreviewImage from "./CollectionPreviewImage";
-import DeleteCollection from "./DeleteCollection";
 import DeleteCollectionCard from "./DeleteCollectionCard";
 import DownloadCollection from "./DownloadCollection";
 import EditCollectionButton from "./EditCollectionButton";
@@ -29,7 +28,7 @@ const CollectionPreview = (collection: any) => {
           collection={collection}
         />
         <EditCollectionButton />
-        <DeleteCollection />
+        <DeleteCollectionCard />
       </div>
 
       <CollectionDataForMainPanel collection={collection} />

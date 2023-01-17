@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteCollection,
@@ -12,18 +12,19 @@ import Form from "react-bootstrap/Form";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { activateToast } from "../../store/actions/Notifications-actions";
 import Messages from "../../enums/Messages";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const DeleteCollectionCard = () => {
-  // const DeleteCollectionCard = (collection: any) => {
   const dispatch: any = useDispatch();
   const collection = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData.collectionData
   );
+  const [modalShow, setModalShow] = useState(false);
 
   const deleteCollectionHandler = async () => {
     const { userId, collectionId } = collection.collection;
-    // const { userId, collectionId } =
-    //   collection.collection.collection.collection.collection;
+    setModalShow(false);
     const payload = await dispatch(
       deleteCollection({ userId, collectionId })
     ).unwrap();
@@ -46,11 +47,54 @@ const DeleteCollectionCard = () => {
         type: MainPanelDataType.ShowCollectionDetails,
       })
     );
+    setModalShow(false);
   };
 
   return (
     <Fragment>
-      <div className="delete-collection-card-main-container">
+      <Button
+        className="delete-collection-button"
+        onClick={() => setModalShow(true)}
+      >
+        DELETE COLLECTION
+      </Button>
+      <Modal
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <i className="bi bi-trash" />
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p className="delete-collection-card-text">
+            Do you really want delete collection {collection.collection.name}?
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="delete-and-cancel-buttons-container">
+            <button
+              type="reset"
+              className="delete-collection-button-in-card"
+              onClick={deleteCollectionHandler}
+            >
+              DELETE COLLECTION
+            </button>
+            <button
+              type="reset"
+              className="cancel-delete-collection-button-in-card"
+              onClick={showCollectionDetailsHandler}
+            >
+              CANCEL
+            </button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+      {/* ******************************************************************************************** */}
+      {/* <div className="delete-collection-card-main-container">
         <div className="delete-collection-card-container">
           <i className="bi bi-trash" />
           <p className="delete-collection-card-text">
@@ -73,32 +117,7 @@ const DeleteCollectionCard = () => {
             </button>
           </div>
         </div>
-      </div>
-      {/* ***************************************************************************** */}
-      {/* <Form>
-        <Form.Group controlId="formGroupPassword">
-          <Form.Label>Do you really want delete collection?</Form.Label>
-        </Form.Group>
-
-        <div>
-          <button
-            type="reset"
-            className="btn btn-success mr-2"
-            onClick={deleteCollectionHandler}
-          >
-            DELETE COLLECTION
-          </button>
-        </div>
-        <div>
-          <button
-            type="reset"
-            className="btn btn-success mr-2"
-            onClick={showCollectionDetailsHandler}
-          >
-            CANCEL
-          </button>
-        </div>
-      </Form> */}
+      </div> */}
     </Fragment>
   );
 };
