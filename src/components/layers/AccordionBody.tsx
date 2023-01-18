@@ -4,8 +4,6 @@ import { updateLayers } from "../../store/actions/Layer-actions";
 import Accordion from "react-bootstrap/Accordion";
 import AccordionBodyLayerItem from "./AccordionBodyLayerItem";
 import CreateNewLayer from "./CreateNewLayer";
-import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
-import MainPanelDataType from "../../enums/MainPanelDataType";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
@@ -31,14 +29,6 @@ const AccordionBody = (collection: any) => {
       }
     }
   }, [layers]);
-
-  const showEditCollectionForm = () => {
-    dispatch(
-      setMainPanelBodyDataType({
-        type: MainPanelDataType.EditForm,
-      })
-    );
-  };
 
   // DRAG AND DROP
   const moveLayerListItem = useCallback(

@@ -1,10 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/esm/Card";
-import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import RangeSlider from "react-bootstrap-range-slider";
 import {

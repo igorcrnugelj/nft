@@ -56,11 +56,9 @@ const AccordionHeader = (collection: any) => {
 
   return (
     <Fragment>
-      {/* <div className="accordion-button"> */}
       <Accordion.Header onClick={sendCollectionDataHandler}>
         <div className="accordion-header"> {collection.collection.name}</div>
       </Accordion.Header>
-      {/* </div> */}
     </Fragment>
   );
 };

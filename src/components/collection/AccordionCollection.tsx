@@ -22,10 +22,7 @@ const AccordionCollection = () => {
       <Accordion>
         {collections.map((collection: any) => (
           <div className="custom-accordion-item">
-            <Accordion.Item
-              // className="custom-accordion-item"
-              eventKey={collection.collectionId}
-            >
+            <Accordion.Item eventKey={collection.collectionId}>
               <AccordionHeader
                 key={collection.collectionId}
                 collection={collection}

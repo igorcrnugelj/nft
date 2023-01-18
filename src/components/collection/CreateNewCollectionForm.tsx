@@ -84,59 +84,6 @@ const CreateNewCollectionForm = () => {
           </button>
         </div>
       </div>
-      {/* <div className="collection-data-text">Collection Data:</div> */}
-
-      {/* <form className="form">
-        <div className="card-body">
-          <div className="form-group row">
-            <label className="col-lg-1 col-form-label text-lg-right">
-              Create Collection:
-            </label>
-            <label className="col-lg-1 col-form-label text-lg-right">
-              Name:
-            </label>
-            <div className="col-lg-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter collection name"
-                ref={nameInputRef}
-              />
-            </div>
-            <label className="col-lg-1 col-form-label text-lg-right">
-              Description:
-            </label>
-            <div className="col-lg-1">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter collection description"
-                ref={descriptionInputRef}
-              />
-            </div>
-            <label className="col-lg-2 col-form-label text-lg-right">
-              Collection size:
-            </label>
-            <div className="col-lg-1">
-              <input
-                type="number"
-                className="form-control"
-                placeholder="Collection size:"
-                ref={sizeInputRef}
-              />
-            </div>
-            <div className="col-lg-4">
-              <button
-                type="button"
-                className="btn btn-success mr-2"
-                onClick={createCollectionHandler}
-              >
-                CREATE NEW COLLECTION
-              </button>
-            </div>
-          </div>
-        </div>
-      </form> */}
     </Fragment>
   );
 };

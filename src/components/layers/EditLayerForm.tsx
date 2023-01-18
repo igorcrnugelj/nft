@@ -1,9 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import {
   setMainPanelBodyDataType,
@@ -135,51 +132,6 @@ const EditLayerForm = () => {
           </Button>
         </div>
       </div>
-      {/* **************************************************************************************** */}
-      {/* <Form>
-        <Form.Group controlId="formGroupEmail">
-          <Form.Label>Layer name:</Form.Label>
-          <Form.Control
-            type="text"
-            value={layerName}
-            onChange={layerNameChangeHandler}
-          />
-        </Form.Group>
-        <Form.Group controlId="formGroupPassword">
-          <Form.Label>Layer description:</Form.Label>
-          <Form.Control
-            type="text"
-            value={layerDescription}
-            onChange={layerDescriptionChangeHandler}
-          />
-        </Form.Group>
-        <Form.Group controlId="formGroupPassword">
-          <Form.Label>Layer rarity:</Form.Label>
-          <Form.Control
-            type="number"
-            value={layerRarity}
-            onChange={layerRarityChangeHandler}
-          />
-        </Form.Group>
-        <Form.Group as={Row}>
-          <Col sm={{ span: 10, offset: 2 }}>
-            <Button
-              type="reset"
-              className="btn btn-success mr-2"
-              onClick={saveLayerChangesHandler}
-            >
-              Save Changes
-            </Button>
-            <Button
-              type="reset"
-              className="btn btn-success mr-2"
-              onClick={showLayerDetailsHandler}
-            >
-              CANCEL
-            </Button>
-          </Col>
-        </Form.Group>
-      </Form> */}
     </Fragment>
   );
 };

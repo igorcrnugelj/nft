@@ -8,7 +8,6 @@ import {
   setMainPanelBodyDataType,
   setMainPanelData,
 } from "../../store/actions/MainPanelActions";
-import Form from "react-bootstrap/Form";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { activateToast } from "../../store/actions/Notifications-actions";
 import Messages from "../../enums/Messages";
@@ -93,31 +92,6 @@ const DeleteCollectionCard = () => {
           </div>
         </Modal.Footer>
       </Modal>
-      {/* ******************************************************************************************** */}
-      {/* <div className="delete-collection-card-main-container">
-        <div className="delete-collection-card-container">
-          <i className="bi bi-trash" />
-          <p className="delete-collection-card-text">
-            Do you really want delete collection?
-          </p>
-          <div className="delete-and-cancel-buttons-container">
-            <button
-              type="reset"
-              className="delete-collection-button-in-card"
-              onClick={deleteCollectionHandler}
-            >
-              DELETE COLLECTION
-            </button>
-            <button
-              type="reset"
-              className="cancel-delete-collection-button-in-card"
-              onClick={showCollectionDetailsHandler}
-            >
-              CANCEL
-            </button>
-          </div>
-        </div>
-      </div> */}
     </Fragment>
   );
 };

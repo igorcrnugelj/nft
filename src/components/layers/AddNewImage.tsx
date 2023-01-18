@@ -35,7 +35,6 @@ const AddNewImage = () => {
       );
       layerOrder = parseInt(max.order + 1);
     }
-    // setShowSpinnerModal(true)
     const imageData = {
       collectionId: mainPanelData.layerData.data.collectionId,
       layerId: mainPanelData.layerData.data.layerId,
@@ -85,11 +84,6 @@ const AddNewImage = () => {
           onChange={fileSelectedHandler}
         />
       </div>
-      {/* ********************************************************************** */}
-      {/* <Form.Group controlId="formFile" className="mb-3">
-        <Form.Label>Add new image:</Form.Label>
-        <Form.Control type="file" onChange={fileSelectedHandler} />
-      </Form.Group> */}
     </Fragment>
   );
 };

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import Messages from "../../enums/Messages";
@@ -28,11 +28,11 @@ const AccordionBodyLayerItem = ({
     (state: any) => state.mainPanelStore.mainPanelData
   );
 
-  useEffect(() => {
-    if (!mainPanelData.layerData) {
-      whichItemIsActive(null);
-    }
-  }, [mainPanelData.layerData]);
+  // useEffect(() => {
+  //   if (!mainPanelData.layerData) {
+  //     whichItemIsActive(null);
+  //   }
+  // }, [mainPanelData.layerData]);
 
   const deleteLayerHandler = async () => {
     const { collectionId, layerId } = layer;
@@ -80,8 +80,6 @@ const AccordionBodyLayerItem = ({
   const dragDropRef: any = dragRef(dropRef(ref));
   //DRAG AND DROP END
 
-  //console.log(event.currentTarget.id);
-
   const getLayerImagesHandler = async () => {
     whichItemIsActive(layer.layerId);
 
@@ -123,7 +121,6 @@ const AccordionBodyLayerItem = ({
           className="accordion-body-container"
         >
           <div className="layer-img-name-container">
-            {/* <i className="bi bi-stack layer-bi-stack-color"></i> */}
             <i className="bi bi-arrows-move layer-bi-arrows-move-color"></i>
             <button
               className="accordion-body-layer-name"

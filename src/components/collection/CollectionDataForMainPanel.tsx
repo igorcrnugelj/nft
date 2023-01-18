@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import DeleteCollectionCard from "./DeleteCollectionCard";
@@ -13,7 +13,6 @@ const CollectionDataForMainPanel = (collection: any) => {
     <Fragment>
       {mainPanelBodyDataType.type !== MainPanelDataType.EditForm && (
         <div className="data-about-collection">
-          {/* <p className="collection-main-title">Collection data</p> */}
           <div className="collection-name-container">
             <div className="collection-name-text-div">
               <div className="collection-name-text">Collection name:</div>
@@ -50,7 +49,6 @@ const CollectionDataForMainPanel = (collection: any) => {
       )}
 
       {mainPanelBodyDataType.type === MainPanelDataType.DeleteCollection && (
-        // <DeleteCollectionCard collection={collection} />
         <DeleteCollectionCard />
       )}
 
