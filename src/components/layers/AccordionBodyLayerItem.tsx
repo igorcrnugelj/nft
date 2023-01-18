@@ -1,5 +1,5 @@
-import React, { Fragment, useRef } from "react";
-import { useDispatch } from "react-redux";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import Messages from "../../enums/Messages";
 import {
@@ -20,8 +20,19 @@ const AccordionBodyLayerItem = ({
   collection,
   index,
   moveListItem,
+  whichItemIsActive,
+  isActive,
 }: any) => {
   const dispatch: any = useDispatch();
+  const mainPanelData = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData
+  );
+
+  useEffect(() => {
+    if (!mainPanelData.layerData) {
+      whichItemIsActive(null);
+    }
+  }, [mainPanelData.layerData]);
 
   const deleteLayerHandler = async () => {
     const { collectionId, layerId } = layer;
@@ -69,7 +80,11 @@ const AccordionBodyLayerItem = ({
   const dragDropRef: any = dragRef(dropRef(ref));
   //DRAG AND DROP END
 
+  //console.log(event.currentTarget.id);
+
   const getLayerImagesHandler = async () => {
+    whichItemIsActive(layer.layerId);
+
     const getLayerImagesResponse = await dispatch(
       getLayerImages(layer.layerId)
     ).unwrap();
@@ -113,6 +128,7 @@ const AccordionBodyLayerItem = ({
             <button
               className="accordion-body-layer-name"
               onClick={getLayerImagesHandler}
+              style={{ color: isActive ? "#ffbc0d" : "#373737" }}
             >
               {" "}
               {layer.name}

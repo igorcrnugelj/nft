@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useCallback } from "react";
+import React, { useEffect, Fragment, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLayers } from "../../store/actions/Layer-actions";
 import Accordion from "react-bootstrap/Accordion";
@@ -11,7 +11,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 const AccordionBody = (collection: any) => {
   const layers = useSelector((state: any) => state.layers.layers);
+
   const dispatch: any = useDispatch();
+  const [idOfActiveItem, setIdOfActiveItem] = useState();
 
   useEffect(() => {
     //provjeriti je li layer order dobar
@@ -57,6 +59,10 @@ const AccordionBody = (collection: any) => {
     [layers]
   );
 
+  const findActiveItemHandler = (itemId: any) => {
+    setIdOfActiveItem(itemId);
+  };
+
   return (
     <Fragment>
       <Accordion.Body>
@@ -64,13 +70,6 @@ const AccordionBody = (collection: any) => {
           className="create-new-layer-container"
           style={{ textAlign: "end", marginBottom: 10 }}
         >
-          {/* <button
-            type="button"
-            className="edit-collection-button-from-accordion-body"
-            onClick={showEditCollectionForm}
-          >
-            EDIT COLLECTION
-          </button> */}
           <CreateNewLayer />
         </div>
         <DndProvider backend={HTML5Backend}>
@@ -82,6 +81,8 @@ const AccordionBody = (collection: any) => {
                 layer={layer}
                 collection={collection}
                 moveListItem={moveLayerListItem}
+                whichItemIsActive={findActiveItemHandler}
+                isActive={layer.layerId === idOfActiveItem ? true : false}
               />
             ))}
         </DndProvider>
