@@ -36,6 +36,9 @@ const CreateNewCollectionForm = () => {
       const message = Messages.CreateCollectionFailed;
       dispatch(activateToast(message));
     }
+    nameInputRef.current.value = "";
+    descriptionInputRef.current.value = "";
+    sizeInputRef.current.value = "";
   };
 
   return (
