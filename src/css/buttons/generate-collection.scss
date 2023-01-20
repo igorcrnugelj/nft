@@ -7,6 +7,23 @@
   cursor: pointer;
   max-width: 270px;
   margin-right: 5px;
+  margin-bottom: 5px;
+  // border: 1px solid blue;
+}
+@media screen and (max-width: 768px) {
+  .generate-collection-button {
+    width: 180px;
+    font-size: 12px;
+    color: black;
+    border: 1px solid #ffbc0d;
+    border-radius: 24px;
+    background-color: #f8f8f4;
+    padding: 10px 25px;
+    cursor: pointer;
+    max-width: 270px;
+    margin-right: 5px;
+    // border: 1px solid blue;
+  }
 }
 .generate-collection-button-and-spinner {
   font-size: 14px;

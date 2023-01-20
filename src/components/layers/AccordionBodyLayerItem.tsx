@@ -28,11 +28,11 @@ const AccordionBodyLayerItem = ({
     (state: any) => state.mainPanelStore.mainPanelData
   );
 
-  // useEffect(() => {
-  //   if (!mainPanelData.layerData) {
-  //     whichItemIsActive(null);
-  //   }
-  // }, [mainPanelData.layerData]);
+  useEffect(() => {
+    if (!mainPanelData) {
+      whichItemIsActive("");
+    }
+  }, [mainPanelData]);
 
   const deleteLayerHandler = async () => {
     const { collectionId, layerId } = layer;
