@@ -42,7 +42,7 @@ const LayerImage = (image: any) => {
   }, [image.image.fixedRarity]);
 
   const rangeHandler = async (event: any) => {
-    setNewRarityValue(event.target.value);
+    // setNewRarityValue(event.target.value);
     const imagesForCalculateRarityFunction = image.images;
     const imageForCalculateRarityFunction = image.image;
     console.log("rangeHandler");
@@ -190,23 +190,33 @@ const LayerImage = (image: any) => {
         </div>
         <div className="range-slider-container">
           <div className="range-slider-text">Image Rarity:</div>
-          <RangeSlider
+          {/* <RangeSlider
             max={maxRarityForCurrentImage}
             value={newRarityValue}
             onChange={rarityValueChange}
             onAfterChange={rangeHandler}
             disabled={image.image.fixedRarity}
-          />
+          /> */}
+          <input
+            type="range"
+            max={maxRarityForCurrentImage}
+            value={newRarityValue}
+            onChange={rarityValueChange}
+            onMouseUp={rangeHandler}
+            disabled={image.image.fixedRarity}
+          ></input>
           {!fixRarity ? (
             <input
               className="range-slider-input-field"
               value={newRarityValue}
               disabled
+              readOnly
             />
           ) : (
             <input
               className="range-slider-input-field"
               value={newRarityValue}
+              readOnly
             />
           )}
         </div>
