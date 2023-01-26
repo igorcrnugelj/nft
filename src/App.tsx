@@ -12,6 +12,7 @@ import Generator from "./pages/Generator";
 import Header from "./components/layout/Header";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import Authentication from "./pages/Authentication";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/" element={<Navigate to="/home" />} />
               <Route path="/home" element={<Home />} />
               <Route path="/generator" element={<Generator />} />
+              <Route path="/auth" element={<Authentication />} />
             </Routes>
           </BrowserRouter>
         </Provider>

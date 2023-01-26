@@ -20,6 +20,9 @@ const Header = () => {
         <Link className="header-menu-item" to={"#"}>
           Pricing
         </Link>
+        <Link className="header-menu-item" to={"/auth"}>
+          Authentication
+        </Link>
       </div>
     </div>
   );
