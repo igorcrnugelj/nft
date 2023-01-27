@@ -3,11 +3,14 @@ import Form from "react-bootstrap/Form";
 import { Link, useSearchParams } from "react-router-dom";
 
 const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
+  // const [isLogin, setIsLogin] = useState(true);
 
-  function switchAuthHandler() {
-    setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
-  }
+  const [searchParams] = useSearchParams();
+  const isLogin = searchParams.get("mode") === "login";
+
+  // function switchAuthHandler() {
+  //   setIsLogin((isCurrentlyLogin) => !isCurrentlyLogin);
+  // }
 
   return (
     <>
@@ -22,9 +25,12 @@ const AuthForm = () => {
           <input id="password" type="password" name="password" required />
         </p>
         <div className="auth-actions">
-          <button onClick={switchAuthHandler} type="button">
+          {/* <button onClick={switchAuthHandler} type="button">
             {isLogin ? "Create new user" : "Login"}
-          </button>
+          </button> */}
+          <Link to={`?mode=${isLogin ? "signup" : "login"}`}>
+            {isLogin ? "Create new user" : "Login"}
+          </Link>
           <button>Save</button>
         </div>
       </Form>
