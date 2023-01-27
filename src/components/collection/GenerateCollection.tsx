@@ -11,6 +11,7 @@ import { activateSpinner } from "../../store/actions/Notifications-actions";
 import Spinner from "react-bootstrap/Spinner";
 import { useSSE, SSEProvider } from "react-hooks-sse";
 import { setImageData } from "../../store/actions/Layer-actions";
+import ProgressBar from "react-bootstrap/ProgressBar";
 
 const GenerateCollection = () => {
   const dispatch: any = useDispatch();
@@ -18,7 +19,9 @@ const GenerateCollection = () => {
     (state: any) => state.mainPanelStore.mainPanelData.collectionData
   );
   const [showSpinner, setShowSpinner] = useState(false);
+  const [showProgressBar, setShowProgressBar] = useState(false);
   const [data, setData] = useState("Initializing...");
+  const [percentage, setPercentage] = useState(0);
 
   const generateCollectionHandler = async () => {
     const collectionData = {
@@ -31,28 +34,58 @@ const GenerateCollection = () => {
     if (generateCollectionResponse.success) {
       //tu počinje novi kod ********************************************************************************************
 
-      const evtSource = new EventSource("http://63.35.234.60:3000/sse");
+      const evtSource = new EventSource("http://63.35.234.60:3000/stream");
+
       evtSource.onopen = function () {
         console.log("Connection to server opened.");
         console.log(evtSource.readyState);
+        setShowProgressBar(true);
       };
 
-      evtSource.addEventListener("iteration", (e) => {
-        console.log("iteration: ", e);
-      });
-
+      // evtSource.addEventListener("message", (event) => {
+      //   const message = JSON.parse(event.data);
+      //   console.log("message: ", message);
+      // });
       evtSource.onmessage = function (e) {
-        console.log("e.data: ", e.data);
+        const obj = JSON.parse(e.data);
+        const objIterationValue = obj.iteration;
+        const objTotalValue = obj.total;
+        let progressPercentage = (objIterationValue / objTotalValue) * 100;
+        setPercentage(progressPercentage);
+        console.log(objIterationValue, objTotalValue);
+
+        const func = async (id: any) => {
+          await wait(3000);
+          const getGeneratedCollectionResponse = await dispatch(
+            getGeneratedCollection(id)
+          ).unwrap();
+
+          if (!getGeneratedCollectionResponse.success) {
+            console.log("Could not fetch collection,please try again!");
+          } else {
+            dispatch(
+              setGeneratedCollection(getGeneratedCollectionResponse.data)
+            );
+            dispatch(
+              setMainPanelBodyDataType({
+                type: MainPanelDataType.ShowDownloadButton,
+              })
+            );
+          }
+        };
+
+        if (objIterationValue === objTotalValue) {
+          evtSource.close();
+          setShowProgressBar(false);
+
+          func(collection.collection.collectionId);
+        }
       };
       evtSource.onerror = function (e) {
         console.log("error: ", e);
       };
-
-      const getGeneratedCollectionResponse = await dispatch(
-        getGeneratedCollection(collectionData.collectionId)
-      ).unwrap();
-
       //tu završava novi kod ************************************************************************************************
+
       // const getGeneratedCollectionResponse = await dispatch(
       //   getGeneratedCollection(collectionData.collectionId)
       // ).unwrap();
@@ -63,9 +96,15 @@ const GenerateCollection = () => {
       //   );
       // } else {
       //   dispatch(setGeneratedCollection(getGeneratedCollectionResponse.data));
+      //   dispatch(
+      //     setMainPanelBodyDataType({
+      //       type: MainPanelDataType.ShowDownloadButton,
+      //     })
+      //   );
       // }
     }
   };
+
   // const generateCollectionHandler = async () => {
   //   dispatch(activateSpinner(true));
   //   setShowSpinner(true);
@@ -117,8 +156,8 @@ const GenerateCollection = () => {
 
   return (
     <Fragment>
-      {/* <SSEProvider endpoint="http://63.35.234.60:3000/sse"> */}
-      {!showSpinner ? (
+      {/* {!showSpinner ? ( */}
+      {!showProgressBar ? (
         <button
           type="reset"
           className="generate-collection-button"
@@ -129,20 +168,18 @@ const GenerateCollection = () => {
       ) : (
         <button
           type="reset"
-          className="generate-collection-button-and-spinner"
+          className="generate-collection-button"
           onClick={generateCollectionHandler}
         >
-          <Spinner
-            as="span"
-            animation="border"
-            size="sm"
-            role="status"
-            aria-hidden="true"
-          />{" "}
-          GENERATION IN PROGRESS...
+          GENERATE COLLECTION
+          <ProgressBar
+            className="progress-bar"
+            now={percentage}
+            animated={true}
+            label={`${percentage}%`}
+          />
         </button>
       )}
-      {/* </SSEProvider> */}
     </Fragment>
   );
 };

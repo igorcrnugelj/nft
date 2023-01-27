@@ -142,8 +142,7 @@ export const getGeneratedCollection = createAsyncThunk(
   async (collectionId: any) => {
     try {
       const res = await axios.get(
-        collectionId
-        // `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/generated?collectionId=${collectionId}`
+        `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/generated?collectionId=${collectionId}`
       );
 
       console.log(res.data);
