@@ -34,7 +34,9 @@ const GenerateCollection = () => {
     if (generateCollectionResponse.success) {
       //tu počinje novi kod ********************************************************************************************
 
-      const evtSource = new EventSource("http://63.35.234.60:3000/stream");
+      const evtSource = new EventSource(
+        `http://63.35.234.60:3000/stream?collectionId=${collection.collection.collectionId}`
+      );
 
       evtSource.onopen = function () {
         console.log("Connection to server opened.");
