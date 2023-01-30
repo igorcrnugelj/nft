@@ -23,6 +23,19 @@ const GenerateCollection = () => {
   const [data, setData] = useState("Initializing...");
   const [percentage, setPercentage] = useState(0);
 
+  // function updateMessage(message: any) {
+  //   const list = document.getElementById("messages");
+  //   const item = document.createElement("p");
+  //   item.textContent = message;
+  //   list?.appendChild(item);
+  //   console.log("list: ", list);
+  //   console.log("item: ", item);
+  // }
+
+  // evtSource.onmessage = function (event) {
+  //   updateMessage(event.data);
+  // };
+
   const generateCollectionHandler = async () => {
     const collectionData = {
       userId: collection.collection.userId,
@@ -44,10 +57,6 @@ const GenerateCollection = () => {
         setShowProgressBar(true);
       };
 
-      // evtSource.addEventListener("message", (event) => {
-      //   const message = JSON.parse(event.data);
-      //   console.log("message: ", message);
-      // });
       evtSource.onmessage = function (e) {
         const obj = JSON.parse(e.data);
         const objIterationValue = obj.iteration;
@@ -56,8 +65,8 @@ const GenerateCollection = () => {
         setPercentage(progressPercentage);
         console.log(objIterationValue, objTotalValue);
 
-        const func = async (id: any) => {
-          await wait(3000);
+        const getGeneratedCollectionFunction = async (id: any) => {
+          await wait(5000);
           const getGeneratedCollectionResponse = await dispatch(
             getGeneratedCollection(id)
           ).unwrap();
@@ -79,31 +88,14 @@ const GenerateCollection = () => {
         if (objIterationValue === objTotalValue) {
           evtSource.close();
           setShowProgressBar(false);
-
-          func(collection.collection.collectionId);
+          getGeneratedCollectionFunction(collection.collection.collectionId);
         }
       };
+
       evtSource.onerror = function (e) {
         console.log("error: ", e);
       };
       //tu završava novi kod ************************************************************************************************
-
-      // const getGeneratedCollectionResponse = await dispatch(
-      //   getGeneratedCollection(collectionData.collectionId)
-      // ).unwrap();
-
-      // if (!getGeneratedCollectionResponse.success) {
-      //   console.log(
-      //     "Time has expired, could not fetch collection,please try again!"
-      //   );
-      // } else {
-      //   dispatch(setGeneratedCollection(getGeneratedCollectionResponse.data));
-      //   dispatch(
-      //     setMainPanelBodyDataType({
-      //       type: MainPanelDataType.ShowDownloadButton,
-      //     })
-      //   );
-      // }
     }
   };
 
