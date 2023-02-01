@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import {
   generateCollection,
+  getCollections,
   getGeneratedCollection,
   setGeneratedCollection,
 } from "../../store/actions/Collection-actions";
@@ -20,21 +21,18 @@ const GenerateCollection = () => {
   );
   const [showSpinner, setShowSpinner] = useState(false);
   const [showProgressBar, setShowProgressBar] = useState(false);
-  const [data, setData] = useState("Initializing...");
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [collectionId, setCollectionId] = useState("");
   const [percentage, setPercentage] = useState(0);
 
-  // function updateMessage(message: any) {
-  //   const list = document.getElementById("messages");
-  //   const item = document.createElement("p");
-  //   item.textContent = message;
-  //   list?.appendChild(item);
-  //   console.log("list: ", list);
-  //   console.log("item: ", item);
-  // }
-
-  // evtSource.onmessage = function (event) {
-  //   updateMessage(event.data);
-  // };
+  useEffect(() => {
+    if (collection.collection.generating === true) {
+      setIsGenerating(true);
+    } else if (collection.collection.generating === false) {
+      setIsGenerating(false);
+      setShowProgressBar(false);
+    }
+  }, [collection]);
 
   const generateCollectionHandler = async () => {
     const collectionData = {
@@ -46,6 +44,7 @@ const GenerateCollection = () => {
     ).unwrap();
     if (generateCollectionResponse.success) {
       //tu počinje novi kod ********************************************************************************************
+      dispatch(getCollections());
 
       const evtSource = new EventSource(
         `http://63.35.234.60:3000/stream?collectionId=${collection.collection.collectionId}`
@@ -54,41 +53,49 @@ const GenerateCollection = () => {
       evtSource.onopen = function () {
         console.log("Connection to server opened.");
         console.log(evtSource.readyState);
-        setShowProgressBar(true);
       };
 
       evtSource.onmessage = function (e) {
         const obj = JSON.parse(e.data);
-        const objIterationValue = obj.iteration;
-        const objTotalValue = obj.total;
-        let progressPercentage = (objIterationValue / objTotalValue) * 100;
-        setPercentage(progressPercentage);
-        console.log(objIterationValue, objTotalValue);
+        console.log("Length is: ", Object.keys(obj).length);
+        if (Object.keys(obj).length !== 0) {
+          // setShowProgressBar(true);
+          const objIterationValue = obj.iteration;
+          const objTotalValue = obj.total;
+          let progressPercentage = (objIterationValue / objTotalValue) * 100;
+          setPercentage(progressPercentage);
+          console.log(objIterationValue, objTotalValue);
 
-        const getGeneratedCollectionFunction = async (id: any) => {
-          await wait(5000);
-          const getGeneratedCollectionResponse = await dispatch(
-            getGeneratedCollection(id)
-          ).unwrap();
+          const getGeneratedCollectionFunction = async (id: any) => {
+            await wait(7000);
+            const getGeneratedCollectionResponse = await dispatch(
+              getGeneratedCollection(id)
+            ).unwrap();
 
-          if (!getGeneratedCollectionResponse.success) {
-            console.log("Could not fetch collection,please try again!");
-          } else {
-            dispatch(
-              setGeneratedCollection(getGeneratedCollectionResponse.data)
-            );
-            dispatch(
-              setMainPanelBodyDataType({
-                type: MainPanelDataType.ShowDownloadButton,
-              })
-            );
+            if (!getGeneratedCollectionResponse.success) {
+              console.log("Could not fetch collection,please try again!");
+            } else {
+              dispatch(
+                setGeneratedCollection(getGeneratedCollectionResponse.data)
+              );
+              dispatch(
+                setMainPanelBodyDataType({
+                  type: MainPanelDataType.ShowDownloadButton,
+                })
+              );
+            }
+          };
+
+          if (objIterationValue === objTotalValue - 1) {
+            evtSource.close();
+            dispatch(getCollections());
+            // setShowProgressBar(false);
+            setIsGenerating(false);
+            getGeneratedCollectionFunction(collection.collection.collectionId);
           }
-        };
-
-        if (objIterationValue === objTotalValue) {
-          evtSource.close();
-          setShowProgressBar(false);
-          getGeneratedCollectionFunction(collection.collection.collectionId);
+        } else {
+          setShowProgressBar(true);
+          setPercentage(2);
         }
       };
 
@@ -151,7 +158,7 @@ const GenerateCollection = () => {
   return (
     <Fragment>
       {/* {!showSpinner ? ( */}
-      {!showProgressBar ? (
+      {!isGenerating ? (
         <button
           type="reset"
           className="generate-collection-button"
@@ -171,6 +178,7 @@ const GenerateCollection = () => {
             now={percentage}
             animated={true}
             label={`${percentage}%`}
+            style={{ backgroundColor: "#b2b2b2" }}
           />
         </button>
       )}
