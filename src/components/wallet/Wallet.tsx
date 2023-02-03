@@ -1,6 +1,5 @@
-import { ethers } from "ethers";
-import { Fragment } from "ethers/lib/utils";
 import React, { useState } from "react";
+import { ethers } from "ethers";
 
 const Wallet = () => {
   const [walletAddress, setWalletAddress] = useState("");
@@ -29,6 +28,22 @@ const Wallet = () => {
     }
   }
 
+  async function makeAPaymentHandler() {
+    const txHash = await window.ethereum.request({
+      method: "eth_sendTransaction",
+      params: [
+        {
+          from: walletAddress,
+          to: "0x524262c141da06c4a1cd44756801363eb0b90c7f",
+          value: "0x29a2241af62c0000",
+          // gasPrice: "0x09184e72a000",
+          // gas: "0x2710",
+        },
+      ],
+    });
+    console.log(txHash);
+  }
+
   return (
     <div>
       {/* <button onClick={requestAccount}>Request Account</button> */}
@@ -36,6 +51,9 @@ const Wallet = () => {
         Connect Wallet
       </button>
       <h3>Wallet Address: {walletAddress}</h3>
+      <button className="connect-wallet-button" onClick={makeAPaymentHandler}>
+        Make a payment
+      </button>
     </div>
   );
 };
