@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "../../css/layout/header.scss";
 
@@ -19,6 +18,9 @@ const Header = () => {
 
         <Link className="header-menu-item" to={"#"}>
           Pricing
+        </Link>
+        <Link className="header-menu-item" to={"/wallet"}>
+          Payment
         </Link>
       </div>
     </div>
