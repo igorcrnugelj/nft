@@ -8,10 +8,6 @@ import {
   setGeneratedCollection,
 } from "../../store/actions/Collection-actions";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
-import { activateSpinner } from "../../store/actions/Notifications-actions";
-import Spinner from "react-bootstrap/Spinner";
-import { useSSE, SSEProvider } from "react-hooks-sse";
-import { setImageData } from "../../store/actions/Layer-actions";
 import ProgressBar from "react-bootstrap/ProgressBar";
 
 const GenerateCollection = () => {
@@ -19,10 +15,7 @@ const GenerateCollection = () => {
   const collection = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData.collectionData
   );
-  const [showSpinner, setShowSpinner] = useState(false);
-  const [showProgressBar, setShowProgressBar] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [collectionId, setCollectionId] = useState("");
   const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
@@ -30,7 +23,6 @@ const GenerateCollection = () => {
       setIsGenerating(true);
     } else if (collection.collection.generating === false) {
       setIsGenerating(false);
-      setShowProgressBar(false);
     }
   }, [collection]);
 
@@ -57,9 +49,8 @@ const GenerateCollection = () => {
 
       evtSource.onmessage = function (e) {
         const obj = JSON.parse(e.data);
-        console.log("Length is: ", Object.keys(obj).length);
-        if (Object.keys(obj).length !== 0) {
-          // setShowProgressBar(true);
+        console.log(obj);
+        if (obj.iteration !== null) {
           const objIterationValue = obj.iteration;
           const objTotalValue = obj.total;
           let progressPercentage = (objIterationValue / objTotalValue) * 100;
@@ -67,7 +58,7 @@ const GenerateCollection = () => {
           console.log(objIterationValue, objTotalValue);
 
           const getGeneratedCollectionFunction = async (id: any) => {
-            await wait(7000);
+            await wait(4000);
             const getGeneratedCollectionResponse = await dispatch(
               getGeneratedCollection(id)
             ).unwrap();
@@ -84,17 +75,15 @@ const GenerateCollection = () => {
                 })
               );
             }
+            dispatch(getCollections());
           };
 
-          if (objIterationValue === objTotalValue - 1) {
+          if (obj.completed === true) {
             evtSource.close();
-            dispatch(getCollections());
-            // setShowProgressBar(false);
             setIsGenerating(false);
             getGeneratedCollectionFunction(collection.collection.collectionId);
           }
         } else {
-          setShowProgressBar(true);
           setPercentage(2);
         }
       };
@@ -157,7 +146,6 @@ const GenerateCollection = () => {
 
   return (
     <Fragment>
-      {/* {!showSpinner ? ( */}
       {!isGenerating ? (
         <button
           type="reset"
