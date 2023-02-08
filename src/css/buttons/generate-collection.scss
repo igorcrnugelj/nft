@@ -36,3 +36,52 @@
   max-width: 270px;
   margin-right: 5px;
 }
+.generate-collection-modal-header-text {
+  font-size: 16px;
+  // color: #373737;
+  color: green;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.generate-collection-modal-body-text {
+  font-size: 16px;
+  color: #373737;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.generate-collection-modal-body-price {
+  color: #06c668;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.generate-collection-cancel-button-in-modal {
+  font-size: 12px;
+  color: black;
+  border: 1px solid #ffbc0d;
+  border-radius: 24px;
+  background-color: #f8f8f4;
+  padding: 5px 15px;
+  cursor: pointer;
+  max-width: 270px;
+  margin-right: 5px;
+}
+.generate-collection-continue-button-in-modal {
+  font-size: 12px;
+  color: black;
+  border: 1px solid #ffbc0d;
+  border-radius: 24px;
+  background-color: #f8f8f4;
+  padding: 5px 15px;
+  cursor: pointer;
+  max-width: 270px;
+  margin-right: 5px;
+}
+.success-crypto-payment {
+  color: #06c668;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}

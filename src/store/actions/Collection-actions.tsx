@@ -233,3 +233,41 @@ export const getPreviewImages = createAsyncThunk(
     }
   }
 );
+
+export const setReceiptData = createAsyncThunk(
+  "collectionsStore/setReceiptData",
+  async (receiptData: any) => {
+    return receiptData;
+  }
+);
+export const getEthereumPriceInUsd = createAsyncThunk(
+  "collectionsStore/getEthereumPriceInUsd",
+  async () => {
+    try {
+      const res = await axios.get(`https://api.coincap.io/v2/assets/ethereum`);
+
+      if (res.status >= 200 || res.status < 300) {
+        return {
+          success: true,
+          data: res.data.data,
+        };
+      } else {
+        return {
+          success: false,
+          data: res.statusText,
+        };
+      }
+    } catch (error) {
+      return {
+        success: false,
+        data: error,
+      };
+    }
+  }
+);
+export const setTransactionStatus = createAsyncThunk(
+  "collectionsStore/setTransactionStatus",
+  async (transactionStatusData: any) => {
+    return transactionStatusData;
+  }
+);
