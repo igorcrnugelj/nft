@@ -85,6 +85,7 @@ const GenerateCollection = () => {
   };
   const generateCollectionHandler2 = async () => {
     setShowPaymentFormModal(false);
+    dispatch(setTransactionStatus(null));
     const collectionData = {
       userId: collection.collection.userId,
       collectionId: collection.collection.collectionId,
@@ -205,9 +206,15 @@ const GenerateCollection = () => {
         },
       ],
     });
+    console.log("TransactionHash: ", TransactionHash);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const receipt = await provider.waitForTransaction(TransactionHash);
     // const signer = provider.getSigner();
+    const resolve = await window.ethereum.request({
+      method: "eth_getTransactionByHash",
+      params: [TransactionHash],
+    });
+    console.log(resolve);
 
     dispatch(setTransactionStatus(receipt.status));
 
@@ -348,7 +355,11 @@ const GenerateCollection = () => {
                 className="payment-form-modal-footer-ethereum-button"
                 onClick={makeAPaymentHandler}
               >
-                {/* <img src="media/img/ethereum-logo.png"></img> */}
+                <img
+                  className="ethereum-logo-in-payment-form-button"
+                  src="media/img/ether-logo.png"
+                ></img>
+                Ethereum
               </button>
             </div>
             {showPaymentSuccess && (

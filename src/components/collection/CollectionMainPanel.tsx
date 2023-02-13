@@ -1,14 +1,16 @@
-import React, {Fragment} from 'react'
-import {useSelector} from 'react-redux'
-import MainPanelDataType from '../../enums/MainPanelDataType'
-import LayerPreview from '../layers/LayerPreview'
-import CollectionPreview from './CollectionPreview'
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
+import MainPanelDataType from "../../enums/MainPanelDataType";
+import LayerPreview from "../layers/LayerPreview";
+import CollectionPreview from "./CollectionPreview";
 
 const CollectionMainPanel = () => {
-  const mainPanelData = useSelector((state: any) => state.mainPanelStore.mainPanelData)
+  const mainPanelData = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData
+  );
 
   if (!mainPanelData) {
-    return <></>
+    return <></>;
   }
 
   return (
@@ -21,7 +23,7 @@ const CollectionMainPanel = () => {
         <LayerPreview layerData={mainPanelData.layerData} />
       )}
     </Fragment>
-  )
-}
+  );
+};
 
-export default CollectionMainPanel
+export default CollectionMainPanel;

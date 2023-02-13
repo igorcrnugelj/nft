@@ -1,30 +1,32 @@
-import React, {Fragment, useEffect, useState} from 'react'
-import {useSelector} from 'react-redux'
-import Toast from 'react-bootstrap/Toast'
-import ToastContainer from 'react-bootstrap/ToastContainer'
+import { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import Toast from "react-bootstrap/Toast";
+import ToastContainer from "react-bootstrap/ToastContainer";
 
 const ToastModule = () => {
-  const [showToast, setShowToast] = useState(true)
-  const [message, setMessage] = useState('')
-  const toastData = useSelector((state: any) => state.notificationsStore.toastData)
+  const [showToast, setShowToast] = useState(true);
+  const [message, setMessage] = useState("");
+  const toastData = useSelector(
+    (state: any) => state.notificationsStore.toastData
+  );
 
   useEffect(() => {
     if (toastData) {
-      setShowToast(true)
-      setMessage(toastData.data)
+      setShowToast(true);
+      setMessage(toastData.data);
     }
-  }, [toastData])
+  }, [toastData]);
 
   if (!toastData) {
-    return <></>
+    return <></>;
   }
 
   return (
     <Fragment>
-      <ToastContainer className='p-3' position='bottom-end'>
+      <ToastContainer className="p-3" position="bottom-end">
         <Toast
-          className='d-inline-block m-1'
-          bg='warning'
+          className="d-inline-block m-1"
+          bg="warning"
           onClose={() => setShowToast(false)}
           show={showToast}
           delay={3000}
@@ -34,7 +36,7 @@ const ToastModule = () => {
         </Toast>
       </ToastContainer>
     </Fragment>
-  )
-}
+  );
+};
 
-export default ToastModule
+export default ToastModule;
