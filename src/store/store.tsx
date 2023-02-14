@@ -1,9 +1,10 @@
-import {configureStore} from '@reduxjs/toolkit'
+import { configureStore } from "@reduxjs/toolkit";
 
-import {layerReducer} from './reducers/Layer-reducer'
-import {collectionReducer} from './reducers/Collection-reducer'
-import {mainPanelReducer} from './reducers/MainPanel-reducer'
-import {notificationsReducer} from './reducers/Notifications-reducer'
+import { layerReducer } from "./reducers/Layer-reducer";
+import { collectionReducer } from "./reducers/Collection-reducer";
+import { mainPanelReducer } from "./reducers/MainPanel-reducer";
+import { notificationsReducer } from "./reducers/Notifications-reducer";
+import { loginReducer } from "./reducers/Login-reducer";
 
 const store = configureStore({
   reducer: {
@@ -11,12 +12,13 @@ const store = configureStore({
     collectionsStore: collectionReducer,
     mainPanelStore: mainPanelReducer,
     notificationsStore: notificationsReducer,
+    loginStore: loginReducer,
   },
-})
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 // export type RootState = ReturnType<typeof store.getState>
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 // export type AppDispatch = typeof store.dispatch
 
-export default store
+export default store;

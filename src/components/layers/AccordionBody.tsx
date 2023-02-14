@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useCallback, useState } from "react";
+import { useEffect, Fragment, useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateLayers } from "../../store/actions/Layer-actions";
 import Accordion from "react-bootstrap/Accordion";

@@ -1,17 +1,15 @@
-import {createAsyncThunk} from '@reduxjs/toolkit'
-
-const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const setMainPanelData = createAsyncThunk(
-  'mainPanelStore/setMainPanelData',
+  "mainPanelStore/setMainPanelData",
   async (mainPanelData: any) => {
-    return mainPanelData
+    return mainPanelData;
   }
-)
+);
 
 export const setMainPanelBodyDataType = createAsyncThunk(
-  'mainPanelStore/setMainPanelBodyDataType',
+  "mainPanelStore/setMainPanelBodyDataType",
   async (mainPanelBodyDataType: any) => {
-    return mainPanelBodyDataType
+    return mainPanelBodyDataType;
   }
-)
+);

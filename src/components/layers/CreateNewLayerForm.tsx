@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/Button";
 import { createLayer, getLayers } from "../../store/actions/Layer-actions";
@@ -61,7 +61,6 @@ const CreateNewLayerForm = () => {
         <input
           type="text"
           className="create-new-layer-input-field"
-          // placeholder="Enter collection description"
           ref={layerNameRef}
         />
       </div>
@@ -70,7 +69,6 @@ const CreateNewLayerForm = () => {
         <input
           type="text"
           className="create-new-layer-input-field"
-          // placeholder="Enter collection description"
           ref={layerDescriptionRef}
         />
       </div>
@@ -79,7 +77,6 @@ const CreateNewLayerForm = () => {
         <input
           type="text"
           className="create-new-layer-input-field"
-          // placeholder="Enter collection description"
           ref={layerRarityRef}
         />
       </div>

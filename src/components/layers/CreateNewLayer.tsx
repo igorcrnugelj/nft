@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import MainPanelDataType from "../../enums/MainPanelDataType";

@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import LoginForm from "../login/LoginForm";

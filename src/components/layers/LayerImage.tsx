@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";

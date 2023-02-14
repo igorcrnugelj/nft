@@ -1,9 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createUser,
+  getJwtToken,
+  getNonce,
+  setMetaMaskWalletAddress,
+} from "../../store/actions/LoginActions";
+import Web3 from "web3";
 
 const LoginForm = () => {
+  const dispatch: any = useDispatch();
+  const walletAddressFromStore = useSelector(
+    (state: any) => state.loginStore.walletAddress
+  );
   const [walletAddress, setWalletAddress] = useState();
   const [showConnectToMetaMaskButton, setShowConnectToMetaMaskButton] =
     useState(false);
+  const [metamaskWalletValue, setmetamaskWalletValue] = useState("");
+
+  useEffect(() => {
+    if (walletAddressFromStore) {
+      setmetamaskWalletValue(walletAddressFromStore);
+    }
+  }, [walletAddressFromStore]);
 
   async function requestAccount() {
     if (window.ethereum) {
@@ -13,6 +32,48 @@ const LoginForm = () => {
           method: "eth_requestAccounts",
         });
         setWalletAddress(accounts[0]);
+        const getNonceResponse = await dispatch(getNonce(accounts[0])).unwrap();
+        if (getNonceResponse.success) {
+          var Web3 = require("web3");
+          var web3 = new Web3(Web3.givenProvider);
+          await web3.eth.personal.sign(
+            getNonceResponse.data.nonce,
+            getNonceResponse.data.publicAddress,
+            function (error: any, signature: any) {
+              console.log("signature: ", signature);
+            }
+          );
+          //   const dataForJwtToken = {
+          //     publicAddress: getNonceResponse.data.publicAddress,
+          //     signature: signatureData,
+          //   };
+          //   const getJwtTokenResponse = await dispatch(
+          //     getJwtToken(dataForJwtToken)
+          //   ).unwrap();
+          //   if (getJwtTokenResponse.success) {
+          //     console.log(getJwtTokenResponse.data);
+          //   }
+        } else {
+          if (getNonceResponse.data.response.data.error) {
+            const publicAddressData = {
+              publicAddress: accounts[0],
+            };
+            const createUserResponse = await dispatch(
+              createUser(publicAddressData)
+            ).unwrap();
+            if (createUserResponse.success) {
+              console.log("user: ", createUserResponse.data);
+              //web3.personal.sign(nonce, web3.eth.coinbase, callback);
+              var Web3 = require("web3");
+              const signature = await Web3.personal.sign(
+                createUserResponse.data.nonce,
+                createUserResponse.data.publicAddress,
+                () => {}
+              );
+              console.log("signature: ", signature);
+            }
+          }
+        }
       } catch (error) {
         console.log("Error connecting...");
       }
@@ -23,10 +84,10 @@ const LoginForm = () => {
   const checkForMetaMaskPublicAddressHandler = async () => {
     if (typeof window.ethereum !== "undefined") {
       setShowConnectToMetaMaskButton(true);
-      connectToMetMaskHandler();
+      connectToMetaMaskHandler();
     }
   };
-  const connectToMetMaskHandler = async () => {
+  const connectToMetaMaskHandler = async () => {
     await requestAccount();
   };
   return (
@@ -51,7 +112,7 @@ const LoginForm = () => {
       )}
       {showConnectToMetaMaskButton && (
         <button
-          onClick={connectToMetMaskHandler}
+          onClick={connectToMetaMaskHandler}
           className="metamask-login-button"
         >
           <img

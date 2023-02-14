@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setMainPanelData } from "../../store/actions/MainPanelActions";
 import MainPanelDataType from "../../enums/MainPanelDataType";

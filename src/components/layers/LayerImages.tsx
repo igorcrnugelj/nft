@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import LayerImage from "./LayerImage";
 
 const LayerImages = (images: any) => {

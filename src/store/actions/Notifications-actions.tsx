@@ -1,18 +1,15 @@
-import {createAsyncThunk} from '@reduxjs/toolkit'
-import axios from 'axios'
-import MainPanelDataType from '../../enums/MainPanelDataType'
-const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const activateToast = createAsyncThunk(
-  'notificationsStore/activateToast',
+  "notificationsStore/activateToast",
   async (dataForToast: any) => {
-    return dataForToast
+    return dataForToast;
   }
-)
+);
 
 export const activateSpinner = createAsyncThunk(
-  'notificationStore/activateSpinner',
+  "notificationStore/activateSpinner",
   async (spinnerState: any) => {
-    return spinnerState
+    return spinnerState;
   }
-)
+);

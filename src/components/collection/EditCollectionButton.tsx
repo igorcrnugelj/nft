@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";

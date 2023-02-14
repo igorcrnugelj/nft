@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
