@@ -1,18 +1,32 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-const BACKEND_BASE_URL = process.env.BACKEND_BASE_URL;
+
+const client = axios.create({
+  baseURL: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev",
+});
 
 export const getCollections = createAsyncThunk(
   "collectionsStore/getCollections",
   async () => {
-    const res = await axios({
-      url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/?userId=01G7EXFE9V27DJCCJQT7Y0101S`,
-      method: "GET",
-    });
-
-    return res.data;
+    const { data, status } = await client.get(
+      "/collection/?userId=01G7EXFE9V27DJCCJQT7Y0101S"
+    );
+    console.log("data: ", data);
+    console.log("status: ", status);
+    return data;
   }
 );
+// export const getCollections = createAsyncThunk(
+//   "collectionsStore/getCollections",
+//   async () => {
+//     const res = await axios({
+//       url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/?userId=01G7EXFE9V27DJCCJQT7Y0101S`,
+//       method: "GET",
+//     });
+
+//     return res.data;
+//   }
+// );
 
 export const createCollection = createAsyncThunk(
   "collectionsStore/createCollection",
