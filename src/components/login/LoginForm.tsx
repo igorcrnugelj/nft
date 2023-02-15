@@ -7,6 +7,7 @@ import {
   setMetaMaskWalletAddress,
 } from "../../store/actions/LoginActions";
 import Web3 from "web3";
+import { setNftClientToken } from "../../AxiosClient";
 
 const LoginForm = () => {
   const dispatch: any = useDispatch();
@@ -50,6 +51,7 @@ const LoginForm = () => {
               ).unwrap();
               if (getJwtTokenResponse.success) {
                 console.log("JWT Token: ", getJwtTokenResponse.data);
+                setNftClientToken(getJwtTokenResponse.data.token);
               }
             }
           );

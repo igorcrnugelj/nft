@@ -3,6 +3,7 @@ import {
   getNonce,
   setMetaMaskWalletAddress,
   createUser,
+  getJwtToken,
 } from "../actions/LoginActions";
 
 export const loginSlice = createSlice({
@@ -37,6 +38,17 @@ export const loginSlice = createSlice({
       state.user = action.payload;
     },
     [createUser.rejected as any]: (state: any) => {
+      state.loading = false;
+    },
+
+    [getJwtToken.pending as any]: (state: any) => {
+      state.loading = true;
+    },
+    [getJwtToken.fulfilled as any]: (state: any, action: any) => {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    [getJwtToken.rejected as any]: (state: any) => {
       state.loading = false;
     },
   },

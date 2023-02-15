@@ -13,9 +13,9 @@ const AccordionCollection = () => {
     (state: any) => state.collectionsStore.collections
   );
 
-  useEffect(() => {
-    dispatch(getCollections());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getCollections());
+  // }, []);
 
   return (
     <Fragment>

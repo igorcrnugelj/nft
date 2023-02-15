@@ -1,17 +1,37 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { nftClient } from "../../AxiosClient";
+import store from "../store";
 
 export const getCollections = createAsyncThunk(
   "collectionsStore/getCollections",
   async () => {
-    const res = await axios({
-      url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/?userId=01G7EXFE9V27DJCCJQT7Y0101S`,
-      method: "GET",
-    });
-
-    return res.data;
+    if (store) {
+      store.getState();
+    }
+    const user: any = store.getState().loginStore.user; //tu sam
+    // const user = store.getState.loginStore
+    const { data, status } = await nftClient.get(
+      `/collection/?userId=${user.userId}`
+    );
+    console.log("data: ", data);
+    console.log("status: ", status);
+    return data;
   }
 );
+
+// export const getCollections = createAsyncThunk(
+//   "collectionsStore/getCollections",
+//   async () => {
+//     const res = await axios({
+//       url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/?userId=01G7EXFE9V27DJCCJQT7Y0101S`,
+//       method: "GET",
+//     });
+
+//     return res.data;
+//   }
+// );
 
 export const createCollection = createAsyncThunk(
   "collectionsStore/createCollection",
