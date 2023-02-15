@@ -39,20 +39,20 @@ const LoginForm = () => {
           await web3.eth.personal.sign(
             getNonceResponse.data.nonce,
             getNonceResponse.data.publicAddress,
-            function (error: any, signature: any) {
+            async function (error: any, signature: any) {
               console.log("signature: ", signature);
+              const dataForJwtToken = {
+                publicAddress: getNonceResponse.data.publicAddress,
+                signature: signature,
+              };
+              const getJwtTokenResponse = await dispatch(
+                getJwtToken(dataForJwtToken)
+              ).unwrap();
+              if (getJwtTokenResponse.success) {
+                console.log("JWT Token: ", getJwtTokenResponse.data);
+              }
             }
           );
-          //   const dataForJwtToken = {
-          //     publicAddress: getNonceResponse.data.publicAddress,
-          //     signature: signatureData,
-          //   };
-          //   const getJwtTokenResponse = await dispatch(
-          //     getJwtToken(dataForJwtToken)
-          //   ).unwrap();
-          //   if (getJwtTokenResponse.success) {
-          //     console.log(getJwtTokenResponse.data);
-          //   }
         } else {
           if (getNonceResponse.data.response.data.error) {
             const publicAddressData = {
@@ -82,6 +82,7 @@ const LoginForm = () => {
     }
   }
   const checkForMetaMaskPublicAddressHandler = async () => {
+    console.log("test");
     if (typeof window.ethereum !== "undefined") {
       setShowConnectToMetaMaskButton(true);
       connectToMetaMaskHandler();
