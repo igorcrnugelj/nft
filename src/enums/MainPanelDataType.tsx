@@ -16,6 +16,7 @@ enum MainPanelDataType {
   ShowCreateNewLayerForm = "SHOW_CREATE_NEW_LAYER_FORM",
   CloseCreateNewLayerForm = "CLOSE_CREATE_NEW_LAYER_FORM",
   ShowLoginForm = "SHOW_LOGIN_FORM",
+  HideLoginForm = "HIDE_LOGIN_FORM",
 }
 
 export default MainPanelDataType;

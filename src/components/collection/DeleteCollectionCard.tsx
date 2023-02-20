@@ -22,11 +22,9 @@ const DeleteCollectionCard = () => {
   const [modalShow, setModalShow] = useState(false);
 
   const deleteCollectionHandler = async () => {
-    const { userId, collectionId } = collection.collection;
+    const { collectionId } = collection.collection;
     setModalShow(false);
-    const payload = await dispatch(
-      deleteCollection({ userId, collectionId })
-    ).unwrap();
+    const payload = await dispatch(deleteCollection(collectionId)).unwrap();
     if (payload.success) {
       dispatch(
         setMainPanelBodyDataType({

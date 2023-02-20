@@ -16,22 +16,22 @@ const AccordionHeader = (collection: any) => {
     (state: any) => state.mainPanelStore.mainPanelData
   );
 
-  useEffect(() => {
-    if (mainPanelData) {
-      if (
-        collection.collection.collectionId ===
-        mainPanelData.collectionData.collection.collectionId
-      ) {
-        dispatch(
-          setMainPanelData({
-            collectionData: collection,
-            layerData: null,
-            type: MainPanelDataType.CollectionPreview,
-          })
-        );
-      }
-    }
-  }, [collection]);
+  // useEffect(() => {
+  //   if (mainPanelData) {
+  //     if (
+  //       collection.collection.collectionId ===
+  //       mainPanelData.collectionData.collection.collectionId
+  //     ) {
+  //       dispatch(
+  //         setMainPanelData({
+  //           collectionData: collection,
+  //           layerData: null,
+  //           type: MainPanelDataType.CollectionPreview,
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [collection]);
 
   const sendCollectionDataHandler = () => {
     console.log("CLICK");

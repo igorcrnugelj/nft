@@ -1,17 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useSelector } from "react-redux";
 import { nftClient } from "../../AxiosClient";
-import store from "../store";
 
 export const getCollections = createAsyncThunk(
   "collectionsStore/getCollections",
-  async () => {
-    if (store) {
-      store.getState();
-    }
-    const user: any = store.getState().loginStore.user; //tu sam
-    // const user = store.getState.loginStore
+
+  async (_, { getState }: any) => {
+    const user: any = getState().loginStore.user;
+    if (!user) return [];
     const { data, status } = await nftClient.get(
       `/collection/?userId=${user.userId}`
     );
@@ -37,12 +33,10 @@ export const createCollection = createAsyncThunk(
   "collectionsStore/createCollection",
   async (collection: any) => {
     try {
-      const res = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/createCollection`,
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        data: collection,
-      });
+      const res = await nftClient.put(
+        `/collection/createCollection`,
+        collection
+      );
 
       if (res.status >= 200 || res.status < 300) {
         return {
@@ -66,13 +60,12 @@ export const createCollection = createAsyncThunk(
 
 export const deleteCollection = createAsyncThunk(
   "collectionsStore/deleteCollection",
-  async (collectionData: { userId: any; collectionId: any }) => {
-    const { userId, collectionId } = collectionData;
+  async (collectionId: any, { getState }: any) => {
+    const user: any = getState().loginStore.user;
     try {
-      const res = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/?userId=${userId}&collectionId=${collectionId}`,
-        method: "DELETE",
-      });
+      const res = await nftClient.delete(
+        `/collection/?userId=${user.userId}&collectionId=${collectionId}`
+      );
       if (res.status >= 200 || res.status < 300) {
         return {
           success: true,
@@ -97,12 +90,10 @@ export const editCollection = createAsyncThunk(
   "collectionsStore/editCollection",
   async (collection: any) => {
     try {
-      const res = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/updateCollection",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: collection,
-      });
+      const res = await nftClient.post(
+        `/collection/updateCollection`,
+        collection
+      );
       if (res.status >= 200 || res.status < 300) {
         return {
           success: true,
@@ -128,14 +119,9 @@ export const generateCollection = createAsyncThunk(
   async (collectionData: { userId: any; collectionId: any }) => {
     const { userId, collectionId } = collectionData;
     try {
-      const res = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/generate`,
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: {
-          userId,
-          collectionId,
-        },
+      const res = await nftClient.post(`/collection/generate`, {
+        userId,
+        collectionId,
       });
       if (res.status >= 200 || res.status < 300) {
         return {
@@ -160,8 +146,8 @@ export const getGeneratedCollection = createAsyncThunk(
   "collectionsStore/getGeneratedCollection",
   async (collectionId: any) => {
     try {
-      const res = await axios.get(
-        `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/generated?collectionId=${collectionId}`
+      const res = await nftClient.get(
+        `/collection/generated?collectionId=${collectionId}`
       );
 
       console.log(res.data);
@@ -197,14 +183,9 @@ export const generatePreviewImages = createAsyncThunk(
   async (collectionData: { userId: any; collectionId: any }) => {
     const { userId, collectionId } = collectionData;
     try {
-      const res = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/refresh-preview-images`,
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: {
-          userId,
-          collectionId,
-        },
+      const res = await nftClient.post(`/collection/refresh-preview-images`, {
+        userId,
+        collectionId,
       });
       if (res.status >= 200 || res.status < 300) {
         return {
@@ -229,8 +210,8 @@ export const getPreviewImages = createAsyncThunk(
   "collectionsStore/getPreviewImages",
   async (collectionId: any) => {
     try {
-      const res = await axios.get(
-        `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/collection/preview-images?collectionId=${collectionId}`
+      const res = await nftClient.get(
+        `/collection/preview-images?collectionId=${collectionId}`
       );
 
       if (res.status >= 200 || res.status < 300) {

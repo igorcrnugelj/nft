@@ -5,6 +5,10 @@ import AccordionHeader from "./AccordionHeader";
 import AccordionBody from "../layers/AccordionBody";
 import { getCollections } from "../../store/actions/Collection-actions";
 import "../../css/accordion/accordion-header.scss";
+import { refreshUser } from "../../store/actions/LoginActions";
+import { setNftClientToken } from "../../AxiosClient";
+import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
+import MainPanelDataType from "../../enums/MainPanelDataType";
 
 const AccordionCollection = () => {
   const dispatch: any = useDispatch();
@@ -12,10 +16,27 @@ const AccordionCollection = () => {
   const collections = useSelector(
     (state: any) => state.collectionsStore.collections
   );
+  // const user = useSelector((state: any) => state.loginStore.user);
 
   // useEffect(() => {
-  //   dispatch(getCollections());
+  //   const userString = localStorage.getItem("user");
+  //   if (userString) {
+  //     const user = JSON.parse(userString);
+  //     dispatch(refreshUser(user));
+  //   } else {
+  //     dispatch(
+  //       setMainPanelBodyDataType({
+  //         type: MainPanelDataType.ShowLoginForm,
+  //       })
+  //     );
+  //   }
   // }, []);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(getCollections());
+  //   }
+  // }, [user]);
 
   return (
     <Fragment>

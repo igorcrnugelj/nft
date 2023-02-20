@@ -1,13 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { nftClient } from "../../AxiosClient";
 
 export const getLayers = createAsyncThunk(
   "layers/getLayers",
   async (collectionId: any) => {
-    const res = await axios({
-      url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/layer?collectionId=${collectionId}`,
-      method: "GET",
-    });
+    const res = await nftClient.get(`/layer?collectionId=${collectionId}`);
     return res.data;
   }
 );
@@ -16,10 +14,9 @@ export const deleteLayer = createAsyncThunk(
   async (layerData: { collectionId: any; layerId: any }) => {
     const { collectionId, layerId } = layerData;
     try {
-      const res = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/layer?collectionId=${collectionId}&layerId=${layerId}`,
-        method: "DELETE",
-      });
+      const res = await nftClient.delete(
+        `/layer?collectionId=${collectionId}&layerId=${layerId}`
+      );
       if (res.status >= 200 || res.status < 300) {
         return {
           success: true,
@@ -44,12 +41,10 @@ export const createLayer = createAsyncThunk(
   "layers/createLayer",
   async (layer: any) => {
     try {
-      const createLayerResponse = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/layer/createLayer",
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        data: layer,
-      });
+      const createLayerResponse = await nftClient.put(
+        `/layer/createLayer`,
+        layer
+      );
       if (
         createLayerResponse.status >= 200 ||
         createLayerResponse.status < 300
@@ -70,21 +65,13 @@ export const createLayer = createAsyncThunk(
         data: error,
       };
     }
-
-    // getLayers(layer.collectionId)
-    // return res
   }
 );
 
 export const updateLayers = createAsyncThunk(
   "layers/updateLayers",
   async (layers: any) => {
-    const res = await axios({
-      url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/layer/update-all",
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      data: layers,
-    });
+    const res = await nftClient.post(`/layer/update-all`, layers);
     return res.data;
   }
 );
@@ -93,12 +80,10 @@ export const editLayer = createAsyncThunk(
   "layers/editLayer",
   async (layer: any) => {
     try {
-      const editLayerResponse = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/layer/updateLayer",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: layer,
-      });
+      const editLayerResponse = await nftClient.post(
+        `/layer/updateLayer`,
+        layer
+      );
       if (editLayerResponse.status >= 200 || editLayerResponse.status < 300) {
         return {
           success: true,
@@ -123,10 +108,9 @@ export const getLayerImages = createAsyncThunk(
   "layers/getLayerImages",
   async (layerId: any) => {
     try {
-      const getLayerImagesResponse = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/?layerId=${layerId}`,
-        method: "GET",
-      });
+      const getLayerImagesResponse = await nftClient.get(
+        `/image/?layerId=${layerId}`
+      );
       if (
         getLayerImagesResponse.status >= 200 ||
         getLayerImagesResponse.status < 300
@@ -176,12 +160,10 @@ export const calculateRarityImages = createAsyncThunk(
       maxRarityForCurrentImage
     );
     try {
-      const res = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/update-all",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: JSON.stringify(newImagesCalculationRarity.images),
-      });
+      const res = await nftClient.post(
+        `/image/update-all`,
+        JSON.stringify(newImagesCalculationRarity.images)
+      );
       if (res.status >= 200 || res.status < 300) {
         return {
           success: true,
@@ -399,12 +381,10 @@ export const updateFixRarityImages = createAsyncThunk(
       fixRarity
     );
     try {
-      const res = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/update-all",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: JSON.stringify(newFixRarityCalculationImages.images),
-      });
+      const res = await nftClient.post(
+        `/image/update-all`,
+        JSON.stringify(newFixRarityCalculationImages.images)
+      );
       if (res.status >= 200 || res.status < 300) {
         return {
           success: true,
@@ -473,12 +453,10 @@ export const setLayersInitialState = createAsyncThunk(
 export const addNewImage = createAsyncThunk(
   "layers/addNewImage",
   async (imageDataCollection: any) => {
-    const s3PutObjectResponse = await axios({
-      url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/signedS3PutObjectUrl",
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      data: imageDataCollection.imageData,
-    });
+    const s3PutObjectResponse = await nftClient.post(
+      `/image/signedS3PutObjectUrl`,
+      imageDataCollection.imageData
+    );
     await fetch(s3PutObjectResponse.data.s3PutObjectUrl, {
       method: "PUT",
       headers: { "Content-Type": "multipart/form-data" },
@@ -523,10 +501,9 @@ export const deleteImage = createAsyncThunk(
   "layers/deleteImage",
   async (deleteImageData: any) => {
     try {
-      const deleteImageResponse = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/?layerId=${deleteImageData.layerId}&imageId=${deleteImageData.imageId}`,
-        method: "DELETE",
-      });
+      const deleteImageResponse = await nftClient.delete(
+        `/image/?layerId=${deleteImageData.layerId}&imageId=${deleteImageData.imageId}`
+      );
       if (
         deleteImageResponse.status >= 200 ||
         deleteImageResponse.status < 300
@@ -561,12 +538,7 @@ export const editImage = createAsyncThunk(
   "layers/editImage",
   async (image: any) => {
     try {
-      const editImageResponse = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/update",
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        data: image,
-      });
+      const editImageResponse = await nftClient.post(`/image/update`, image);
       if (editImageResponse.status >= 200 || editImageResponse.status < 300) {
         return {
           success: true,

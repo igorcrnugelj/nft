@@ -8,6 +8,9 @@ import {
 } from "../../store/actions/LoginActions";
 import Web3 from "web3";
 import { setNftClientToken } from "../../AxiosClient";
+import { getCollections } from "../../store/actions/Collection-actions";
+import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
+import MainPanelDataType from "../../enums/MainPanelDataType";
 
 const LoginForm = () => {
   const dispatch: any = useDispatch();
@@ -35,10 +38,11 @@ const LoginForm = () => {
         setWalletAddress(accounts[0]);
         const getNonceResponse = await dispatch(getNonce(accounts[0])).unwrap();
         if (getNonceResponse.success) {
+          const msg = `I am signing my one-time nonce: ${getNonceResponse.data.nonce}`;
           var Web3 = require("web3");
           var web3 = new Web3(Web3.givenProvider);
           await web3.eth.personal.sign(
-            getNonceResponse.data.nonce,
+            msg,
             getNonceResponse.data.publicAddress,
             async function (error: any, signature: any) {
               console.log("signature: ", signature);
@@ -51,7 +55,12 @@ const LoginForm = () => {
               ).unwrap();
               if (getJwtTokenResponse.success) {
                 console.log("JWT Token: ", getJwtTokenResponse.data);
-                setNftClientToken(getJwtTokenResponse.data.token);
+                dispatch(getCollections());
+                dispatch(
+                  setMainPanelBodyDataType({
+                    type: MainPanelDataType.HideLoginForm,
+                  })
+                );
               }
             }
           );
@@ -67,8 +76,9 @@ const LoginForm = () => {
               console.log("user: ", createUserResponse.data);
               //web3.personal.sign(nonce, web3.eth.coinbase, callback);
               var Web3 = require("web3");
+              const msg = `I am signing my one-time nonce: ${createUserResponse.data.nonce}`;
               const signature = await Web3.personal.sign(
-                createUserResponse.data.nonce,
+                msg,
                 createUserResponse.data.publicAddress,
                 () => {}
               );

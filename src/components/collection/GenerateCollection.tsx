@@ -28,6 +28,7 @@ const GenerateCollection = () => {
   const transactionStatus = useSelector(
     (state: any) => state.collectionsStore.transactionStatus
   );
+  const user = useSelector((state: any) => state.loginStore.user);
   const [isGenerating, setIsGenerating] = useState(false);
   const [percentage, setPercentage] = useState(0);
   const [modalShow, setModalShow] = useState(false);
@@ -37,7 +38,6 @@ const GenerateCollection = () => {
   const [vatValue, setVatValue] = useState();
   const [totalValue, setTotalValue] = useState();
   const [ethValue, setEthValue]: any = useState();
-  const [transactionStatusState, setTransactionStatusState]: any = useState(0);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const GenerateCollection = () => {
     setShowPaymentFormModal(false);
     dispatch(setTransactionStatus(null));
     const collectionData = {
-      userId: collection.collection.userId,
+      userId: user.userId,
       collectionId: collection.collection.collectionId,
     };
     const generateCollectionResponse = await dispatch(

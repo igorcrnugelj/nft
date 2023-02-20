@@ -13,41 +13,32 @@ import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 
 const CreateNewCollectionForm = () => {
   const dispatch: any = useDispatch();
-  const userId = useSelector(
-    (state: any) => state.collectionsStore.user.userId
-  );
+  const user = useSelector((state: any) => state.loginStore.user);
 
   const nameInputRef = useRef<any>();
   const descriptionInputRef = useRef<any>();
   const sizeInputRef = useRef<any>();
 
   const createCollectionHandler = async () => {
-    //Treba provjeriti je li user već ulogiran, ako nije onda ide ovaj kod:
-    dispatch(
-      setMainPanelBodyDataType({
-        type: MainPanelDataType.ShowLoginForm,
-      })
-    );
-
-    // const collection = {
-    //   userId: userId,
-    //   name: nameInputRef.current.value,
-    //   description: descriptionInputRef.current.value,
-    //   collectionSize: parseInt(sizeInputRef.current.value),
-    // };
-    // const payload = await dispatch(createCollection(collection)).unwrap();
-    // if (payload.success) {
-    //   const payload2 = await dispatch(getCollections()).unwrap();
-    //   if (payload2) {
-    //     dispatch(setLayersInitialState(null));
-    //   }
-    // } else {
-    //   const message = Messages.CreateCollectionFailed;
-    //   dispatch(activateToast(message));
-    // }
-    // nameInputRef.current.value = "";
-    // descriptionInputRef.current.value = "";
-    // sizeInputRef.current.value = "";
+    const collection = {
+      userId: user.userId,
+      name: nameInputRef.current.value,
+      description: descriptionInputRef.current.value,
+      collectionSize: parseInt(sizeInputRef.current.value),
+    };
+    const payload = await dispatch(createCollection(collection)).unwrap();
+    if (payload.success) {
+      const payload2 = await dispatch(getCollections()).unwrap();
+      if (payload2) {
+        dispatch(setLayersInitialState(null));
+      }
+    } else {
+      const message = Messages.CreateCollectionFailed;
+      dispatch(activateToast(message));
+    }
+    nameInputRef.current.value = "";
+    descriptionInputRef.current.value = "";
+    sizeInputRef.current.value = "";
   };
 
   return (

@@ -6,6 +6,5 @@ export const nftClient = axios.create({
 });
 
 export const setNftClientToken = (token: any) => {
-  nftClient.defaults.headers["Authorization"] = `Bearer ${token}
-  )}`;
+  nftClient.defaults.headers["Authorization"] = `Bearer ${token}`;
 };

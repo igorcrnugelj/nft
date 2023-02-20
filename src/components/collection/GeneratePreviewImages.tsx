@@ -15,11 +15,12 @@ const GeneratePreviewImages = () => {
   const mainPanelData = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData
   );
+  const user = useSelector((state: any) => state.loginStore.user);
 
   const generatePreviewImagesHandler = async () => {
     dispatch(activateSpinner(true));
     const collectionData = {
-      userId: collection.collection.userId,
+      userId: user.userId,
       collectionId: collection.collection.collectionId,
     };
 

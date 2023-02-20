@@ -21,6 +21,7 @@ const EditCollectionForm = () => {
   const mainPanelBodyDataType = useSelector(
     (state: any) => state.mainPanelStore.mainPanelBodyDataType
   );
+  const user = useSelector((state: any) => state.loginStore.user);
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
   const [collectionSize, setCollectionSize] = useState("");
@@ -48,7 +49,7 @@ const EditCollectionForm = () => {
 
   const editCollectionHandler = async () => {
     const collection = {
-      userId: mainPanelData.collectionData.collection.userId,
+      userId: user.userId,
       collectionId: mainPanelData.collectionData.collection.collectionId,
       name: collectionName,
       description: collectionDescription,

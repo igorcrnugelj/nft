@@ -81,6 +81,7 @@ const AccordionBodyLayerItem = ({
   //DRAG AND DROP END
 
   const getLayerImagesHandler = async () => {
+    console.log("ACTIVATED");
     whichItemIsActive(layer.layerId);
 
     const getLayerImagesResponse = await dispatch(
