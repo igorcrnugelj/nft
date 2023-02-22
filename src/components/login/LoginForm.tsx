@@ -22,7 +22,11 @@ const LoginForm = () => {
     (state: any) => state.loginStore.unauthorizedErrorData
   );
   const [walletAddress, setWalletAddress] = useState();
+  const [showLoginWithMetaMaskButton, setShowLoginWithMetaMaskButton] =
+    useState(true);
   const [showConnectToMetaMaskButton, setShowConnectToMetaMaskButton] =
+    useState(false);
+  const [showInstallMetaMaskWalletButton, setShowInstallMetaMaskWalletButton] =
     useState(false);
   const [metamaskWalletValue, setmetamaskWalletValue] = useState("");
 
@@ -34,7 +38,6 @@ const LoginForm = () => {
 
   async function requestAccount() {
     if (window.ethereum) {
-      console.log("deteched");
       try {
         const accounts = await window.ethereum.request({
           method: "eth_requestAccounts",
@@ -79,7 +82,6 @@ const LoginForm = () => {
             ).unwrap();
             if (createUserResponse.success) {
               console.log("user: ", createUserResponse.data);
-              //web3.personal.sign(nonce, web3.eth.coinbase, callback);
               var Web3 = require("web3");
               const msg = `I am signing my one-time nonce: ${createUserResponse.data.nonce}`;
               const signature = await Web3.personal.sign(
@@ -99,10 +101,13 @@ const LoginForm = () => {
     }
   }
   const checkForMetaMaskPublicAddressHandler = async () => {
-    console.log("test");
     if (typeof window.ethereum !== "undefined") {
+      setShowLoginWithMetaMaskButton(false);
       setShowConnectToMetaMaskButton(true);
-      connectToMetaMaskHandler();
+    } else {
+      console.log("Please install your MetaMask wallet");
+      setShowLoginWithMetaMaskButton(false);
+      setShowInstallMetaMaskWalletButton(true);
     }
   };
   const connectToMetaMaskHandler = async () => {
@@ -118,7 +123,7 @@ const LoginForm = () => {
         </p>
       )}
       <p className="metamask-text">MetaMask</p>
-      {!showConnectToMetaMaskButton && (
+      {showLoginWithMetaMaskButton && (
         <button
           onClick={checkForMetaMaskPublicAddressHandler}
           className="metamask-login-button"
@@ -128,6 +133,26 @@ const LoginForm = () => {
             src="media/img/metamask_logo.png"
           ></img>
           Login with your{" "}
+          <span className="matamask-text-in-metamask-login-button">
+            MetaMask
+          </span>{" "}
+          wallet
+        </button>
+      )}
+      {showInstallMetaMaskWalletButton && (
+        <button
+          onClick={() => {
+            window.location.href = "https://metamask.io/";
+            setShowInstallMetaMaskWalletButton(false);
+            setShowLoginWithMetaMaskButton(true);
+          }}
+          className="metamask-login-button"
+        >
+          <img
+            className="matamask-logo-in-metamask-login-button"
+            src="media/img/metamask_logo.png"
+          ></img>
+          Install your{" "}
           <span className="matamask-text-in-metamask-login-button">
             MetaMask
           </span>{" "}

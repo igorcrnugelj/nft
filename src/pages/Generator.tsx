@@ -1,6 +1,5 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setNftClientToken } from "../AxiosClient";
 import CreateNewCollectionForm from "../components/collection/CreateNewCollectionForm";
 import GeneratorHeader from "../components/collection/GeneratorHeader";
 import GeneratorMainPanel from "../components/collection/GeneratorMainPanel";

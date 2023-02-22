@@ -8,17 +8,3 @@ export const nftClient = axios.create({
 export const setNftClientToken = (token: any) => {
   nftClient.defaults.headers["Authorization"] = `Bearer ${token}`;
 };
-
-// nftClient.interceptors.response.use(
-//   (response) => {
-//     console.log("RESPONSE: ", response);
-//     return response;
-//   },
-//   function (error) {
-//     console.log("ERROR: ", error);
-//     if (error.response.status === 401) {
-//       console.log("401 ERROR EJECTED!!!");
-//       return Promise.reject(error.response);
-//     }
-//   }
-// );

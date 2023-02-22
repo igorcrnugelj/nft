@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import LoginForm from "../login/LoginForm";
@@ -15,15 +14,23 @@ const GeneratorMainPanel = () => {
 
   return (
     <div className="main-panel-container">
-      <div className="accordion-container">
-        <div className="accordion-title">My collections</div>
-        {isUnauthorizedError === false && <AccordionCollection />}
-      </div>
-      <div className="main-panel">
-        {isUnauthorizedError === false && <CollectionMainPanel />}
-        {mainPanelBodyDataType.type === MainPanelDataType.ShowLoginForm ||
-          (isUnauthorizedError === true && <LoginForm />)}
-      </div>
+      {isUnauthorizedError === false && (
+        <div className="accordion-container">
+          <div className="accordion-title">My collections</div>
+          <AccordionCollection />
+        </div>
+      )}
+      {isUnauthorizedError === false && (
+        <div className="main-panel">
+          <CollectionMainPanel />
+        </div>
+      )}
+      {(mainPanelBodyDataType.type === MainPanelDataType.ShowLoginForm ||
+        isUnauthorizedError === true) && (
+        <div className="main-panel-for-login-form">
+          <LoginForm />
+        </div>
+      )}
     </div>
   );
 };

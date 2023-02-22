@@ -3,6 +3,7 @@
   flex-direction: row;
   max-width: 1400px;
   margin: 50px auto;
+  // background-color: aquamarine;
 }
 .accordion-container {
   width: 350px;
@@ -37,16 +38,14 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
-.main-panel-backdrop {
+.main-panel-for-login-form {
   display: flex;
   width: 100%;
-  max-width: 995px;
-  margin-left: 55px;
-  backdrop-filter: 5px;
   flex-direction: column;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  justify-content: center;
+  // background-color: blanchedalmond;
 }
+
 @media screen and (max-width: 768px) {
   .main-panel {
     display: flex;
