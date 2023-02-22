@@ -6,6 +6,7 @@ import {
   createUser,
   getJwtToken,
   refreshUser,
+  setUnauthorizedError,
 } from "../actions/LoginActions";
 
 export const loginSlice = createSlice({
@@ -14,6 +15,7 @@ export const loginSlice = createSlice({
     nonce: null,
     walletAddress: null,
     user: null,
+    unauthorizedErrorData: null,
   },
   reducers: {},
   extraReducers: {
@@ -58,6 +60,10 @@ export const loginSlice = createSlice({
     [refreshUser.fulfilled as any]: (state: any, action: any) => {
       state.user = action.payload;
       setNftClientToken(state.user.token);
+    },
+
+    [setUnauthorizedError.fulfilled as any]: (state: any, action: any) => {
+      state.unauthorizedErrorData = action.payload;
     },
   },
 });

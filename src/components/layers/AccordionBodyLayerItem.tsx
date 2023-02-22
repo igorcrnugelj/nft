@@ -99,6 +99,7 @@ const AccordionBodyLayerItem = ({
         })
       );
     }
+
     dispatch(
       setMainPanelBodyDataType({
         type: MainPanelDataType.LayerImages,

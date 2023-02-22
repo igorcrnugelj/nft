@@ -98,3 +98,9 @@ export const refreshUser = createAsyncThunk(
     return userFromLocalStorage;
   }
 );
+export const setUnauthorizedError = createAsyncThunk(
+  "loginStore/setUnauthorizedError",
+  async (unauthorizedErrorData: any) => {
+    return unauthorizedErrorData;
+  }
+);

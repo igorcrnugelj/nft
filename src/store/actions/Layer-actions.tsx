@@ -160,9 +160,13 @@ export const calculateRarityImages = createAsyncThunk(
       maxRarityForCurrentImage
     );
     try {
+      console.log(
+        "newImagesCalculationRarity.images: ",
+        newImagesCalculationRarity.images
+      );
       const res = await nftClient.post(
         `/image/update-all`,
-        JSON.stringify(newImagesCalculationRarity.images)
+        newImagesCalculationRarity.images
       );
       if (res.status >= 200 || res.status < 300) {
         return {
@@ -383,7 +387,7 @@ export const updateFixRarityImages = createAsyncThunk(
     try {
       const res = await nftClient.post(
         `/image/update-all`,
-        JSON.stringify(newFixRarityCalculationImages.images)
+        newFixRarityCalculationImages.images
       );
       if (res.status >= 200 || res.status < 300) {
         return {

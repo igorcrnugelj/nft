@@ -13,8 +13,10 @@ import Header from "./components/layout/Header";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Wallet from "./components/wallet/Wallet";
+import setupInterceptor from "./components/axios/Interceptor";
 
 function App() {
+  setupInterceptor(store);
   return (
     <Fragment>
       <div className="App">

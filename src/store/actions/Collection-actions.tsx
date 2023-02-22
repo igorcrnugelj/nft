@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { nftClient } from "../../AxiosClient";
+import store from "../store";
 
 export const getCollections = createAsyncThunk(
   "collectionsStore/getCollections",
@@ -8,12 +9,12 @@ export const getCollections = createAsyncThunk(
   async (_, { getState }: any) => {
     const user: any = getState().loginStore.user;
     if (!user) return [];
-    const { data, status } = await nftClient.get(
-      `/collection/?userId=${user.userId}`
-    );
-    console.log("data: ", data);
-    console.log("status: ", status);
-    return data;
+    const res = await nftClient.get(`/collection/?userId=${user.userId}`);
+    console.log("data: ", res.data);
+    console.log("status: ", res.status);
+
+    console.log("res.data from getCollections: ", res.data);
+    return res.data;
   }
 );
 

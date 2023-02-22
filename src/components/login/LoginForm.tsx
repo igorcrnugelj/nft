@@ -5,6 +5,7 @@ import {
   getJwtToken,
   getNonce,
   setMetaMaskWalletAddress,
+  setUnauthorizedError,
 } from "../../store/actions/LoginActions";
 import Web3 from "web3";
 import { setNftClientToken } from "../../AxiosClient";
@@ -16,6 +17,9 @@ const LoginForm = () => {
   const dispatch: any = useDispatch();
   const walletAddressFromStore = useSelector(
     (state: any) => state.loginStore.walletAddress
+  );
+  const unauthorizedErrorData = useSelector(
+    (state: any) => state.loginStore.unauthorizedErrorData
   );
   const [walletAddress, setWalletAddress] = useState();
   const [showConnectToMetaMaskButton, setShowConnectToMetaMaskButton] =
@@ -61,6 +65,7 @@ const LoginForm = () => {
                     type: MainPanelDataType.HideLoginForm,
                   })
                 );
+                dispatch(setUnauthorizedError(false));
               }
             }
           );
@@ -103,9 +108,15 @@ const LoginForm = () => {
   const connectToMetaMaskHandler = async () => {
     await requestAccount();
   };
+
   return (
     <div className="login-form-main-container">
       <img className="matamask-logo" src="media/img/metamask_logo.png"></img>
+      {unauthorizedErrorData && (
+        <p className="unauthorizedErrorText">
+          Your login session has expired, please login again!
+        </p>
+      )}
       <p className="metamask-text">MetaMask</p>
       {!showConnectToMetaMaskButton && (
         <button
