@@ -1,0 +1,225 @@
+.payment-form-main-container {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  //   box-shadow: 0px 34px 30px -11px rgba(0, 0, 0, 0.29);
+  box-shadow: 0px 1px 8px -4px rgba(0, 0, 0, 0.75);
+  //   border: 1px solid #ffbc0d;
+  border-radius: 5px;
+  //   background-color: blue;
+}
+.payment-form-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+  border-bottom: 1px solid #d8d8d8;
+  padding-bottom: 30px;
+
+  //   background-color: red;
+}
+
+.payment-form-header-logo {
+  font-size: 25px;
+  margin-bottom: 0;
+  margin-left: 20px;
+}
+.payment-form-header-logo-span {
+  color: #cf5353;
+}
+.payment-form-bi-x-lg {
+  margin-right: 20px;
+}
+.payment-form-body-subtotal-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 0;
+  width: 97%;
+  height: 2.5rem;
+  border-bottom: 1px dotted #ffbc0d;
+  //   background-color: red;
+}
+.payment-form-body-subtotal-container p {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0;
+}
+.payment-form-body-vat-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px 0;
+  width: 97%;
+  height: 2.5rem;
+  border-bottom: 1px dotted #ffbc0d;
+  //   background-color: red;
+}
+.payment-form-body-vat-container p {
+  font-size: 18px;
+  font-weight: normal;
+  margin: 0;
+}
+.payment-form-body-total-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  padding: 30px 0;
+  width: 97%;
+  height: 120px;
+  border-bottom: 1px solid #d8d8d8;
+  //   background-color: #06c668;
+  //   border-bottom: 1px dotted #ffbc0d;
+}
+.payment-form-body-total-amount-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  //   background-color: #cf5353;
+}
+.payment-form-body-total-container p {
+  font-size: 18px;
+  font-weight: noraml;
+}
+.payment-form-body-total-amount {
+  font-weight: bold;
+  color: #06c668;
+}
+
+.payment-form-footer-ethereum-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  //   background-color: #cf5353;
+}
+.payment-form-footer-ethereum-text {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.payment-form-footer-ethereum-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  //   background-color: #3a3a3a;
+  // background-image: url("../../../public/media/img/ethereum-logo.png");
+  // background-size: 80px;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  padding: 5px 15px;
+  cursor: pointer;
+  max-width: 270px;
+  margin-right: 5px;
+}
+.ethereum-logo-in-payment-form-button {
+  width: 40px;
+}
+.payment-form-footer-ethereum-confirmation-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+  width: 200px;
+  height: 30px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 15px;
+  cursor: pointer;
+  max-width: 270px;
+  margin-right: 5px;
+}
+
+.lds-ellipsis {
+  // display: inline-block;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  // justify-content: flex-start;
+  top: 11px;
+  margin-left: 65px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgb(13, 13, 13);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+.success-crypto-payment {
+  color: #06c668;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

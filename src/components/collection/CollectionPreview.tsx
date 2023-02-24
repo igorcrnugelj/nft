@@ -9,6 +9,8 @@ import DownloadCollection from "./DownloadCollection";
 import EditCollectionButton from "./EditCollectionButton";
 import GenerateCollection from "./GenerateCollection";
 import GeneratePreviewImages from "./GeneratePreviewImages";
+import PaymentForm from "./PaymentForm";
+import PaymentNotification from "./PaymentNotification";
 
 const CollectionPreview = (collection: any) => {
   const mainPanelBodyDataType = useSelector(
@@ -25,7 +27,18 @@ const CollectionPreview = (collection: any) => {
         <DeleteCollectionCard />
       </div>
 
-      <CollectionDataForMainPanel collection={collection} />
+      {mainPanelBodyDataType.type !==
+        MainPanelDataType.ShowPaymentNotification &&
+        mainPanelBodyDataType.type !== MainPanelDataType.ShowPaymentForm && (
+          <CollectionDataForMainPanel collection={collection} />
+        )}
+
+      {mainPanelBodyDataType.type ===
+        MainPanelDataType.ShowPaymentNotification && <PaymentNotification />}
+
+      {mainPanelBodyDataType.type === MainPanelDataType.ShowPaymentForm && (
+        <PaymentForm />
+      )}
 
       {/* {mainPanelBodyDataType.type ===
         MainPanelDataType.ShowCreateNewLayerForm && <CreateNewLayerForm />} */}

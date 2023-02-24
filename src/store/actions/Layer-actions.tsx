@@ -5,29 +5,23 @@ import { nftClient } from "../../AxiosClient";
 export const getLayers = createAsyncThunk(
   "layers/getLayers",
   async (collectionId: any) => {
-    const res = await nftClient.get(`/layer?collectionId=${collectionId}`);
-    return res.data;
+    const { data } = await nftClient.get(`/layer?collectionId=${collectionId}`);
+    return data;
   }
 );
+
 export const deleteLayer = createAsyncThunk(
   "layers/deleteLayer",
   async (layerData: { collectionId: any; layerId: any }) => {
     const { collectionId, layerId } = layerData;
     try {
-      const res = await nftClient.delete(
+      const { data } = await nftClient.delete(
         `/layer?collectionId=${collectionId}&layerId=${layerId}`
       );
-      if (res.status >= 200 || res.status < 300) {
-        return {
-          success: true,
-          data: res.data,
-        };
-      } else {
-        return {
-          success: false,
-          data: res.statusText,
-        };
-      }
+      return {
+        data,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -41,24 +35,11 @@ export const createLayer = createAsyncThunk(
   "layers/createLayer",
   async (layer: any) => {
     try {
-      const createLayerResponse = await nftClient.put(
-        `/layer/createLayer`,
-        layer
-      );
-      if (
-        createLayerResponse.status >= 200 ||
-        createLayerResponse.status < 300
-      ) {
-        return {
-          success: true,
-          data: createLayerResponse.data,
-        };
-      } else {
-        return {
-          success: false,
-          data: createLayerResponse.statusText,
-        };
-      }
+      const { data } = await nftClient.put(`/layer/createLayer`, layer);
+      return {
+        data,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -71,8 +52,8 @@ export const createLayer = createAsyncThunk(
 export const updateLayers = createAsyncThunk(
   "layers/updateLayers",
   async (layers: any) => {
-    const res = await nftClient.post(`/layer/update-all`, layers);
-    return res.data;
+    const { data } = await nftClient.post(`/layer/update-all`, layers);
+    return data;
   }
 );
 
@@ -80,21 +61,11 @@ export const editLayer = createAsyncThunk(
   "layers/editLayer",
   async (layer: any) => {
     try {
-      const editLayerResponse = await nftClient.post(
-        `/layer/updateLayer`,
-        layer
-      );
-      if (editLayerResponse.status >= 200 || editLayerResponse.status < 300) {
-        return {
-          success: true,
-          data: editLayerResponse.data,
-        };
-      } else {
-        return {
-          success: false,
-          data: editLayerResponse.statusText,
-        };
-      }
+      const { data } = await nftClient.post(`/layer/updateLayer`, layer);
+      return {
+        data,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -108,23 +79,11 @@ export const getLayerImages = createAsyncThunk(
   "layers/getLayerImages",
   async (layerId: any) => {
     try {
-      const getLayerImagesResponse = await nftClient.get(
-        `/image/?layerId=${layerId}`
-      );
-      if (
-        getLayerImagesResponse.status >= 200 ||
-        getLayerImagesResponse.status < 300
-      ) {
-        return {
-          success: true,
-          data: getLayerImagesResponse.data,
-        };
-      } else {
-        return {
-          success: false,
-          data: getLayerImagesResponse.statusText,
-        };
-      }
+      const { data } = await nftClient.get(`/image/?layerId=${layerId}`);
+      return {
+        data,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -164,22 +123,14 @@ export const calculateRarityImages = createAsyncThunk(
         "newImagesCalculationRarity.images: ",
         newImagesCalculationRarity.images
       );
-      const res = await nftClient.post(
+      const { data } = await nftClient.post(
         `/image/update-all`,
         newImagesCalculationRarity.images
       );
-      if (res.status >= 200 || res.status < 300) {
-        return {
-          success: true,
-          data: res.data,
-          maxRarity: newImagesCalculationRarity.maxRarityForCurrentImage,
-        };
-      } else {
-        return {
-          success: false,
-          data: res.statusText,
-        };
-      }
+      return {
+        data,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -385,22 +336,14 @@ export const updateFixRarityImages = createAsyncThunk(
       fixRarity
     );
     try {
-      const res = await nftClient.post(
+      const { data } = await nftClient.post(
         `/image/update-all`,
         newFixRarityCalculationImages.images
       );
-      if (res.status >= 200 || res.status < 300) {
-        return {
-          success: true,
-          data: res.data,
-          maxRarity: newFixRarityCalculationImages.maxRarityForCurrentImage,
-        };
-      } else {
-        return {
-          success: false,
-          data: res.statusText,
-        };
-      }
+      return {
+        data,
+        success: true,
+      };
     } catch (error) {
       return {
         success: false,
@@ -468,24 +411,10 @@ export const addNewImage = createAsyncThunk(
     });
     await wait(4000);
     try {
-      const amazonawsImageResponse = await fetch(
+      const data = await fetch(
         `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/get?layerId=${imageDataCollection.imageData.layerId}&imageId=${s3PutObjectResponse.data.imageId}`
       );
-
-      if (
-        amazonawsImageResponse.status >= 200 ||
-        amazonawsImageResponse.status < 300
-      ) {
-        return {
-          success: true,
-          data: amazonawsImageResponse,
-        };
-      } else {
-        return {
-          success: false,
-          data: amazonawsImageResponse.statusText,
-        };
-      }
+      return { data, success: true };
     } catch (error) {
       return {
         success: false,
@@ -505,23 +434,10 @@ export const deleteImage = createAsyncThunk(
   "layers/deleteImage",
   async (deleteImageData: any) => {
     try {
-      const deleteImageResponse = await nftClient.delete(
+      const { data } = await nftClient.delete(
         `/image/?layerId=${deleteImageData.layerId}&imageId=${deleteImageData.imageId}`
       );
-      if (
-        deleteImageResponse.status >= 200 ||
-        deleteImageResponse.status < 300
-      ) {
-        return {
-          success: true,
-          data: deleteImageResponse.data,
-        };
-      } else {
-        return {
-          success: false,
-          data: deleteImageResponse.statusText,
-        };
-      }
+      return { data, success: true };
     } catch (error) {
       return {
         success: false,
@@ -542,18 +458,8 @@ export const editImage = createAsyncThunk(
   "layers/editImage",
   async (image: any) => {
     try {
-      const editImageResponse = await nftClient.post(`/image/update`, image);
-      if (editImageResponse.status >= 200 || editImageResponse.status < 300) {
-        return {
-          success: true,
-          data: editImageResponse.data,
-        };
-      } else {
-        return {
-          success: false,
-          data: editImageResponse.statusText,
-        };
-      }
+      const { data } = await nftClient.post(`/image/update`, image);
+      return { data, success: true };
     } catch (error) {
       return {
         success: false,

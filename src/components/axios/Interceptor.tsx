@@ -12,16 +12,14 @@ const setupInterceptor = (store: any) => {
       console.log("RESPONSE: ", response);
       return response;
     },
-    function (error) {
+    (error) => {
       console.log("ERROR: ", error);
-      if (error.response.status) {
-        if (error.response.status === 401) {
-          console.log("401 ERROR EJECTED!!!: ", error.response);
-          localStorage.removeItem("user");
-          store.dispatch(setUnauthorizedError(true));
+      if (error.response.status === 401) {
+        console.log("401 ERROR EJECTED!!!: ", error.response);
+        localStorage.removeItem("user");
+        store.dispatch(setUnauthorizedError(true));
 
-          return Promise.reject(error.response);
-        }
+        return Promise.reject(error);
       }
     }
   );

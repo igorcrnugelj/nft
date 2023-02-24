@@ -15,7 +15,7 @@ export const loginSlice = createSlice({
     nonce: null,
     walletAddress: null,
     user: null,
-    unauthorizedErrorData: null,
+    unauthorizedErrorData: false,
   },
   reducers: {},
   extraReducers: {
