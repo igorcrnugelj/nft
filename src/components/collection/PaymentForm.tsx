@@ -30,7 +30,7 @@ const PaymentForm = () => {
       setSubtotalValue(receiptData.subtotal);
       setVatValue(receiptData.vat);
       setTotalValue(receiptData.total);
-      setEthValue(receiptData.eth);
+      setEthValue(receiptData.eth.toFixed(9));
     }
   }, [receiptData]);
 
@@ -48,6 +48,7 @@ const PaymentForm = () => {
     const weiValue =
       "0x" +
       Number(Web3.utils.toWei(ethValue.toString(), "ether")).toString(16);
+
     console.log("weiValue: ", weiValue);
     async function requestAccount() {
       if (window.ethereum) {
