@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: flex-start;
   margin-bottom: 40px;
-  //   background-color: antiquewhite;
+  // background-color: antiquewhite;
 }
 @media screen and (max-width: 768px) {
   .add-new-image-main-container {
@@ -40,3 +40,102 @@
 .add-new-image-file-button {
   border: 1px solid #ffbc0d;
 }
+.loader-main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // background-color: red;
+}
+
+.upload-with-loader-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid blue;
+  width: 500px;
+  // background-color: grey;
+}
+
+.btn-file input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  // outline: none;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+.add-new-image-progress-bar {
+  width: 100%;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: block;
+  margin: 35px auto 0 auto;
+  position: relative;
+  background: #fff;
+  box-shadow: -24px 0 #fff, 24px 0 #fff;
+  box-sizing: border-box;
+  animation: shadowPulse 2s linear infinite;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: #fff;
+    // box-shadow: -24px 0 #ff3d00, 24px 0 #fff;
+    box-shadow: -24px 0 #ffbc0d, 24px 0 #fff;
+  }
+  66% {
+    background: #ffbc0d;
+    box-shadow: -24px 0 #fff, 24px 0 #fff;
+  }
+  100% {
+    background: #fff;
+    box-shadow: -24px 0 #fff, 24px 0 #ffbc0d;
+  }
+}
+//*****************************************
+// .loader {
+//   width: 12px;
+//   height: 12px;
+//   border-radius: 50%;
+//   display: block;
+//   margin: 35px auto 0 auto;
+//   position: relative;
+//   color: #ffbc0d;
+//   box-sizing: border-box;
+//   animation: animloader 1s linear infinite;
+// }
+
+// @keyframes animloader {
+//   0% {
+//     box-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 -2px;
+//   }
+//   25% {
+//     box-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 2px;
+//   }
+//   50% {
+//     box-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 2px, -38px 0 0 -2px;
+//   }
+//   75% {
+//     box-shadow: 14px 0 0 2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 -2px;
+//   }
+//   100% {
+//     box-shadow: 14px 0 0 -2px, 38px 0 0 2px, -14px 0 0 -2px, -38px 0 0 -2px;
+//   }
+// }

@@ -4,7 +4,9 @@ import MainPanelDataType from "../../enums/MainPanelDataType";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import { ethers } from "ethers";
 import {
+  getApprovalToken,
   setStartGeneratingCollectionsProcess,
+  setTransactionHash,
   setTransactionStatus,
 } from "../../store/actions/Collection-actions";
 
@@ -15,6 +17,9 @@ const PaymentForm = () => {
   );
   const transactionStatus = useSelector(
     (state: any) => state.collectionsStore.transactionStatus
+  );
+  const collection = useSelector(
+    (state: any) => state.mainPanelStore.mainPanelData.collectionData
   );
   const [subtotalValue, setSubtotalValue] = useState();
   const [vatValue, setVatValue] = useState();
@@ -66,8 +71,24 @@ const PaymentForm = () => {
       }
     }
     if (typeof window.ethereum !== "undefined") {
-      await requestAccount();
     }
+    const token = await dispatch(
+      getApprovalToken(collection.collection.collectionId)
+    ).unwrap();
+
+    console.log("TOKEN-PLANKA: ", token);
+    await requestAccount();
+
+    function toHex(str: any) {
+      var result = "";
+      for (var i = 0; i < str.length; i++) {
+        result += str.charCodeAt(i).toString(16);
+      }
+      return result;
+    }
+
+    const tokenTest = toHex("HelloWorld");
+
     const TransactionHash = await window.ethereum.request({
       method: "eth_sendTransaction",
       params: [
@@ -79,9 +100,12 @@ const PaymentForm = () => {
           value: weiValue,
           // gasPrice: "0x09184e72a000",
           // gas: "0x2710",
+          data: toHex(token.data.token),
+          // data: tokenTest,
         },
       ],
     });
+    dispatch(setTransactionHash(TransactionHash));
     console.log("TransactionHash: ", TransactionHash);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const receipt = await provider.waitForTransaction(TransactionHash);

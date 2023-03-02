@@ -76,12 +76,13 @@ export const editCollection = createAsyncThunk(
 
 export const generateCollection = createAsyncThunk(
   "collectionsStore/generateCollection",
-  async (collectionData: { userId: any; collectionId: any }) => {
-    const { userId, collectionId } = collectionData;
+  async (collectionData: { userId: any; collectionId: any; txHash: any }) => {
+    const { userId, collectionId, txHash } = collectionData;
     try {
       const { data } = await nftClient.post(`/collection/generate`, {
         userId,
         collectionId,
+        txHash,
       });
       return { data, success: true };
     } catch (error) {
@@ -160,7 +161,7 @@ export const getPreviewImages = createAsyncThunk(
 export const setReceiptData = createAsyncThunk(
   "collectionsStore/setReceiptData",
   async ({ collectionSize, ethInUsd }: any) => {
-    const subtotal = 1.16 * collectionSize;
+    const subtotal = 0.16 * collectionSize;
     const subtotalFixed = subtotal.toFixed(2);
     const vat = (subtotal * 25) / 100;
     const vatFixed = vat.toFixed(2);
@@ -203,5 +204,29 @@ export const setStartGeneratingCollectionsProcess = createAsyncThunk(
   "collectionsStore/setStartGeneratingCollectionsProcess",
   async (startGeneratingCollectionsProcess: any) => {
     return startGeneratingCollectionsProcess;
+  }
+);
+
+export const getApprovalToken = createAsyncThunk(
+  "collectionsStore/getApprovalToken",
+  async (collectionId: any) => {
+    try {
+      const { data } = await nftClient.get(
+        `collection/generate-token?collectionId=${collectionId}`
+      );
+
+      return { data, success: true };
+    } catch (error) {
+      return {
+        success: false,
+        data: error,
+      };
+    }
+  }
+);
+export const setTransactionHash = createAsyncThunk(
+  "collectionsStore/setTransactionHash",
+  async (transactionHash: any) => {
+    return transactionHash;
   }
 );

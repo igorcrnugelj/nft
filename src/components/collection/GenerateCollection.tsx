@@ -26,6 +26,9 @@ const GenerateCollection = () => {
     (state: any) => state.collectionsStore.collections
   );
   const user = useSelector((state: any) => state.loginStore.user);
+  const transactionHash = useSelector(
+    (state: any) => state.collectionsStore.transactionHash
+  );
   const [isGenerating, setIsGenerating] = useState(false);
   const [percentage, setPercentage] = useState(0);
 
@@ -129,6 +132,7 @@ const GenerateCollection = () => {
     const collectionData = {
       userId: user.userId,
       collectionId: collection.collection.collectionId,
+      txHash: transactionHash,
     };
     const generateCollectionResponse = await dispatch(
       generateCollection(collectionData)

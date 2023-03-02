@@ -9,6 +9,7 @@ import {
   setReceiptData,
   setTransactionStatus,
   setStartGeneratingCollectionsProcess,
+  setTransactionHash,
 } from "../actions/Collection-actions";
 
 export const collectionSlice = createSlice({
@@ -23,6 +24,7 @@ export const collectionSlice = createSlice({
     receiptData: {},
     transactionStatus: null,
     startGeneratingCollectionsProcess: false,
+    transactionHash: null,
   },
   reducers: {},
   extraReducers: {
@@ -95,6 +97,10 @@ export const collectionSlice = createSlice({
       action: any
     ) => {
       state.startGeneratingCollectionsProcess = action.payload;
+    },
+
+    [setTransactionHash.fulfilled as any]: (state: any, action: any) => {
+      state.transactionHash = action.payload;
     },
   },
 });

@@ -103,7 +103,8 @@ export const layerSlice = createSlice({
     },
     [getLayerImages.fulfilled as any]: (state: any, action: any) => {
       state.loading = false;
-      state.images = action.payload.layerImages;
+      // state.images = action.payload.layerImages;
+      state.images = action.payload.data;
       state.dataAboutLayer = action.payload.dataAboutLayer;
     },
     [getLayerImages.rejected as any]: (state: any) => {
@@ -152,7 +153,7 @@ export const layerSlice = createSlice({
       state.loading = true;
       state.spinnerData = true;
     },
-    [addNewImage.fulfilled as any]: (state: any) => {
+    [addNewImage.fulfilled as any]: (state: any, action: any) => {
       state.loading = false;
       state.spinnerData = false;
     },
