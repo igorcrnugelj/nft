@@ -4,14 +4,13 @@ import MainPanelDataType from "../../enums/MainPanelDataType";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import { ethers } from "ethers";
 import {
-  // convertTokenToHexToken,
+  calculateWei,
   getApprovalToken,
   setStartGeneratingCollectionsProcess,
   setTransactionHash,
   setTransactionStatus,
   setWalletAddress,
 } from "../../store/actions/Collection-actions";
-import Web3 from "web3";
 
 const PaymentForm = () => {
   const dispatch: any = useDispatch();
@@ -48,14 +47,11 @@ const PaymentForm = () => {
   }, [transactionStatus]);
 
   //********************************************************* */
-  //TODO: set weiValue calculation in action!
   const makePaymentHandler = async () => {
     let wallet = null;
     let walletAddress = null;
 
-    const weiValue =
-      "0x" +
-      Number(Web3.utils.toWei(ethValue.toString(), "ether")).toString(16);
+    const weiValue = dispatch(calculateWei(ethValue));
 
     async function requestAccount() {
       if (window.ethereum) {
@@ -88,7 +84,7 @@ const PaymentForm = () => {
           {
             from: walletAddress,
             to: "0x41e3B5f8fE115aE102F08d389B286Df9E28C9dc8",
-            value: weiValue,
+            value: weiValue.weiValue,
             data: token.token,
           },
         ],

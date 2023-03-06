@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import Web3 from "web3";
 import { nftClient } from "../../AxiosClient";
 
 export const getCollections = createAsyncThunk(
@@ -242,13 +243,14 @@ export const getApprovalToken = createAsyncThunk(
     }
   }
 );
-// export const convertTokenToHexToken = createAsyncThunk(
-//   "collectionsStore/convertTokenToHexToken",
-//   async (token: any) => {
-//     let result = "";
-//     for (var i = 0; i < token.length; i++) {
-//       result += token.charCodeAt(i).toString(16);
-//     }
-//     return result;
-//   }
-// );
+
+export const calculateWei = createAsyncThunk(
+  "collectionsStore/calculateWei",
+  async (ethValue: any) => {
+    const weiValue =
+      "0x" +
+      Number(Web3.utils.toWei(ethValue.toString(), "ether")).toString(16);
+
+    return weiValue;
+  }
+);
