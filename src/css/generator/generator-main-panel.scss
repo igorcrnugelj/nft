@@ -1,6 +1,7 @@
 .main-panel-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   max-width: 1400px;
   margin: 50px auto;
   // background-color: aquamarine;
@@ -10,6 +11,7 @@
   padding: 5px;
   --bs-accordion-border-width: 10px;
   position: relative;
+  // background-color: green;
 }
 @media screen and (max-width: 768px) {
   .accordion-container {

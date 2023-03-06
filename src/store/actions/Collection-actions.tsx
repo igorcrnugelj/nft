@@ -200,6 +200,12 @@ export const setTransactionStatus = createAsyncThunk(
     return transactionStatusData;
   }
 );
+export const setWalletAddress = createAsyncThunk(
+  "collectionsStore/setWalletAddress",
+  async (walletAddressData: any) => {
+    return walletAddressData;
+  }
+);
 export const setStartGeneratingCollectionsProcess = createAsyncThunk(
   "collectionsStore/setStartGeneratingCollectionsProcess",
   async (startGeneratingCollectionsProcess: any) => {

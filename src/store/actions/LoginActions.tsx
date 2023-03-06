@@ -62,8 +62,8 @@ export const getJwtToken = createAsyncThunk(
     }
   }
 );
-export const refreshUser = createAsyncThunk(
-  "loginStore/refreshUser",
+export const setUser = createAsyncThunk(
+  "loginStore/setUser",
   async (userFromLocalStorage: any) => {
     return userFromLocalStorage;
   }

@@ -43,16 +43,20 @@ const CollectionPreview = (collection: any) => {
       {/* {mainPanelBodyDataType.type ===
         MainPanelDataType.ShowCreateNewLayerForm && <CreateNewLayerForm />} */}
 
-      <div className="preview-images-container">
-        {collection.collection.collection.previewImages?.map(
-          (previewImage: any) => (
-            <CollectionPreviewImage
-              key={previewImage.previewImageId}
-              previewImage={previewImage}
-            />
-          )
+      {mainPanelBodyDataType.type !==
+        MainPanelDataType.ShowPaymentNotification &&
+        mainPanelBodyDataType.type !== MainPanelDataType.ShowPaymentForm && (
+          <div className="preview-images-container">
+            {collection.collection.collection.previewImages?.map(
+              (previewImage: any) => (
+                <CollectionPreviewImage
+                  key={previewImage.previewImageId}
+                  previewImage={previewImage}
+                />
+              )
+            )}
+          </div>
         )}
-      </div>
     </Fragment>
   );
 };

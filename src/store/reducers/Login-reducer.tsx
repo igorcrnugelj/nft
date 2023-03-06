@@ -5,7 +5,7 @@ import {
   setMetaMaskWalletAddress,
   createUser,
   getJwtToken,
-  refreshUser,
+  setUser,
   setUnauthorizedError,
 } from "../actions/LoginActions";
 
@@ -57,7 +57,7 @@ export const loginSlice = createSlice({
       state.loading = false;
     },
 
-    [refreshUser.fulfilled as any]: (state: any, action: any) => {
+    [setUser.fulfilled as any]: (state: any, action: any) => {
       state.user = action.payload;
       setNftClientToken(state.user.token);
     },

@@ -8,6 +8,7 @@ import {
   setStartGeneratingCollectionsProcess,
   setTransactionHash,
   setTransactionStatus,
+  setWalletAddress,
 } from "../../store/actions/Collection-actions";
 
 const PaymentForm = () => {
@@ -25,7 +26,6 @@ const PaymentForm = () => {
   const [vatValue, setVatValue] = useState();
   const [totalValue, setTotalValue] = useState();
   const [ethValue, setEthValue]: any = useState();
-  const [walletAddress, setWalletAddress] = useState("");
   const [showPaymentConfirmation, setShowPaymentConfirmation] = useState(false);
   const [activateLoader, setActivateLoader] = useState(false);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
@@ -47,22 +47,26 @@ const PaymentForm = () => {
   }, [transactionStatus]);
 
   //********************************************************* */
-  async function makePaymentHandler() {
+  //TODO: set calculations and other suitable code in action!
+  const makePaymentHandler = async () => {
+    setActivateLoader(true);
+    let wallet = null;
+    let walletAddress = null;
+
     setShowPaymentConfirmation(true);
     var Web3 = require("web3");
     const weiValue =
       "0x" +
       Number(Web3.utils.toWei(ethValue.toString(), "ether")).toString(16);
 
-    console.log("weiValue: ", weiValue);
     async function requestAccount() {
       if (window.ethereum) {
-        console.log("deteched");
         try {
-          const accounts = await window.ethereum.request({
+          wallet = await window.ethereum.request({
             method: "eth_requestAccounts",
           });
-          setWalletAddress(accounts[0]);
+          walletAddress = wallet[0];
+          console.log(walletAddress);
         } catch (error) {
           console.log("Error connecting...");
         }
@@ -71,13 +75,12 @@ const PaymentForm = () => {
       }
     }
     if (typeof window.ethereum !== "undefined") {
+      requestAccount();
     }
+
     const token = await dispatch(
       getApprovalToken(collection.collection.collectionId)
     ).unwrap();
-
-    console.log("TOKEN-PLANKA: ", token);
-    await requestAccount();
 
     function toHex(str: any) {
       var result = "";
@@ -86,30 +89,28 @@ const PaymentForm = () => {
       }
       return result;
     }
+    let TransactionHash = null;
+    try {
+      TransactionHash = await window.ethereum.request({
+        method: "eth_sendTransaction",
+        params: [
+          {
+            from: walletAddress,
+            to: "0x41e3B5f8fE115aE102F08d389B286Df9E28C9dc8",
+            value: weiValue,
+            data: toHex(token.data.token),
+          },
+        ],
+      });
+    } catch (error: any) {
+      setActivateLoader(false);
+      closePaymentFormHandler();
+    }
 
-    const tokenTest = toHex("HelloWorld");
-
-    const TransactionHash = await window.ethereum.request({
-      method: "eth_sendTransaction",
-      params: [
-        {
-          from: walletAddress,
-          // to: "0x524262c141da06c4a1cd44756801363eb0b90c7f",
-          to: "0x41e3B5f8fE115aE102F08d389B286Df9E28C9dc8",
-          // value: "0x29a2241af62c0000",
-          value: weiValue,
-          // gasPrice: "0x09184e72a000",
-          // gas: "0x2710",
-          data: toHex(token.data.token),
-          // data: tokenTest,
-        },
-      ],
-    });
     dispatch(setTransactionHash(TransactionHash));
     console.log("TransactionHash: ", TransactionHash);
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const receipt = await provider.waitForTransaction(TransactionHash);
-    // const signer = provider.getSigner();
     const resolve = await window.ethereum.request({
       method: "eth_getTransactionByHash",
       params: [TransactionHash],
@@ -119,7 +120,7 @@ const PaymentForm = () => {
     dispatch(setTransactionStatus(receipt.status));
 
     console.log("Receipt: ", receipt);
-  }
+  };
 
   //*********************************************************** */
 
@@ -164,42 +165,28 @@ const PaymentForm = () => {
       </div>
       <div className="payment-form-footer-ethereum-container">
         <p className="payment-form-footer-ethereum-text">ADD PAYMENT</p>
-        {!showPaymentConfirmation ? (
-          <button
-            type="reset"
-            className="payment-form-footer-ethereum-button"
-            onClick={makePaymentHandler}
-          >
-            <img
-              className="ethereum-logo-in-payment-form-button"
-              src="media/img/ether-logo.png"
-            ></img>
-            Ethereum
-          </button>
-        ) : (
-          <button
-            type="reset"
-            className="payment-form-footer-ethereum-confirmation-button"
-            onClick={makePaymentHandler}
-            onMouseUp={() => setActivateLoader(true)}
-          >
-            <img
-              className="ethereum-logo-in-payment-form-button"
-              src="media/img/ether-logo.png"
-            ></img>
-            {!activateLoader ? (
-              "Confirm payment"
-            ) : (
-              <div className="lds-ellipsis">
-                processing
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
-            )}
-          </button>
-        )}
+        <button
+          type="reset"
+          className={
+            !activateLoader
+              ? "payment-form-footer-ethereum-button"
+              : "payment-form-footer-ethereum-button-processing"
+          }
+          onClick={makePaymentHandler}
+        >
+          <img
+            className="ethereum-logo-in-payment-form-button"
+            src="media/img/ether-logo.png"
+          ></img>
+          {!activateLoader ? (
+            " Ethereum"
+          ) : (
+            <div className="loader-and-text-container-in-payment-form">
+              processing
+              <span className="loader-in-payment-form"></span>
+            </div>
+          )}
+        </button>
       </div>
       {showPaymentSuccess && (
         <div className="success-crypto-payment">

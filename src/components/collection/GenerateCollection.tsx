@@ -171,11 +171,14 @@ const GenerateCollection = () => {
               dispatch(
                 setGeneratedCollection(getGeneratedCollectionResponse.data)
               );
-              dispatch(
-                setMainPanelBodyDataType({
-                  type: MainPanelDataType.ShowDownloadButton,
-                })
-              );
+              setPercentage(100);
+              setTimeout(() => {
+                dispatch(
+                  setMainPanelBodyDataType({
+                    type: MainPanelDataType.ShowDownloadButton,
+                  })
+                );
+              }, 1500);
             }
             dispatch(getCollections());
           };

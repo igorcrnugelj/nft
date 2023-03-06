@@ -10,6 +10,7 @@ import {
   setTransactionStatus,
   setStartGeneratingCollectionsProcess,
   setTransactionHash,
+  setWalletAddress,
 } from "../actions/Collection-actions";
 
 export const collectionSlice = createSlice({
@@ -25,6 +26,7 @@ export const collectionSlice = createSlice({
     transactionStatus: null,
     startGeneratingCollectionsProcess: false,
     transactionHash: null,
+    walletAddress: null,
   },
   reducers: {},
   extraReducers: {
@@ -90,6 +92,9 @@ export const collectionSlice = createSlice({
     //SET PAYMENT STATUS
     [setTransactionStatus.fulfilled as any]: (state: any, action: any) => {
       state.transactionStatus = action.payload;
+    },
+    [setWalletAddress.fulfilled as any]: (state: any, action: any) => {
+      state.walletAddress = action.payload;
     },
 
     [setStartGeneratingCollectionsProcess.fulfilled as any]: (

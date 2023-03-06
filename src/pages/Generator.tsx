@@ -5,19 +5,18 @@ import GeneratorHeader from "../components/collection/GeneratorHeader";
 import GeneratorMainPanel from "../components/collection/GeneratorMainPanel";
 import MainPanelDataType from "../enums/MainPanelDataType";
 import { getCollections } from "../store/actions/Collection-actions";
-import { refreshUser } from "../store/actions/LoginActions";
+import { setUser } from "../store/actions/LoginActions";
 import { setMainPanelBodyDataType } from "../store/actions/MainPanelActions";
 
 const Generator = () => {
   const dispatch: any = useDispatch();
-
   const user = useSelector((state: any) => state.loginStore.user);
 
   useEffect(() => {
     const userString = localStorage.getItem("user");
     if (userString) {
       const user = JSON.parse(userString);
-      dispatch(refreshUser(user));
+      dispatch(setUser(user));
     } else {
       dispatch(
         setMainPanelBodyDataType({

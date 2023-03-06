@@ -73,7 +73,7 @@ const GeneratePreviewImages = () => {
       className="preview-button"
       onClick={generatePreviewImagesHandler}
     >
-      PREVIEW
+      GENERATE PREVIEW
     </button>
   );
 };

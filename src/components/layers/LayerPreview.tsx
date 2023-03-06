@@ -7,6 +7,8 @@ import EditCollectionButton from "../collection/EditCollectionButton";
 import EditCollectionForm from "../collection/EditCollectionForm";
 import GenerateCollection from "../collection/GenerateCollection";
 import GeneratePreviewImages from "../collection/GeneratePreviewImages";
+import PaymentForm from "../collection/PaymentForm";
+import PaymentNotification from "../collection/PaymentNotification";
 import AddNewImage from "./AddNewImage";
 import EditLayerForm from "./EditLayerForm";
 import LayerData from "./LayerData";
@@ -32,6 +34,18 @@ const LayerPreview = (layerData: any) => {
       {mainPanelBodyDataType.type === MainPanelDataType.ShowLayerEditForm && (
         <EditLayerForm />
       )}
+
+      {/* *****************************PaymentNotification and PaymentForm components******************************* */}
+
+      {mainPanelBodyDataType.type ===
+        MainPanelDataType.ShowPaymentNotification && <PaymentNotification />}
+
+      {mainPanelBodyDataType.type === MainPanelDataType.ShowPaymentForm && (
+        <PaymentForm />
+      )}
+
+      {/* *****************************PaymentNotification and PaymentForm components - END******************************* */}
+
       {mainPanelBodyDataType.type !== MainPanelDataType.DeleteLayer &&
         mainPanelBodyDataType.type !== MainPanelDataType.ShowLayerEditForm && (
           <LayerData layerData={layerData} />
