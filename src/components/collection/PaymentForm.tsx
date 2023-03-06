@@ -4,12 +4,14 @@ import MainPanelDataType from "../../enums/MainPanelDataType";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import { ethers } from "ethers";
 import {
+  // convertTokenToHexToken,
   getApprovalToken,
   setStartGeneratingCollectionsProcess,
   setTransactionHash,
   setTransactionStatus,
   setWalletAddress,
 } from "../../store/actions/Collection-actions";
+import Web3 from "web3";
 
 const PaymentForm = () => {
   const dispatch: any = useDispatch();
@@ -26,7 +28,6 @@ const PaymentForm = () => {
   const [vatValue, setVatValue] = useState();
   const [totalValue, setTotalValue] = useState();
   const [ethValue, setEthValue]: any = useState();
-  const [showPaymentConfirmation, setShowPaymentConfirmation] = useState(false);
   const [activateLoader, setActivateLoader] = useState(false);
   const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
 
@@ -47,14 +48,11 @@ const PaymentForm = () => {
   }, [transactionStatus]);
 
   //********************************************************* */
-  //TODO: set calculations and other suitable code in action!
+  //TODO: set weiValue calculation in action!
   const makePaymentHandler = async () => {
-    setActivateLoader(true);
     let wallet = null;
     let walletAddress = null;
 
-    setShowPaymentConfirmation(true);
-    var Web3 = require("web3");
     const weiValue =
       "0x" +
       Number(Web3.utils.toWei(ethValue.toString(), "ether")).toString(16);
@@ -82,13 +80,6 @@ const PaymentForm = () => {
       getApprovalToken(collection.collection.collectionId)
     ).unwrap();
 
-    function toHex(str: any) {
-      var result = "";
-      for (var i = 0; i < str.length; i++) {
-        result += str.charCodeAt(i).toString(16);
-      }
-      return result;
-    }
     let TransactionHash = null;
     try {
       TransactionHash = await window.ethereum.request({
@@ -98,10 +89,13 @@ const PaymentForm = () => {
             from: walletAddress,
             to: "0x41e3B5f8fE115aE102F08d389B286Df9E28C9dc8",
             value: weiValue,
-            data: toHex(token.data.token),
+            data: token.token,
           },
         ],
       });
+      if (TransactionHash) {
+        setActivateLoader(true);
+      }
     } catch (error: any) {
       setActivateLoader(false);
       closePaymentFormHandler();
@@ -115,10 +109,7 @@ const PaymentForm = () => {
       method: "eth_getTransactionByHash",
       params: [TransactionHash],
     });
-    console.log(resolve);
-
     dispatch(setTransactionStatus(receipt.status));
-
     console.log("Receipt: ", receipt);
   };
 
@@ -136,6 +127,7 @@ const PaymentForm = () => {
     );
   };
 
+  //TODO: make button Start Generating Collections with clickable effect
   return (
     <div className="payment-form-main-container">
       <div className="payment-form-card-header">

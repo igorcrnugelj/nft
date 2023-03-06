@@ -23,3 +23,37 @@
     margin-right: 5px;
   }
 }
+
+.loader-in-generate-preview-images-component {
+  display: block;
+  position: relative;
+  height: 10px;
+  width: 100%;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+.loader-in-generate-preview-images-component::after {
+  content: "";
+  width: 40%;
+  height: 100%;
+  background: #ffbc0d;
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  animation: animloader 1.5s linear infinite;
+  border-radius: 10px;
+}
+
+@keyframes animloader {
+  0% {
+    left: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    left: 100%;
+    transform: translateX(0%);
+  }
+}

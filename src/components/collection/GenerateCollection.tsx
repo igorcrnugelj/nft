@@ -71,8 +71,11 @@ const GenerateCollection = () => {
         if (obj.iteration !== null) {
           const objIterationValue = obj.iteration;
           const objTotalValue = obj.total;
-          let progressPercentage = (objIterationValue / objTotalValue) * 100;
-          setPercentage(progressPercentage);
+          let progressPercentage = (
+            (objIterationValue / objTotalValue) *
+            100
+          ).toFixed(0);
+          setPercentage(parseInt(progressPercentage));
           console.log(objIterationValue, objTotalValue);
 
           const getGeneratedCollectionFunction = async (id: any) => {
@@ -155,8 +158,11 @@ const GenerateCollection = () => {
         if (obj.iteration !== null) {
           const objIterationValue = obj.iteration;
           const objTotalValue = obj.total;
-          let progressPercentage = (objIterationValue / objTotalValue) * 100;
-          setPercentage(progressPercentage);
+          let progressPercentage = (
+            (objIterationValue / objTotalValue) *
+            100
+          ).toFixed(0);
+          setPercentage(parseInt(progressPercentage));
           console.log(objIterationValue, objTotalValue);
 
           const getGeneratedCollectionFunction = async (id: any) => {

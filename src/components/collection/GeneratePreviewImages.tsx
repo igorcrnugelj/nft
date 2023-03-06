@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   generatePreviewImages,
@@ -15,7 +16,9 @@ const GeneratePreviewImages = () => {
   const mainPanelData = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData
   );
+
   const user = useSelector((state: any) => state.loginStore.user);
+  const [activateLoader, setActivateLoader] = useState(false);
 
   const generatePreviewImagesHandler = async () => {
     dispatch(activateSpinner(true));
@@ -50,13 +53,14 @@ const GeneratePreviewImages = () => {
         };
         dispatch(setMainPanelData(mainPanelDataEdited));
         dispatch(getCollections());
-        dispatch(activateSpinner(false));
+        setActivateLoader(false);
       }
     };
     const generatePreviewImagesResponse = await dispatch(
       generatePreviewImages(collectionData)
     ).unwrap();
     if (generatePreviewImagesResponse.success) {
+      setActivateLoader(true);
       getGeneratedCollectionRecursion(5);
     }
   };
@@ -73,7 +77,12 @@ const GeneratePreviewImages = () => {
       className="preview-button"
       onClick={generatePreviewImagesHandler}
     >
-      GENERATE PREVIEW
+      {mainPanelData.collectionData.collection.previewImages.length > 0
+        ? "REFRESH PREVIEW"
+        : "GENERATE PREVIEW"}
+      {activateLoader && (
+        <span className="loader-in-generate-preview-images-component"></span>
+      )}
     </button>
   );
 };

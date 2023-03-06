@@ -213,6 +213,13 @@ export const setStartGeneratingCollectionsProcess = createAsyncThunk(
   }
 );
 
+export const setTransactionHash = createAsyncThunk(
+  "collectionsStore/setTransactionHash",
+  async (transactionHash: any) => {
+    return transactionHash;
+  }
+);
+
 export const getApprovalToken = createAsyncThunk(
   "collectionsStore/getApprovalToken",
   async (collectionId: any) => {
@@ -221,7 +228,12 @@ export const getApprovalToken = createAsyncThunk(
         `collection/generate-token?collectionId=${collectionId}`
       );
 
-      return { data, success: true };
+      let token = "";
+      for (var i = 0; i < data.token.length; i++) {
+        token += data.token.charCodeAt(i).toString(16);
+      }
+
+      return { token, success: true };
     } catch (error) {
       return {
         success: false,
@@ -230,9 +242,13 @@ export const getApprovalToken = createAsyncThunk(
     }
   }
 );
-export const setTransactionHash = createAsyncThunk(
-  "collectionsStore/setTransactionHash",
-  async (transactionHash: any) => {
-    return transactionHash;
-  }
-);
+// export const convertTokenToHexToken = createAsyncThunk(
+//   "collectionsStore/convertTokenToHexToken",
+//   async (token: any) => {
+//     let result = "";
+//     for (var i = 0; i < token.length; i++) {
+//       result += token.charCodeAt(i).toString(16);
+//     }
+//     return result;
+//   }
+// );
