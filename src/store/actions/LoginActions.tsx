@@ -18,12 +18,7 @@ export const getNonce = createAsyncThunk(
     }
   }
 );
-export const setMetaMaskWalletAddress = createAsyncThunk(
-  "loginStore/setMetaMaskWalletAddress",
-  async (walletAddress: any) => {
-    return walletAddress;
-  }
-);
+
 export const createUser = createAsyncThunk(
   "loginStore/createUser",
   async (metamaskPublicAddress: any) => {

@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import { setNftClientToken } from "../../AxiosClient";
 import {
   getNonce,
-  setMetaMaskWalletAddress,
   createUser,
   getJwtToken,
   setUser,
@@ -28,10 +27,6 @@ export const loginSlice = createSlice({
     },
     [getNonce.rejected as any]: (state: any) => {
       state.loading = false;
-    },
-
-    [setMetaMaskWalletAddress.fulfilled as any]: (state: any, action: any) => {
-      state.walletAddress = action.payload;
     },
 
     [createUser.pending as any]: (state: any) => {

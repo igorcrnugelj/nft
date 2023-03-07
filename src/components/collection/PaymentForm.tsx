@@ -9,7 +9,6 @@ import {
   setStartGeneratingCollectionsProcess,
   setTransactionHash,
   setTransactionStatus,
-  setWalletAddress,
 } from "../../store/actions/Collection-actions";
 
 const PaymentForm = () => {
@@ -23,6 +22,7 @@ const PaymentForm = () => {
   const collection = useSelector(
     (state: any) => state.mainPanelStore.mainPanelData.collectionData
   );
+
   const [subtotalValue, setSubtotalValue] = useState();
   const [vatValue, setVatValue] = useState();
   const [totalValue, setTotalValue] = useState();
@@ -48,28 +48,13 @@ const PaymentForm = () => {
 
   //********************************************************* */
   const makePaymentHandler = async () => {
-    let wallet = null;
-    let walletAddress = null;
-
     const weiValue = dispatch(calculateWei(ethValue));
-    //TODO: omit requestAccount function and catch walletAddress from reducer!
-    async function requestAccount() {
-      if (window.ethereum) {
-        try {
-          wallet = await window.ethereum.request({
-            method: "eth_requestAccounts",
-          });
-          walletAddress = wallet[0];
-          console.log(walletAddress);
-        } catch (error) {
-          console.log("Error connecting...");
-        }
-      } else {
-        console.log("MetaMask not deteched");
-      }
-    }
-    if (typeof window.ethereum !== "undefined") {
-      requestAccount();
+
+    let walletAddress = null;
+    const user = localStorage.getItem("user");
+    if (user) {
+      const userObj = JSON.parse(user);
+      walletAddress = userObj.publicAddress;
     }
 
     const token = await dispatch(

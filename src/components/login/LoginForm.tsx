@@ -4,20 +4,17 @@ import {
   createUser,
   getJwtToken,
   getNonce,
-  setMetaMaskWalletAddress,
   setUnauthorizedError,
 } from "../../store/actions/LoginActions";
+//TODO: find out why this Web3 import not working instead of line 41
 import Web3 from "web3";
-import { setNftClientToken } from "../../AxiosClient";
 import { getCollections } from "../../store/actions/Collection-actions";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 
 const LoginForm = () => {
   const dispatch: any = useDispatch();
-  const walletAddressFromStore = useSelector(
-    (state: any) => state.loginStore.walletAddress
-  );
+
   const unauthorizedErrorData = useSelector(
     (state: any) => state.loginStore.unauthorizedErrorData
   );
@@ -28,13 +25,6 @@ const LoginForm = () => {
     useState(false);
   const [showInstallMetaMaskWalletButton, setShowInstallMetaMaskWalletButton] =
     useState(false);
-  const [metamaskWalletValue, setmetamaskWalletValue] = useState("");
-
-  useEffect(() => {
-    if (walletAddressFromStore) {
-      setmetamaskWalletValue(walletAddressFromStore);
-    }
-  }, [walletAddressFromStore]);
 
   async function requestAccount() {
     if (window.ethereum) {
