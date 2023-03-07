@@ -52,7 +52,7 @@ const PaymentForm = () => {
     let walletAddress = null;
 
     const weiValue = dispatch(calculateWei(ethValue));
-
+    //TODO: omit requestAccount function and catch walletAddress from reducer!
     async function requestAccount() {
       if (window.ethereum) {
         try {
