@@ -11,6 +11,7 @@
   align-items: flex-start;
 }
 .create-new-layer-input-field {
+  // position: relative;
   width: 100%;
   margin-top: 2px;
   border: 1px solid #373737;
@@ -18,6 +19,20 @@
   background-color: #f8f8f4;
   border-radius: 5px;
   padding-left: 5px;
+}
+.create-new-layer-input-field-notification {
+  // position: absolute;
+  color: red;
+  width: 100%;
+  // border: 1px solid red;
+  font-size: 16px;
+  height: 1.5rem;
+  // background-color: #f8f8f4;
+  border-radius: 5px;
+  text-align: left;
+  margin-bottom: 0;
+  // margin-top: -2rem;
+  // margin-left: 30px;
 }
 .create-new-layer-description-container {
   display: flex;

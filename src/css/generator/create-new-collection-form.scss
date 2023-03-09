@@ -16,6 +16,7 @@
   gap: 25px;
   padding-top: 30px;
   margin-bottom: 20px;
+  // background-color: aquamarine;
 }
 @media screen and (max-width: 768px) {
   .create-new-collection-form-container {
@@ -84,6 +85,7 @@
   }
 }
 .name-input-field {
+  position: relative;
   width: 300px;
   border: none;
   font-size: 16px;
@@ -91,6 +93,19 @@
   background-color: #f8f8f4;
   border-radius: 5px;
   text-align: center;
+}
+.name-input-field-notification {
+  position: absolute;
+  color: red;
+  width: 300px;
+  // border: 1px solid red;
+  font-size: 16px;
+  height: 2rem;
+  // background-color: #f8f8f4;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: -3.2rem;
+  margin-left: 30px;
 }
 @media screen and (max-width: 768px) {
   .name-input-field {
@@ -245,4 +260,12 @@
     font-size: large;
     margin-left: 15px;
   }
+}
+.create-new-collection-form-button-disabled {
+  color: #7e7d7d;
+  border: none;
+  border-radius: 15px;
+  background-color: #c2c2c2;
+  padding: 10px 25px;
+  cursor: pointer;
 }

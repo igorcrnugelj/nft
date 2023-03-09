@@ -92,14 +92,10 @@ const PaymentForm = () => {
     });
     dispatch(setTransactionStatus(receipt.status));
     console.log("Receipt: ", receipt);
-  };
-
-  //*********************************************************** */
-
-  const startGeneratingCollectionsProcessHandler = () => {
     dispatch(setStartGeneratingCollectionsProcess(true));
   };
 
+  //*********************************************************** */
   const closePaymentFormHandler = () => {
     dispatch(
       setMainPanelBodyDataType({
@@ -108,7 +104,6 @@ const PaymentForm = () => {
     );
   };
 
-  //TODO: make button Start Generating Collections with clickable effect
   return (
     <div className="payment-form-main-container">
       <div className="payment-form-card-header">
@@ -164,13 +159,7 @@ const PaymentForm = () => {
       {showPaymentSuccess && (
         <div className="success-crypto-payment">
           <p>Payment Successful!</p>
-          <button
-            type="reset"
-            className="generate-collection-continue-button-in-modal"
-            onClick={startGeneratingCollectionsProcessHandler}
-          >
-            Start Generating Collections
-          </button>
+          <p>Generate collection started!</p>
         </div>
       )}
     </div>

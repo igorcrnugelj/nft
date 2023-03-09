@@ -343,6 +343,7 @@ export const updateFixRarityImages = createAsyncThunk(
       return {
         data,
         success: true,
+        // maxRarity: newFixRarityCalculationImages.maxRarityForCurrentImage,
       };
     } catch (error) {
       return {
