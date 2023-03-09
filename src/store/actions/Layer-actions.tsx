@@ -130,6 +130,7 @@ export const calculateRarityImages = createAsyncThunk(
       return {
         data,
         success: true,
+        maxRarity: newImagesCalculationRarity.maxRarityForCurrentImage,
       };
     } catch (error) {
       return {
@@ -343,7 +344,7 @@ export const updateFixRarityImages = createAsyncThunk(
       return {
         data,
         success: true,
-        // maxRarity: newFixRarityCalculationImages.maxRarityForCurrentImage,
+        maxRarity: newFixRarityCalculationImages.maxRarityForCurrentImage,
       };
     } catch (error) {
       return {
