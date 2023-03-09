@@ -19,9 +19,6 @@ export const collectionSlice = createSlice({
     collections: [],
     loading: null,
     generatedCollection: null,
-    user: {
-      userId: "01G7EXFE9V27DJCCJQT7Y0101S",
-    },
     receiptData: {},
     transactionStatus: null,
     startGeneratingCollectionsProcess: false,

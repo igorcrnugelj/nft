@@ -5,7 +5,6 @@ import { nftClient } from "../../AxiosClient";
 
 export const getCollections = createAsyncThunk(
   "collectionsStore/getCollections",
-
   async (_, { getState }: any) => {
     const user: any = getState().loginStore.user;
     if (!user) return [];
@@ -178,7 +177,6 @@ export const getEthereumPriceInUsd = createAsyncThunk(
       const { data } = await axios.get(
         `https://api.coincap.io/v2/assets/ethereum`
       );
-
       return { data, success: true };
     } catch (error) {
       return {
