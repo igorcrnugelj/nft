@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import { nftClient } from "../../AxiosClient";
 
 export const getLayers = createAsyncThunk(
@@ -119,10 +118,6 @@ export const calculateRarityImages = createAsyncThunk(
       maxRarityForCurrentImage
     );
     try {
-      console.log(
-        "newImagesCalculationRarity.images: ",
-        newImagesCalculationRarity.images
-      );
       const { data } = await nftClient.post(
         `/image/update-all`,
         newImagesCalculationRarity.images
@@ -173,8 +168,6 @@ const calculateRarity = (
 
   const lengthOfImagesArray =
     imagesForCalculate.length - 1 - numberOfImagesWithFixedRarity;
-
-  // console.log("lengthOfImagesArray: ", lengthOfImagesArray);
 
   //1. Izracunati povecanje = povecano stanje slike - trenutno stanje (prije povecanja)
   const increaseTotal = newRarityValue - image.imageRarity;
@@ -269,9 +262,6 @@ const calculateRarity = (
     ) {
       //Ako je suma svih fiksnih raritija uvećano za newRarityValue jednako 100, tada se ostalim slikama (koje nisu fiksne i current) dodjeljuje vrijednost raritija 0
       if (sumOfRarityValuesOfImagesWithFixedRarity + newRarityValue > 99) {
-        console.log(
-          "sumOfRarityValuesOfImagesWithFixedRarity + newRarityValue > 99"
-        );
         return {
           ...imageMapped,
           imageRarity: 0,
@@ -281,7 +271,6 @@ const calculateRarity = (
       //2a. Provjeriti koje slike, a koje nisu current, imaju manji ili jednak rarity kao "stopa povećanja"(increase) - njima dodijeliti rarity 0 i
       //za slike čiji su rarity manji od "stope povećanja" izračunati ukupan zbroj njihovih raritja
       if (imageMapped.imageRarity <= increase) {
-        console.log("imageMapped.imageRarity <= increase");
         return {
           ...imageMapped,
           imageRarity: 0,
@@ -289,7 +278,6 @@ const calculateRarity = (
       }
 
       if (imageMapped.imageRarity > increase) {
-        console.log("imageMapped.imageRarity > increase");
         //2b. Slike koje nisu current, a imaju rarity veći od "stope povećanja" (increase), njihov rarity se računa tako da se od njihovog postojećeg raritija oduzme
         // "2. stopa povećanja" (increaseSecondStep) koju smo dobili tako što smo od prve "stope povećanja" oduzeli ukupnu vrijednost raritija
         //koji su bili manji od "stope povećanja" i to podijelili s brojem slika čiji je rarity veći od "stope povećanja":

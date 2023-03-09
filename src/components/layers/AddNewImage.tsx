@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
 import { addNewImage, getLayerImages } from "../../store/actions/Layer-actions";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { setMainPanelData } from "../../store/actions/MainPanelActions";
-import ProgressBar from "react-bootstrap/ProgressBar";
 
 const AddNewImage = () => {
   const dispatch: any = useDispatch();
@@ -12,7 +11,6 @@ const AddNewImage = () => {
     (state: any) => state.mainPanelStore.mainPanelData
   );
   const [activateLoader, setActivateLoader] = useState(false);
-  const [percentage, setPercentage] = useState(0);
   const [iteration, setIteration] = useState(0);
   const [totalIteration, setTotalIteration] = useState(0);
 
@@ -105,10 +103,6 @@ const AddNewImage = () => {
           <i className="bi bi-images"></i>
           <div className="add-new-image-text">Add new image:</div>
         </div>
-        {/* <div className="upload-with-loader-container"> */}
-        {/* <span className="btn btn-file"> */}
-        {/* Upload image from here */}
-        {/* <input type="file" /> */}
         {!activateLoader ? (
           <Form.Control
             className="add-new-image-file-button"
@@ -124,8 +118,6 @@ const AddNewImage = () => {
             </p>
           </div>
         )}
-        {/* </span> */}
-        {/* </div> */}
       </div>
     </Fragment>
   );

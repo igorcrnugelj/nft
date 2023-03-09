@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import DeleteCollectionCard from "./DeleteCollectionCard";

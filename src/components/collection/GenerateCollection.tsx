@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import {
@@ -61,13 +61,9 @@ const GenerateCollection = () => {
         `http://63.35.234.60:3000/stream?collectionId=${collection.collection.collectionId}`
       );
 
-      evtSource.onopen = function () {
-        console.log("Connection to server opened.");
-        console.log(evtSource.readyState);
-      };
+      evtSource.onopen = function () {};
       evtSource.onmessage = function (e) {
         const obj = JSON.parse(e.data);
-        console.log(obj);
         if (obj.iteration !== null) {
           const objIterationValue = obj.iteration;
           const objTotalValue = obj.total;
@@ -76,7 +72,6 @@ const GenerateCollection = () => {
             100
           ).toFixed(0);
           setPercentage(parseInt(progressPercentage));
-          console.log(objIterationValue, objTotalValue);
 
           const getGeneratedCollectionFunction = async (id: any) => {
             await wait(4000);
@@ -194,13 +189,11 @@ const GenerateCollection = () => {
             getGeneratedCollectionFunction(collection.collection.collectionId);
           }
         } else {
-          setPercentage(2);
+          setPercentage(5);
         }
       };
 
-      evtSource.onerror = function (e) {
-        console.log("error: ", e);
-      };
+      evtSource.onerror = function (e) {};
     }
   };
   function wait(timeout: any) {

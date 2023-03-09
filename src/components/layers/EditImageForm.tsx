@@ -24,7 +24,6 @@ const EditImageForm = ({ closeForm }: any) => {
   };
 
   const saveImageChangesHandler = async () => {
-    console.log("image: ", image);
     const imageEdited = {
       layerId: image.image.layerId,
       imageId: image.image.imageId,

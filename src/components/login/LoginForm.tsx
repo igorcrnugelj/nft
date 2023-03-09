@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createUser,
@@ -71,7 +71,6 @@ const LoginForm = () => {
               createUser(publicAddressData)
             ).unwrap();
             if (createUserResponse.success) {
-              console.log("user: ", createUserResponse.data);
               var Web3 = require("web3");
               const msg = `I am signing my one-time nonce: ${createUserResponse.data.nonce}`;
               const signature = await Web3.personal.sign(

@@ -36,14 +36,13 @@ const Wallet = () => {
           from: walletAddress,
           to: "0x524262c141da06c4a1cd44756801363eb0b90c7f",
           value: "0x29a2241af62c0000",
-          // gasPrice: "0x09184e72a000",
-          // gas: "0x2710",
         },
       ],
     });
     console.log(txHash);
   }
 
+  //TODO: activate "requestAccount" function on connect wallet button only if we decide to keep this component live
   return (
     <div>
       {/* <button onClick={requestAccount}>Request Account</button> */}

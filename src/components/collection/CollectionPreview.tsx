@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
-import CreateNewLayerForm from "../layers/CreateNewLayerForm";
 import CollectionDataForMainPanel from "./CollectionDataForMainPanel";
 import CollectionPreviewImage from "./CollectionPreviewImage";
 import DeleteCollectionCard from "./DeleteCollectionCard";
@@ -39,9 +38,6 @@ const CollectionPreview = (collection: any) => {
       {mainPanelBodyDataType.type === MainPanelDataType.ShowPaymentForm && (
         <PaymentForm />
       )}
-
-      {/* {mainPanelBodyDataType.type ===
-        MainPanelDataType.ShowCreateNewLayerForm && <CreateNewLayerForm />} */}
 
       {mainPanelBodyDataType.type !==
         MainPanelDataType.ShowPaymentNotification &&

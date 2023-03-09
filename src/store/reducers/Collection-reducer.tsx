@@ -30,9 +30,6 @@ export const collectionSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    // [getCollections.pending as any]: (state: any) => {
-    //   state.loading = true;
-    // },
     [getCollections.fulfilled as any]: (state: any, action: any) => {
       state.loading = false;
       state.collections = action.payload;

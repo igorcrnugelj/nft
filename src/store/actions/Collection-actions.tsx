@@ -10,10 +10,6 @@ export const getCollections = createAsyncThunk(
     const user: any = getState().loginStore.user;
     if (!user) return [];
     const res = await nftClient.get(`/collection/?userId=${user.userId}`);
-    console.log("data: ", res.data);
-    console.log("status: ", res.status);
-
-    console.log("res.data from getCollections: ", res.data);
     return res.data;
   }
 );
@@ -101,9 +97,6 @@ export const getGeneratedCollection = createAsyncThunk(
       const { data } = await nftClient.get(
         `/collection/generated?collectionId=${collectionId}`
       );
-
-      console.log(data);
-
       return { data, success: true };
     } catch (error) {
       return {

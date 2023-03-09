@@ -2,7 +2,6 @@ import { Fragment, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Form from "react-bootstrap/Form";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
-import RangeSlider from "react-bootstrap-range-slider";
 import {
   calculateRarityImages,
   deleteImage,
@@ -36,16 +35,13 @@ const LayerImage = (image: any) => {
 
   useEffect(() => {
     if (image.image.fixedRarity === true) {
-      console.log("image.image.fixedRarity: ", image.image.fixedRarity);
       setFixRarity(true);
     }
   }, [image.image.fixedRarity]);
 
-  const rangeHandler = async (event: any) => {
-    // setNewRarityValue(event.target.value);
+  const rangeHandler = async () => {
     const imagesForCalculateRarityFunction = image.images;
     const imageForCalculateRarityFunction = image.image;
-    console.log("rangeHandler");
     const calculateRarityImagesResponse = await dispatch(
       calculateRarityImages({
         newRarityValue,
@@ -75,18 +71,6 @@ const LayerImage = (image: any) => {
   const rarityValueChange = (event: any) => {
     const rarityValue: any = event.target.value;
     setNewRarityValue(rarityValue);
-    // const imagesForCalculateRarityFunction = image.images.images.images
-    // const imageForCalculateRarityFunction = image.image
-    // console.log('rarityValueChange', image.image.orginalName + '  ' + rarityValue)
-    // dispatch(
-    //   calculateRarityImages({
-    //     newRarityValue: rarityValue,
-    //     imagesForCalculateRarityFunction,
-    //     imageForCalculateRarityFunction,
-    //     fixRarity,
-    //     maxRarityForCurrentImage,
-    //   })
-    // )
   };
 
   const checkHandler = async (event: any) => {
@@ -182,21 +166,10 @@ const LayerImage = (image: any) => {
         <img className="layer-image" src={image.image.url} />
         <div className="fix-rarity-container">
           <div className="fix-rarity-text">Fix Rarity: </div>
-          <Form.Check
-            checked={fixRarity}
-            // label={`Fix Rarity:`}
-            onChange={checkHandler}
-          />
+          <Form.Check checked={fixRarity} onChange={checkHandler} />
         </div>
         <div className="range-slider-container">
           <div className="range-slider-text">Image Rarity:</div>
-          {/* <RangeSlider
-            max={maxRarityForCurrentImage}
-            value={newRarityValue}
-            onChange={rarityValueChange}
-            onAfterChange={rangeHandler}
-            disabled={image.image.fixedRarity}
-          /> */}
           <input
             type="range"
             max={maxRarityForCurrentImage}

@@ -1,12 +1,8 @@
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 const LayerData = (layerData: any) => {
-  useEffect(() => {
-    console.log(layerData);
-  }, [layerData]);
-
   return (
     <Fragment>
       <div className="data-about-layer">

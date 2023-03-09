@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainPanelDataType from "../../enums/MainPanelDataType";
 import { setMainPanelBodyDataType } from "../../store/actions/MainPanelActions";

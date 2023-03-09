@@ -35,7 +35,6 @@ const EditLayerForm = () => {
     setLayerDescription(event.target.value);
   };
   const layerRarityChangeHandler = (event: any) => {
-    console.log(typeof event.target.value);
     setLayerRarity(event.target.value);
   };
 

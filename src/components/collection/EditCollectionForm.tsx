@@ -43,7 +43,6 @@ const EditCollectionForm = () => {
     setCollectionDescription(event.target.value);
   };
   const sizeChangeHandler = (event: any) => {
-    console.log(typeof event.target.value);
     setCollectionSize(event.target.value);
   };
 
