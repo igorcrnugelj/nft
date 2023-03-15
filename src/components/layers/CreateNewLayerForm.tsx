@@ -33,10 +33,10 @@ const CreateNewLayerForm = () => {
 
   const validateNameInputField = (event: any) => {
     setNameInputLength(event.target.value.length);
-    if (event.target.value.length > 5) {
+    if (event.target.value.length > 255) {
       setNameInputFieldNotification(true);
       setNameInputFieldMessage(
-        event.target.value.length - 5 + " " + "characters over 5!"
+        event.target.value.length - 255 + " " + "characters over 5!"
       );
     } else {
       setNameInputFieldNotification(false);
@@ -44,10 +44,10 @@ const CreateNewLayerForm = () => {
   };
   const validateDescriptionInputField = (event: any) => {
     setDescriptionInputLength(event.target.value.length);
-    if (event.target.value.length > 5) {
+    if (event.target.value.length > 255) {
       setDescriptionInputFieldNotification(true);
       setDescriptionInputFieldMessage(
-        event.target.value.length - 5 + " " + "characters over 5!"
+        event.target.value.length - 255 + " " + "characters over 255!"
       );
     } else {
       setDescriptionInputFieldNotification(false);
@@ -81,18 +81,20 @@ const CreateNewLayerForm = () => {
     }
 
     let layerOrder = 1;
-    if (layers.length > 0) {
-      const max = layers.reduce((prev: any, current: any) =>
-        prev.order > current.order ? prev : current
-      );
-      layerOrder = parseInt(max.order + 1);
+    if (layers) {
+      if (layers.length > 0) {
+        const max = layers.reduce((prev: any, current: any) =>
+          prev.order > current.order ? prev : current
+        );
+        layerOrder = parseInt(max.order + 1);
+      }
     }
     const layerName = layerNameRef.current?.value;
     const layerDescription = layerDescriptionRef.current?.value;
     const layerRarity = parseInt(layerRarityRef.current?.value!);
 
     const layer = {
-      collectionId: mainPanelData.collectionData.collection.collectionId,
+      collectionId: mainPanelData.collectionData.collection.id,
       name: layerName,
       description: layerDescription,
       order: layerOrder,
@@ -100,7 +102,7 @@ const CreateNewLayerForm = () => {
     };
     const createLayerResponse = await dispatch(createLayer(layer)).unwrap();
     if (createLayerResponse.success) {
-      dispatch(getLayers(mainPanelData.collectionData.collection.collectionId));
+      dispatch(getLayers(mainPanelData.collectionData.collection.id));
     }
     dispatch(
       setMainPanelBodyDataType({

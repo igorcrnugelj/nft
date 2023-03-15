@@ -35,10 +35,8 @@ const AccordionBodyLayerItem = ({
   }, [mainPanelData]);
 
   const deleteLayerHandler = async () => {
-    const { collectionId, layerId } = layer;
-    const payload = await dispatch(
-      deleteLayer({ collectionId, layerId })
-    ).unwrap();
+    const { collectionId, id } = layer;
+    const payload = await dispatch(deleteLayer(id)).unwrap();
     if (payload.success) {
       dispatch(activateToast(Messages.LayerDeletedSuccessfully));
       dispatch(getLayers(collectionId));
@@ -81,10 +79,10 @@ const AccordionBodyLayerItem = ({
   //DRAG AND DROP END
 
   const getLayerImagesHandler = async () => {
-    whichItemIsActive(layer.layerId);
+    whichItemIsActive(layer.id);
 
     const getLayerImagesResponse = await dispatch(
-      getLayerImages(layer.layerId)
+      getLayerImages(layer.id)
     ).unwrap();
     if (getLayerImagesResponse.success) {
       dispatch(

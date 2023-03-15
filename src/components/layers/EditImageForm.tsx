@@ -15,7 +15,7 @@ const EditImageForm = ({ closeForm }: any) => {
 
   useEffect(() => {
     if (image) {
-      setImageName(image.image.orginalName);
+      setImageName(image.image.originalName);
     }
   }, [image]);
 
@@ -26,8 +26,8 @@ const EditImageForm = ({ closeForm }: any) => {
   const saveImageChangesHandler = async () => {
     const imageEdited = {
       layerId: image.image.layerId,
-      imageId: image.image.imageId,
-      orginalName: imageName,
+      id: image.image.id,
+      originalName: imageName,
       s3Name: image.image.s3Name,
       url: image.image.url,
       order: image.image.order,
@@ -39,7 +39,7 @@ const EditImageForm = ({ closeForm }: any) => {
     if (editImageResponse.success) {
       closeForm(false);
       const getLayerImagesResponse = await dispatch(
-        getLayerImages(mainPanelData.layerData.data.layerId)
+        getLayerImages(mainPanelData.layerData.data.id)
       ).unwrap();
       if (getLayerImagesResponse.success) {
         dispatch(

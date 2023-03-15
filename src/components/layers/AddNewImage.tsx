@@ -51,9 +51,9 @@ const AddNewImage = () => {
       const imageDimensions: any = await imageSize(imageUrl);
       const imageData = {
         collectionId: mainPanelData.layerData.data.collectionId,
-        layerId: mainPanelData.layerData.data.layerId,
+        layerId: mainPanelData.layerData.data.id,
         contentType: event.target.files[i].type,
-        orginalName: event.target.files[i].name,
+        originalName: event.target.files[i].name,
         order: imageOrder + i,
         width: imageDimensions.width,
         height: imageDimensions.height,
@@ -67,7 +67,7 @@ const AddNewImage = () => {
       ).unwrap();
       if (addNewImageResponse.success) {
         const getLayerImagesResponse = await dispatch(
-          getLayerImages(mainPanelData.layerData.data.layerId)
+          getLayerImages(mainPanelData.layerData.data.id)
         ).unwrap();
         if (getLayerImagesResponse.success) {
           dispatch(

@@ -34,10 +34,10 @@ const CreateNewCollectionForm = () => {
 
   const validateNameInputField = (event: any) => {
     setNameInputLength(event.target.value.length);
-    if (event.target.value.length > 5) {
+    if (event.target.value.length > 255) {
       setNameInputFieldNotification(true);
       setNameInputFieldMessage(
-        event.target.value.length - 5 + " " + "characters over 5!"
+        event.target.value.length - 255 + " " + "characters over 255!"
       );
     } else {
       setNameInputFieldNotification(false);
@@ -45,10 +45,10 @@ const CreateNewCollectionForm = () => {
   };
   const validateDescriptionInputField = (event: any) => {
     setDescriptionInputLength(event.target.value.length);
-    if (event.target.value.length > 5) {
+    if (event.target.value.length > 255) {
       setDescriptionInputFieldNotification(true);
       setDescriptionInputFieldMessage(
-        event.target.value.length - 5 + " " + "characters over 5!"
+        event.target.value.length - 255 + " " + "characters over 5!"
       );
     } else {
       setDescriptionInputFieldNotification(false);
@@ -95,6 +95,9 @@ const CreateNewCollectionForm = () => {
     nameInputRef.current.value = "";
     descriptionInputRef.current.value = "";
     sizeInputRef.current.value = "";
+    setNameInputLength(0);
+    setDescriptionInputLength(0);
+    setSizeInputLength(0);
   };
 
   return (

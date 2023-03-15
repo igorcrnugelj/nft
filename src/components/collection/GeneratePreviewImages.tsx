@@ -24,7 +24,7 @@ const GeneratePreviewImages = () => {
     dispatch(activateSpinner(true));
     const collectionData = {
       userId: user.userId,
-      collectionId: collection.collection.collectionId,
+      collectionId: collection.collection.id,
     };
 
     const getGeneratedCollectionRecursion = async (attempt: any) => {

@@ -11,12 +11,9 @@ export const getLayers = createAsyncThunk(
 
 export const deleteLayer = createAsyncThunk(
   "layers/deleteLayer",
-  async (layerData: { collectionId: any; layerId: any }) => {
-    const { collectionId, layerId } = layerData;
+  async (id: any) => {
     try {
-      const { data } = await nftClient.delete(
-        `/layer?collectionId=${collectionId}&layerId=${layerId}`
-      );
+      const { data } = await nftClient.delete(`/layer?layerId=${id}`);
       return {
         data,
         success: true,
@@ -154,7 +151,7 @@ const calculateRarity = (
   //Korak 8. Izračunati ukupan broj slika s fiksnim raritijem
   for (let i = 0; i < imagesForCalculate.length; i++) {
     if (
-      imagesForCalculate[i].imageId !== image.imageId &&
+      imagesForCalculate[i].id !== image.id &&
       imagesForCalculate[i].fixedRarity === true
     ) {
       numberOfImagesWithFixedRarity++;
@@ -178,7 +175,7 @@ const calculateRarity = (
   for (let i = 0; i < imagesForCalculate.length; i++) {
     //Korak 3. Pronaci vrijednosti koje su manje od broja za koji se umanjuje, 6 < n vrijednosti i dobiti ukupan zbroj tih vrijednosti - 4 + 5 + 5 = 14 (Napomena, vrijednost se postavlja na 0)
     if (
-      imagesForCalculate[i].imageId !== image.imageId &&
+      imagesForCalculate[i].id !== image.id &&
       imagesForCalculate[i].imageRarity <= increase &&
       imagesForCalculate[i].fixedRarity === false
     ) {
@@ -186,7 +183,7 @@ const calculateRarity = (
     }
     //Korak 5.
     if (
-      imagesForCalculate[i].imageId !== image.imageId &&
+      imagesForCalculate[i].id !== image.id &&
       imagesForCalculate[i].imageRarity > increase &&
       imagesForCalculate[i].fixedRarity === false
     ) {
@@ -210,26 +207,20 @@ const calculateRarity = (
   if (numberOfImagesWithFixedRarity > 0) {
     images = imagesForCalculate.map((imageMapped: any) => {
       //1. Ako je na slici mijenjan rarity, onda je ona "current" i njoj se dodjeljuje vrijednost "newRarityValue"
-      if (imageMapped.imageId === image.imageId) {
+      if (imageMapped.id === image.id) {
         return {
           ...imageMapped,
           imageRarity: newRarityValue,
         };
       }
       //2. Za sliku/slike koje nisu current, a imaju fiksni rarity vrijednost raritija se ne mijenja - vratimo postojeću vrijednost:
-      if (
-        imageMapped.imageId !== image.imageId &&
-        imageMapped.fixedRarity === true
-      ) {
+      if (imageMapped.id !== image.id && imageMapped.fixedRarity === true) {
         return {
           ...imageMapped,
         };
       }
       //2a. Za slike koje nisu "current", a nemaju fiksni rarity:
-      if (
-        imageMapped.imageId !== image.imageId &&
-        imageMapped.fixedRarity === false
-      ) {
+      if (imageMapped.id !== image.id && imageMapped.fixedRarity === false) {
         //rarity se izračunava tako da se:
         //1. Zbroje svi raritiji slika koje imaju fiksni rariti i tome se pribroji nova vrijednost raritija(newRarityValue).
         //2. Dobiveni rezultat iz prvog koraka se oduzme od 100 (tolika mora biti vrijednost ukupnog raritija svih slika)
@@ -249,17 +240,14 @@ const calculateRarity = (
 
   images = imagesForCalculate.map((imageMapped: any) => {
     //1. Ako je na slici mijenjan rarity, onda je ona "current" i njoj se dodjeljuje vrijednost "newRarityValue"
-    if (imageMapped.imageId === image.imageId) {
+    if (imageMapped.id === image.id) {
       return {
         ...imageMapped,
         imageRarity: newRarityValue,
       };
     }
     //2. Za sve preostale slike koje nisu "current" izračunava se novi rarity
-    if (
-      imageMapped.imageId !== image.imageId &&
-      imageMapped.fixedRarity === false
-    ) {
+    if (imageMapped.id !== image.id && imageMapped.fixedRarity === false) {
       //Ako je suma svih fiksnih raritija uvećano za newRarityValue jednako 100, tada se ostalim slikama (koje nisu fiksne i current) dodjeljuje vrijednost raritija 0
       if (sumOfRarityValuesOfImagesWithFixedRarity + newRarityValue > 99) {
         return {
@@ -289,7 +277,7 @@ const calculateRarity = (
 
       //Ako je slika current i dodijeli joj se nova vrijednost raritija 100, svim ostalim slikama koje nisu current dodjeljuje se vrijednost raritija 0
       if (
-        imageMapped.imageId !== image.imageId &&
+        imageMapped.id !== image.id &&
         newRarityValue === maxRarityForCurrentImage
       ) {
         return {
@@ -347,7 +335,7 @@ const updateFixRarity = (images: any, image: any, fixRarity: any) => {
   const imagesForSettingFixRarity = images.images;
   //Ovdje "current" slici mijenjamo vrijednost fiksnog raritija u "true", odnosno, propertiju "fixedRarity" dodjeljujemo novu vrijednost "fixRarity"
   images = imagesForSettingFixRarity.map((imageMapped: any) => {
-    if (imageMapped.imageId === image.imageId) {
+    if (imageMapped.id === image.id) {
       return {
         ...imageMapped,
         fixedRarity: fixRarity,
@@ -401,8 +389,8 @@ export const addNewImage = createAsyncThunk(
     });
     await wait(4000);
     try {
-      const data = await fetch(
-        `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/image/get?layerId=${imageDataCollection.imageData.layerId}&imageId=${s3PutObjectResponse.data.imageId}`
+      const data = await nftClient.get(
+        `/get?imageId=${s3PutObjectResponse.data.imageId}`
       );
       return { data, success: true };
     } catch (error) {
@@ -422,11 +410,9 @@ function wait(timeout: any) {
 
 export const deleteImage = createAsyncThunk(
   "layers/deleteImage",
-  async (deleteImageData: any) => {
+  async (imageId: any) => {
     try {
-      const { data } = await nftClient.delete(
-        `/image/?layerId=${deleteImageData.layerId}&imageId=${deleteImageData.imageId}`
-      );
+      const { data } = await nftClient.delete(`/image/?imageId=${imageId}`);
       return { data, success: true };
     } catch (error) {
       return {

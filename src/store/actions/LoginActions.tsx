@@ -6,7 +6,7 @@ export const getNonce = createAsyncThunk(
   async (metamaskPublicAddress: any) => {
     try {
       const { data } = await axios({
-        url: `https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/user/address?publicAddress=${metamaskPublicAddress}`,
+        url: ` http://63.35.234.60:3500/user/address?publicAddress=${metamaskPublicAddress}`,
         method: "GET",
       });
       return { data, success: true };
@@ -24,7 +24,7 @@ export const createUser = createAsyncThunk(
   async (metamaskPublicAddress: any) => {
     try {
       const { data } = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/user/createUser",
+        url: " http://63.35.234.60:3500/user/createUser",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         data: metamaskPublicAddress,
@@ -43,7 +43,7 @@ export const getJwtToken = createAsyncThunk(
   async (dataForJwtToken: any) => {
     try {
       const { data } = await axios({
-        url: "https://5utv6u04h0.execute-api.us-east-1.amazonaws.com/dev/auth/metamask-login",
+        url: " http://63.35.234.60:3500/auth/metamask-login",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         data: dataForJwtToken,

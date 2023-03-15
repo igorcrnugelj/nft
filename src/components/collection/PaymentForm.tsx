@@ -58,7 +58,7 @@ const PaymentForm = () => {
     }
 
     const token = await dispatch(
-      getApprovalToken(collection.collection.collectionId)
+      getApprovalToken(collection.collection.id)
     ).unwrap();
 
     let TransactionHash = null;

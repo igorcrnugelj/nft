@@ -49,7 +49,7 @@ const EditCollectionForm = () => {
   const editCollectionHandler = async () => {
     const collection = {
       userId: user.userId,
-      collectionId: mainPanelData.collectionData.collection.collectionId,
+      id: mainPanelData.collectionData.collection.id,
       name: collectionName,
       description: collectionDescription,
       collectionSize: parseInt(collectionSize),

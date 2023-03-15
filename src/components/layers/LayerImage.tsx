@@ -103,16 +103,12 @@ const LayerImage = (image: any) => {
   };
 
   const deleteImageHandler = async () => {
-    const deleteImageData = {
-      layerId: image.image.layerId,
-      imageId: image.image.imageId,
-    };
     const deleteImageResponse = await dispatch(
-      deleteImage(deleteImageData)
+      deleteImage(image.image.id)
     ).unwrap();
     if (deleteImageResponse.success) {
       const getLayerImagesResponse = await dispatch(
-        getLayerImages(mainPanelData.layerData.data.layerId)
+        getLayerImages(mainPanelData.layerData.data.id)
       ).unwrap();
       if (getLayerImagesResponse.success) {
         dispatch(
@@ -148,7 +144,7 @@ const LayerImage = (image: any) => {
       <div className="layer-image-main-container">
         {!showEditImageForm ? (
           <div className="image-name-pencil-and-trash-container-container">
-            <div className="layer-image-name">{image.image.orginalName}</div>
+            <div className="layer-image-name">{image.image.originalName}</div>
             <div className="layer-image-pencil-and-trash-container-div">
               <i
                 onClick={editImageHandler}

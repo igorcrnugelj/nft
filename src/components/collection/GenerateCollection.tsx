@@ -35,9 +35,7 @@ const GenerateCollection = () => {
   useEffect(() => {
     if (collections) {
       collections.map((currentCollection: any) => {
-        if (
-          currentCollection.collectionId === collection.collection.collectionId
-        ) {
+        if (currentCollection.id === collection.collection.id) {
           if (currentCollection.generating === true) {
             setIsGenerating(true);
           } else {
@@ -58,7 +56,7 @@ const GenerateCollection = () => {
   useEffect(() => {
     if (collection.collection.generating) {
       const evtSource = new EventSource(
-        `http://63.35.234.60:3000/stream?collectionId=${collection.collection.collectionId}`
+        `http://63.35.234.60:3000/stream?collectionId=${collection.collection.id}`
       );
 
       evtSource.onopen = function () {};
@@ -95,7 +93,7 @@ const GenerateCollection = () => {
           };
           if (obj.completed === true) {
             evtSource.close();
-            getGeneratedCollectionFunction(collection.collection.collectionId);
+            getGeneratedCollectionFunction(collection.collection.id);
           }
         } else {
           setPercentage(2);
@@ -129,7 +127,7 @@ const GenerateCollection = () => {
     dispatch(setTransactionStatus(null));
     const collectionData = {
       userId: user.userId,
-      collectionId: collection.collection.collectionId,
+      collectionId: collection.collection.id,
       txHash: transactionHash,
     };
     const generateCollectionResponse = await dispatch(
@@ -139,7 +137,7 @@ const GenerateCollection = () => {
       dispatch(getCollections());
 
       const evtSource = new EventSource(
-        `http://63.35.234.60:3000/stream?collectionId=${collection.collection.collectionId}`
+        `http://63.35.234.60:3000/stream?collectionId=${collection.collection.id}`
       );
 
       evtSource.onopen = function () {
@@ -186,7 +184,7 @@ const GenerateCollection = () => {
 
           if (obj.completed === true) {
             evtSource.close();
-            getGeneratedCollectionFunction(collection.collection.collectionId);
+            getGeneratedCollectionFunction(collection.collection.id);
           }
         } else {
           setPercentage(5);

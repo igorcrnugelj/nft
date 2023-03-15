@@ -36,11 +36,10 @@ export const createCollection = createAsyncThunk(
 
 export const deleteCollection = createAsyncThunk(
   "collectionsStore/deleteCollection",
-  async (collectionId: any, { getState }: any) => {
-    const user: any = getState().loginStore.user;
+  async (collectionId: any) => {
     try {
       const { data } = await nftClient.delete(
-        `/collection/?userId=${user.userId}&collectionId=${collectionId}`
+        `/collection/?collectionId=${collectionId}`
       );
       return { data, success: true };
     } catch (error) {

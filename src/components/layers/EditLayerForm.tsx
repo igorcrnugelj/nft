@@ -41,7 +41,7 @@ const EditLayerForm = () => {
   const saveLayerChangesHandler = async () => {
     const layer = {
       collectionId: mainPanelData.layerData.data.collectionId,
-      layerId: mainPanelData.layerData.data.layerId,
+      id: mainPanelData.layerData.data.id,
       name: layerName,
       description: layerDescription,
       order: mainPanelData.layerData.data.order,

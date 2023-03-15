@@ -14,8 +14,8 @@ const AccordionHeader = (collection: any) => {
   const { activeEventKey } = useContext(AccordionContext);
 
   const sendCollectionDataHandler = () => {
-    dispatch(getLayers(collection.collection.collectionId));
-    if (activeEventKey === collection.collection.collectionId) {
+    dispatch(getLayers(collection.collection.id));
+    if (activeEventKey === collection.collection.id) {
       dispatch(setMainPanelData(null));
     } else {
       dispatch(

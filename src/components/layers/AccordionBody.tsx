@@ -66,13 +66,13 @@ const AccordionBody = (collection: any) => {
           {layers &&
             layers.map((layer: any, index: any) => (
               <AccordionBodyLayerItem
-                key={layer.layerId}
+                key={layer.id}
                 index={index}
                 layer={layer}
                 collection={collection}
                 moveListItem={moveLayerListItem}
                 whichItemIsActive={findActiveItemHandler}
-                isActive={layer.layerId === idOfActiveItem ? true : false}
+                isActive={layer.id === idOfActiveItem ? true : false}
               />
             ))}
         </DndProvider>

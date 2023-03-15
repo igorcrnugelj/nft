@@ -15,16 +15,10 @@ const AccordionCollection = () => {
       <Accordion>
         {collections.map((collection: any) => (
           <div className="custom-accordion-item">
-            <Accordion.Item eventKey={collection.collectionId}>
-              <AccordionHeader
-                key={collection.collectionId}
-                collection={collection}
-              />
+            <Accordion.Item eventKey={collection.id}>
+              <AccordionHeader key={collection.id} collection={collection} />
 
-              <AccordionBody
-                eventKey={collection.collectionId}
-                collection={collection}
-              />
+              <AccordionBody eventKey={collection.id} collection={collection} />
             </Accordion.Item>
           </div>
         ))}
