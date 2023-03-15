@@ -5,15 +5,40 @@
   align-items: center;
   margin-bottom: 20px;
   // background-color: red;
+  // border: 1px solid red;
+  @media screen and (max-width: 1061px) {
+    display: flex;
+    width: 43%;
+  }
+  @media screen and (max-width: 770px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 699px) {
+    width: 40%;
+  }
 }
+
 .layer-image-name {
   font-weight: bold;
+  @media screen and (max-width: 890px) {
+    font-weight: normal;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 770px) {
+    font-size: 16px;
+  }
 }
 .layer-image {
   display: flex;
   width: 300px;
   height: 300px;
+  @media screen and (max-width: 1061px) {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
 }
+
 .fix-rarity-container {
   display: flex;
   width: 100%;
@@ -21,16 +46,51 @@
   gap: 10px;
   align-self: flex-start;
   //   border: 1px solid blue;
+  @media screen and (max-width: 890px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 770px) {
+    font-size: 16px;
+  }
 }
+
 .range-slider-container {
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  max-width: 300px;
+  // border: 1px solid green;
+  // max-width: 300px;
   gap: 10px;
-  //   border: 1px solid green;
+}
+.range-slider-slider {
+  @media screen and (max-width: 1050px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 992px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 890px) {
+    width: 25%;
+  }
+  @media screen and (max-width: 770px) {
+    width: 30%;
+  }
+}
+.range-slider-text {
+  @media screen and (max-width: 890px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 781px) {
+    font-size: 14px;
+    text-align: left;
+    width: 45%;
+    // border: 1px solid black;
+  }
+  @media screen and (max-width: 770px) {
+    font-size: 16px;
+  }
 }
 .range-slider-input-field {
   width: 50px;
@@ -39,6 +99,15 @@
   border-radius: 5px;
   padding: 5px;
   background-color: #f8f8f4;
+  @media screen and (max-width: 890px) {
+    width: 45px;
+    height: 35px;
+  }
+  @media screen and (max-width: 781px) {
+    font-size: 14px;
+    width: 40px;
+    height: 30px;
+  }
 }
 .layer-image-delete-and-edit-buttons-container {
   display: flex;
@@ -46,8 +115,6 @@
   justify-content: center;
   width: 100%;
   gap: 10px;
-  //   height: 10px;
-  //   border: 1px solid green;
 }
 .layer-image-delete-button {
   color: #373737;
@@ -85,12 +152,18 @@
 
 .layer-image-bi-pencil {
   color: #373737;
+  @media screen and (max-width: 1060px) {
+    font-size: 16px !important;
+  }
 }
 .layer-image-bi-pencil:hover {
   color: #ffbc0d;
 }
 .layer-image-bi-trash {
   color: #373737;
+  @media screen and (max-width: 1060px) {
+    font-size: 16px !important;
+  }
 }
 .layer-image-bi-trash:hover {
   color: #ffbc0d;

@@ -139,6 +139,7 @@ const CreateNewCollectionForm = () => {
             )}
             <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i>
           </div>
+
           <div className="collection-size-container">
             <div className="create-new-collection-form-collection-size-text">
               Collection size:

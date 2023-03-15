@@ -77,6 +77,10 @@
 #spinner:hover {
   -webkit-animation-play-state: paused;
   animation-play-state: paused;
+  @media screen and (max-width: 576px) {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
 }
 #spinner img {
   position: absolute;
@@ -91,6 +95,11 @@
   //   padding: 0 0 0 100px;
   width: 200px;
   height: 160px;
+  @media screen and (max-width: 576px) {
+    transform: rotateY(0deg) translateX(120px);
+    width: 140px;
+    height: 112px;
+  }
 }
 .img-2 {
   -webkit-transform: rotateY(-72deg) translateX(180px);
@@ -99,6 +108,11 @@
   //   padding: 0 0 0 83px;
   width: 213px;
   height: 160px;
+  @media screen and (max-width: 576px) {
+    transform: rotateY(-72deg) translateX(120px);
+    width: 149px;
+    height: 112px;
+  }
 }
 .img-3 {
   -webkit-transform: rotateY(-144deg) translateX(180px);
@@ -107,6 +121,11 @@
   //   padding: 0 0 0 60px;
   width: 240px;
   height: 160px;
+  @media screen and (max-width: 576px) {
+    transform: rotateY(-144deg) translateX(120px);
+    width: 168px;
+    height: 112px;
+  }
 }
 .img-4 {
   -webkit-transform: rotateY(-216deg) translateX(180px);
@@ -115,6 +134,11 @@
   //   padding: 0 0 0 83px;
   width: 213px;
   height: 160px;
+  @media screen and (max-width: 576px) {
+    transform: rotateY(-216deg) translateX(120px);
+    width: 149px;
+    height: 112px;
+  }
 }
 .img-5 {
   -webkit-transform: rotateY(-288deg) translateX(180px);
@@ -123,5 +147,10 @@
   //   padding: 0 0 0 62px;
   width: 238px;
   height: 160px;
+  @media screen and (max-width: 576px) {
+    transform: rotateY(-288deg) translateX(120px);
+    width: 167px;
+    height: 112px;
+  }
 }
 //****************************GENERATOR-END**************************************

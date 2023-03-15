@@ -172,6 +172,7 @@ const LayerImage = (image: any) => {
           <div className="range-slider-text">Image Rarity:</div>
           <input
             type="range"
+            className="range-slider-slider"
             max={maxRarityForCurrentImage}
             value={newRarityValue}
             onChange={rarityValueChange}

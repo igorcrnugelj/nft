@@ -5,11 +5,17 @@
   gap: 7px;
   margin-top: 80px;
   margin-bottom: 60px;
-}
-@media screen and (max-width: 768px) {
-  .edit-layer-form-main-container {
+  @media screen and (max-width: 768px) {
     display: flex;
     width: 100%;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  @media screen and (max-width: 699px) {
+    display: flex;
+    width: 70%;
     flex-direction: column;
     gap: 7px;
     margin-top: 40px;
@@ -75,6 +81,9 @@
   background-color: #f8f8f4;
   padding: 5px 15px;
   cursor: pointer;
+  @media screen and (max-width: 699px) {
+    font-size: 12px;
+  }
 }
 .save-changes-layer-button:hover {
   color: black;
@@ -92,6 +101,9 @@
   background-color: #f8f8f4;
   padding: 5px 15px;
   cursor: pointer;
+  @media screen and (max-width: 699px) {
+    font-size: 12px;
+  }
 }
 .cancel-edit-layer-button:hover {
   color: black;
