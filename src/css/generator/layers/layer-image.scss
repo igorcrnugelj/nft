@@ -16,6 +16,12 @@
   @media screen and (max-width: 699px) {
     width: 40%;
   }
+  @media screen and (max-width: 480px) {
+    width: 60%;
+  }
+  @media screen and (max-width: 340px) {
+    width: 70%;
+  }
 }
 
 .layer-image-name {
@@ -26,6 +32,15 @@
   }
   @media screen and (max-width: 770px) {
     font-size: 16px;
+  }
+  @media screen and (max-width: 576px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
   }
 }
 .layer-image {
@@ -53,6 +68,17 @@
     font-size: 16px;
   }
 }
+.fix-rarity-text {
+  @media screen and (max-width: 576px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+}
 
 .range-slider-container {
   display: flex;
@@ -63,20 +89,9 @@
   // border: 1px solid green;
   // max-width: 300px;
   gap: 10px;
-}
-.range-slider-slider {
-  @media screen and (max-width: 1050px) {
-    width: 40%;
-  }
-  @media screen and (max-width: 992px) {
-    width: 30%;
-  }
-  @media screen and (max-width: 890px) {
-    width: 25%;
-  }
-  @media screen and (max-width: 770px) {
-    width: 30%;
-  }
+  // @media screen and (max-width: 576px) {
+  //   gap: 5px;
+  // }
 }
 .range-slider-text {
   @media screen and (max-width: 890px) {
@@ -91,6 +106,41 @@
   @media screen and (max-width: 770px) {
     font-size: 16px;
   }
+  @media screen and (max-width: 576px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 480px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+}
+.range-slider-slider {
+  @media screen and (max-width: 1050px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 992px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 890px) {
+    width: 25%;
+  }
+  @media screen and (max-width: 770px) {
+    width: 28%;
+  }
+  @media screen and (max-width: 576px) {
+    width: 25%;
+  }
+  @media screen and (max-width: 480px) {
+    width: 40%;
+  }
+  @media screen and (max-width: 400px) {
+    width: 30%;
+  }
+  @media screen and (max-width: 290px) {
+    width: 28%;
+  }
 }
 .range-slider-input-field {
   width: 50px;
@@ -100,14 +150,22 @@
   padding: 5px;
   background-color: #f8f8f4;
   @media screen and (max-width: 890px) {
+    font-size: 14px;
     width: 45px;
     height: 35px;
   }
   @media screen and (max-width: 781px) {
     font-size: 14px;
-    width: 40px;
+    width: 45px;
     height: 30px;
   }
+  @media screen and (max-width: 576px) {
+    width: 45px;
+  }
+  // @media screen and (max-width: 340px) {
+  //   font-size: 12px;
+  //   width: 45px;
+  // }
 }
 .layer-image-delete-and-edit-buttons-container {
   display: flex;

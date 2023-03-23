@@ -5,10 +5,12 @@
   width: 50%;
   margin: 0 auto 0 auto;
   border: 1px solid #ffbc0d;
-  // background-color: beige;
-  // background-image: url("../../../public/media/img/metamask_logo.png");
-  // background-size: 100px 100px;
-  // background-position: center;
+  @media screen and (max-width: 768px) {
+    width: 70%;
+  }
+  @media screen and (max-width: 768px) {
+    width: 90%;
+  }
 }
 .matamask-logo {
   width: 100px;
@@ -27,10 +29,11 @@
   padding: 10px 25px;
   background-color: white;
   margin-bottom: 20px;
-  // background-image: url("../../../public/media/img/metamask_logo.png");
-  // background-size: 30px 30px;
-  // background-position: left;
-  // background-repeat: no-repeat;
+  @media screen and (max-width: 390px) {
+    padding: 1px 10px;
+    font-size: 11px;
+    align-items: center;
+  }
 }
 .matamask-logo-in-metamask-login-button {
   width: 30px;

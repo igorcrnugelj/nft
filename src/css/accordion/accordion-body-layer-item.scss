@@ -10,6 +10,9 @@
   display: flex;
   flex-direction: row;
   gap: 20px;
+  @media screen and (max-width: 390px) {
+    gap: 10px;
+  }
 }
 .layer-edit-trash-container {
   display: flex;
@@ -28,6 +31,9 @@
 }
 .layer-bi-pencil-color {
   color: #373737;
+  @media screen and (max-width: 390px) {
+    font-size: 16px !important;
+  }
 }
 .layer-bi-pencil-color:hover {
   color: #ffbc0d;
@@ -39,18 +45,33 @@
 }
 .layer-bi-trash-color {
   color: #373737;
+  @media screen and (max-width: 390px) {
+    font-size: 16px !important;
+  }
 }
 .layer-bi-trash-color:hover {
   color: #ffbc0d;
   cursor: pointer;
 }
+.layer-bi-arrows-move-color {
+  @media screen and (max-width: 300px) {
+    display: none;
+  }
+}
 .layer-bi-arrows-move-color:hover {
   color: #ffbc0d;
 }
-
+.accordion-body-layer-order {
+  @media screen and (max-width: 390px) {
+    font-size: 14px !important;
+  }
+}
 .accordion-body-layer-name {
   border: none;
   background-color: white;
+  @media screen and (max-width: 390px) {
+    font-size: 14px !important;
+  }
 }
 .accordion-body-layer-name-color {
   color: #ffbc0d;

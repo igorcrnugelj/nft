@@ -109,6 +109,7 @@ const CreateNewCollectionForm = () => {
         <div className="create-new-collection-form-container">
           <div className="name-container">
             <div className="create-new-collection-form-name-text">Name:</div>
+            {/* <div className="create-new-collection-form-input-field-and-pencil"> */}
             <input
               type="text"
               id="name-input"
@@ -122,7 +123,8 @@ const CreateNewCollectionForm = () => {
                 {nameInputFieldMessage}
               </p>
             )}
-            <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i>
+            {/* <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i> */}
+            {/* </div> */}
           </div>
           <div className="description-container">
             <div className="create-new-collection-form-description-text">
@@ -140,7 +142,7 @@ const CreateNewCollectionForm = () => {
                 {descriptionInputFieldMessage}
               </p>
             )}
-            <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i>
+            {/* <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i> */}
           </div>
 
           <div className="collection-size-container">
@@ -159,7 +161,7 @@ const CreateNewCollectionForm = () => {
                 {sizeInputFieldMessage}
               </p>
             )}
-            <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i>
+            {/* <i className="bi bi-pencil-fill bi-pencil-fill-in-create-new-collection-form"></i> */}
           </div>
           {nameInputFieldNotification || descriptionInputFieldNotification ? (
             <button

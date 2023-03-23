@@ -48,7 +48,7 @@ const PaymentForm = () => {
 
   //********************************************************* */
   const makePaymentHandler = async () => {
-    const weiValue = dispatch(calculateWei(ethValue));
+    const weiValue = await dispatch(calculateWei(ethValue));
 
     let walletAddress = null;
     const user = localStorage.getItem("user");
@@ -57,6 +57,7 @@ const PaymentForm = () => {
       walletAddress = userObj.publicAddress;
     }
 
+    //TODO: Make error handling if token.success...
     const token = await dispatch(
       getApprovalToken(collection.collection.id)
     ).unwrap();
@@ -69,7 +70,7 @@ const PaymentForm = () => {
           {
             from: walletAddress,
             to: "0x41e3B5f8fE115aE102F08d389B286Df9E28C9dc8",
-            value: weiValue.weiValue,
+            value: weiValue.payload,
             data: token.token,
           },
         ],

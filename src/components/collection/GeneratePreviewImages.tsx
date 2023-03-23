@@ -59,6 +59,7 @@ const GeneratePreviewImages = () => {
     const generatePreviewImagesResponse = await dispatch(
       generatePreviewImages(collectionData)
     ).unwrap();
+    //TODO: make else to throw exception!!!
     if (generatePreviewImagesResponse.success) {
       setActivateLoader(true);
       getGeneratedCollectionRecursion(5);

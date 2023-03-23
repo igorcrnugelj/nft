@@ -129,7 +129,7 @@ const AccordionBodyLayerItem = ({
               {" "}
               {layer.name}
             </button>
-            <div>{layer.order}</div>
+            <div className="accordion-body-layer-order">{layer.order}</div>
           </div>
           <div className="layer-edit-trash-container">
             <i

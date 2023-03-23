@@ -105,7 +105,7 @@ const EditLayerForm = () => {
         </div>
         <div className="edit-layer-rarity-container">
           <div className="edit-layer-text-div">
-            <div className="edit-layer-text">layer rarity:</div>
+            <div className="edit-layer-text">Layer rarity:</div>
           </div>
           <input
             className="edit-layer-input-field"

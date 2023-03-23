@@ -76,6 +76,7 @@ export const getLayerImages = createAsyncThunk(
   async (layerId: any) => {
     try {
       const { data } = await nftClient.get(`/image/?layerId=${layerId}`);
+
       return {
         data,
         success: true,
@@ -382,17 +383,23 @@ export const addNewImage = createAsyncThunk(
       `/image/signedS3PutObjectUrl`,
       imageDataCollection.imageData
     );
-    await fetch(s3PutObjectResponse.data.s3PutObjectUrl, {
+    //Send file to bucket with url which I get in previous function
+    const response = await fetch(s3PutObjectResponse.data.s3PutObjectUrl, {
       method: "PUT",
       headers: { "Content-Type": "multipart/form-data" },
       body: imageDataCollection.imageFileData,
     });
-    await wait(4000);
+    console.log("RESPONSE:::::: ", response);
+
     try {
-      const data = await nftClient.get(
-        `/get?imageId=${s3PutObjectResponse.data.imageId}`
+      // return await fetchImageRecursion(5, s3PutObjectResponse.data.imageId);
+      const { data } = await nftClient.get(
+        `image/get?imageId=${s3PutObjectResponse.data.imageId}`
       );
-      return { data, success: true };
+      return {
+        success: true,
+        data,
+      };
     } catch (error) {
       return {
         success: false,
@@ -401,6 +408,28 @@ export const addNewImage = createAsyncThunk(
     }
   }
 );
+
+// const fetchImageRecursion = async (attempt: any, imageData: any) => {
+//   await wait(500);
+
+//   const { data } = await nftClient.get(`image/get?imageId=${imageData}`);
+//   if (data) {
+//     return {
+//       success: true,
+//       data,
+//     };
+//   } else {
+//     const newAttempt = attempt - 1;
+//     if (newAttempt > 0) {
+//       await fetchImageRecursion(newAttempt, imageData);
+//     } else {
+//       return {
+//         success: false,
+//         data: "Time has expired, could not fetch image,please try again!",
+//       };
+//     }
+//   }
+// };
 
 function wait(timeout: any) {
   return new Promise((resolve) => {

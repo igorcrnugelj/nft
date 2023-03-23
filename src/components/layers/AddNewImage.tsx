@@ -65,6 +65,7 @@ const AddNewImage = () => {
       const addNewImageResponse = await dispatch(
         addNewImage(imageDataCollection)
       ).unwrap();
+      //TODO: make else to throw exception (if addNewImageResponse.success failed)!!!
       if (addNewImageResponse.success) {
         const getLayerImagesResponse = await dispatch(
           getLayerImages(mainPanelData.layerData.data.id)
@@ -92,6 +93,8 @@ const AddNewImage = () => {
             setActivateLoader(false);
           }
         }
+      } else {
+        console.log("UPLOAD IMAGE FAILED!!!!!!!!!!!!");
       }
     }
   };

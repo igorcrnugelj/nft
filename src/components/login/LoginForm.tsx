@@ -164,7 +164,7 @@ const LoginForm = () => {
           wallet
         </button>
       )}
-      <p>{walletAddress}</p>
+      {/* <p>{walletAddress}</p> */}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import Web3 from "web3";
+import { numberToHex } from "web3-utils";
 import { nftClient } from "../../AxiosClient";
 
 export const getCollections = createAsyncThunk(
@@ -153,7 +154,7 @@ export const getPreviewImages = createAsyncThunk(
 export const setReceiptData = createAsyncThunk(
   "collectionsStore/setReceiptData",
   async ({ collectionSize, ethInUsd }: any) => {
-    const subtotal = 0.16 * collectionSize;
+    const subtotal = 0.01 * collectionSize;
     const subtotalFixed = subtotal.toFixed(2);
     const vat = (subtotal * 25) / 100;
     const vatFixed = vat.toFixed(2);
@@ -223,7 +224,7 @@ export const getApprovalToken = createAsyncThunk(
       for (var i = 0; i < data.token.length; i++) {
         token += data.token.charCodeAt(i).toString(16);
       }
-
+      console.log("TOKEN HEX: ", token);
       return { token, success: true };
     } catch (error) {
       return {
@@ -237,9 +238,11 @@ export const getApprovalToken = createAsyncThunk(
 export const calculateWei = createAsyncThunk(
   "collectionsStore/calculateWei",
   async (ethValue: any) => {
+    console.log("TYPE OF ethValue: ", typeof ethValue);
     const weiValue =
-      "0x" +
-      Number(Web3.utils.toWei(ethValue.toString(), "ether")).toString(16);
+      "0x" + Number(Web3.utils.toWei(ethValue, "ether")).toString(16);
+    // const weiValue = Web3.utils.toWei(ethValue, "ether");
+    console.log("WEI VALUE: ", weiValue);
 
     return weiValue;
   }

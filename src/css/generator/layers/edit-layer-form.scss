@@ -21,49 +21,87 @@
     margin-top: 40px;
     margin-bottom: 20px;
   }
+  @media screen and (max-width: 576px) {
+    width: 80%;
+    padding: 5px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 30px;
+  }
+  @media screen and (max-width: 455px) {
+    width: 90%;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    // border: 1px solid red;
+  }
 }
 
 .edit-layer-name-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media screen and (max-width: 355px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .edit-layer-text-div {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 20%;
-}
-@media screen and (max-width: 768px) {
-  .edit-layer-text-div {
+  @media screen and (max-width: 768px) {
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 40%;
   }
+  @media screen and (max-width: 455px) {
+    width: 45%;
+  }
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
 }
 .edit-layer-text {
   font-weight: bold;
+  @media screen and (max-width: 455px) {
+    font-weight: normal;
+  }
 }
 
 .edit-layer-input-field {
   display: flex;
-  width: 50%;
+  width: 60%;
   border: 1px solid #373737;
   line-height: 2rem;
   background-color: #f8f8f4;
   border-radius: 5px;
   padding-left: 5px;
+  @media screen and (max-width: 455px) {
+    width: 55%;
+  }
+  @media screen and (max-width: 355px) {
+    width: 90%;
+  }
 }
 .edit-layer-description-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media screen and (max-width: 355px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .edit-layer-rarity-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media screen and (max-width: 355px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .edit-layer-create-and-cancel-container {
   display: flex;
@@ -73,6 +111,9 @@
   align-items: center;
   gap: 10px;
   margin-top: 5px;
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
 }
 .save-changes-layer-button {
   color: black;

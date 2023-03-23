@@ -39,6 +39,10 @@
     width: 100%;
     // background-color: rgb(127, 206, 255);
   }
+  @media screen and (max-width: 360px) {
+    padding: 5px;
+    gap: 5px;
+  }
 }
 
 .collection-data-text {
@@ -51,6 +55,11 @@
   color: black;
   margin-top: 50px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  @media screen and (max-width: 576px) {
+    margin-top: 20px;
+  }
 }
 
 .name-container {
@@ -74,9 +83,20 @@
     justify-content: flex-start;
     // border: 1px solid green;
   }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+    justify-content: flex-start;
+    // border: 1px solid green;
+  }
+  @media screen and (max-width: 350px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 .create-new-collection-form-name-text {
+  // border: 1px solid red;
   @media screen and (max-width: 1951px) {
     font-size: 16px;
   }
@@ -95,7 +115,26 @@
   @media screen and (max-width: 645px) {
     width: 35%;
   }
+  @media screen and (max-width: 450px) {
+    // width: 25%;
+    font-size: 16px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 300px) {
+    font-size: 12px;
+  }
 }
+// .create-new-collection-form-input-field-and-pencil {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   border: 1px solid green;
+// }
 .name-input-field {
   position: relative;
   width: 300px;
@@ -122,13 +161,16 @@
     font-size: 16px;
     line-height: 2rem;
     background-color: #f8f8f4;
-    // border: 1px solid blue;
     border-radius: 5px;
     text-align: left;
     padding-left: 5px;
   }
   @media screen and (max-width: 645px) {
     width: 68%;
+    // border: 1px solid blue;
+  }
+  @media screen and (max-width: 350px) {
+    width: 90%;
   }
 }
 
@@ -144,6 +186,14 @@
   text-align: center;
   margin-top: -3.2rem;
   margin-left: 30px;
+}
+.name-input-field::placeholder {
+  @media screen and (max-width: 455px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
+  }
 }
 .name-input-field:focus {
   outline: none;
@@ -171,9 +221,20 @@
     justify-content: flex-start;
     // border: 1px solid green;
   }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+    justify-content: flex-start;
+    // border: 1px solid green;
+  }
+  @media screen and (max-width: 350px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
 }
 
 .create-new-collection-form-description-text {
+  // border: 1px solid blue;
   @media screen and (max-width: 1951px) {
     font-size: 16px;
   }
@@ -190,6 +251,18 @@
   }
   @media screen and (max-width: 645px) {
     width: 35%;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 300px) {
+    font-size: 12px;
   }
 }
 .description-input-field {
@@ -218,6 +291,17 @@
   @media screen and (max-width: 645px) {
     width: 68%;
   }
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
+}
+.description-input-field::placeholder {
+  @media screen and (max-width: 455px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
+  }
 }
 .description-input-field:focus {
   outline: none;
@@ -243,6 +327,16 @@
     width: 80%;
     justify-content: flex-start;
     // border: 1px solid green;
+  }
+  @media screen and (max-width: 576px) {
+    width: 100%;
+    justify-content: flex-start;
+    // border: 1px solid green;
+  }
+  @media screen and (max-width: 350px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 }
 .create-new-collection-form-collection-size-text {
@@ -270,6 +364,18 @@
   @media screen and (max-width: 645px) {
     width: 35%;
   }
+  @media screen and (max-width: 450px) {
+    font-size: 16px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
+  @media screen and (max-width: 300px) {
+    font-size: 12px;
+  }
 }
 .collection-size-input-field {
   width: 300px;
@@ -279,16 +385,28 @@
   background-color: #f8f8f4;
   border-radius: 5px;
   text-align: center;
+  @media screen and (max-width: 1780px) {
+    width: 65%;
+  }
   @media screen and (max-width: 768px) {
     width: 65%;
     text-align: left;
     padding-left: 5px;
   }
-  @media screen and (max-width: 768px) {
-    width: 48%;
-  }
+
   @media screen and (max-width: 645px) {
     width: 68%;
+  }
+  @media screen and (max-width: 350px) {
+    width: 90%;
+  }
+}
+.collection-size-input-field::placeholder {
+  @media screen and (max-width: 455px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 360px) {
+    font-size: 12px;
   }
 }
 
@@ -306,15 +424,19 @@
   background-color: #f8f8f4;
   padding: 10px 25px;
   cursor: pointer;
-}
-@media screen and (max-width: 1780px) {
-  .create-new-collection-form-button {
+  @media screen and (max-width: 1780px) {
     color: #121212;
     border-radius: 15px;
     background-color: #f8f8f4;
     padding: 5px 15px;
     margin-top: 30px;
     cursor: pointer;
+  }
+  @media screen and (max-width: 450px) {
+    font-size: 14px;
+    margin-top: 15px;
+    padding: 5px 15px;
+    // border: 1px solid #121212;
   }
 }
 .create-new-collection-form-button:hover {

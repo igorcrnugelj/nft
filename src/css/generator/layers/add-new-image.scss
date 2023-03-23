@@ -41,6 +41,12 @@
     width: 100%;
     margin-right: 10px;
   }
+  @media screen and (max-width: 400px) {
+    font-size: 14px;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 12px;
+  }
 }
 .loader-main-container {
   display: flex;

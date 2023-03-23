@@ -40,9 +40,9 @@ const Home = () => {
             <div className="first-section-image-container2">
               <div className="first-section-img2"></div>
             </div>
-            <p className="first-section-img-description22">
+            <div className="first-section-img-description22">
               Make your NFT's available publicly on multiple blockchains
-            </p>
+            </div>
             <div className="blockchains-container2">
               <div className="blockchains2">
                 <img
